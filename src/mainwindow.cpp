@@ -11,35 +11,6 @@ QStringList hideList = { "Android Emulator - Stefans_Pixel:5554", "Philipp Burgh
 
 QList<HWND> hiddenWindows;
 
-BOOL CALLBACK hideFenster(HWND hwnd, LPARAM substring){
-
-    const DWORD TITLE_SIZE = 1024;
-    TCHAR windowTitle[TITLE_SIZE];
-
-    GetWindowText(hwnd, windowTitle, TITLE_SIZE);
-    int length = ::GetWindowTextLength(hwnd);
-
-    std::wstring temp(&windowTitle[0]);
-    QString title = QString::fromStdWString(temp);
-
-    /*
-    if (!IsWindowVisible(hwnd)) {
-        return TRUE;
-    }*/
-
-    for (auto pattern: hideList) {
-        if (title.contains(pattern)) {
-             qDebug() << "hiding" << title << hwnd;
-            ShowWindow(hwnd, SW_HIDE);
-
-            hiddenWindows.append(hwnd);
-            qDebug() << hiddenWindows.length();
-        }
-    }
-
-
-    return TRUE;
-}
 
 BOOL CALLBACK showFenster(HWND hwnd, LPARAM substring){
 
@@ -77,16 +48,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::showWindows() {
-    qDebug() << "show" << hiddenWindows.length();
-    for (auto window : hiddenWindows) {
-        qDebug() << window;
-        ShowWindow(window, SW_SHOW);
-    }
-}
-void MainWindow::hideWindows() {
-    hiddenWindows.clear();
-    EnumWindows(hideFenster, NULL);
+void MainWindow::quit() {
+    trayIcon->hide();
+    QMainWindow::close();
 }
 
 void MainWindow::createTrayIcon()
@@ -104,6 +68,6 @@ void MainWindow::createTrayIcon()
 */
     trayIcon = new QSystemTrayIcon(this);
 
-    trayIcon->setIcon(QIcon("C:\\schestde\\projects\\bosskey\\assets\\leader.svg"));
+    trayIcon->setIcon(QIcon(":/icons/assets/leader.svg"));
     trayIcon->setContextMenu(trayIconMenu);
 }

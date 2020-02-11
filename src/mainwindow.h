@@ -15,9 +15,12 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+public slots:
+    void quit();
+
+private:
     void createTrayIcon();
-    void showWindows();
-    void hideWindows();
 
 private:
     Ui::MainWindow *ui;

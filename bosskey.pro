@@ -16,20 +16,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    main.cpp \
-    mainwindow.cpp
+    src/bosskeydialog.cpp \
+    src/main.cpp \
+    src/windowsengine.cpp
 
 HEADERS += \
-    mainwindow.h
+    src/bosskeydialog.h \
+    src/windowsengine.h
 
 FORMS += \
-    mainwindow.ui
+    src/bosskeydialog.ui \
+    src/mainwindow.ui
 
-INCLUDEPATH += ../libs/UGlobalHotkey/
+INCLUDEPATH += src/ libs/UGlobalHotkey/
 
-include(../libs/UGlobalHotkey/uglobalhotkey.pri)
+include(libs/UGlobalHotkey/uglobalhotkey.pri)
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    bosskey.qrc
