@@ -9,7 +9,7 @@ namespace Ui {
 class BossKeyDialog;
 }
 
-class WindowsEngine;
+class EngineInterface;
 class UGlobalHotkeys;
 
 class BossKeyDialog : public QDialog
@@ -17,7 +17,7 @@ class BossKeyDialog : public QDialog
     Q_OBJECT
 
 public:
-    BossKeyDialog(WindowsEngine& engine, UGlobalHotkeys& hotkeyManager);
+    BossKeyDialog(EngineInterface& engine, UGlobalHotkeys& hotkeyManager);
     ~BossKeyDialog();
 
 private:
@@ -26,7 +26,7 @@ private:
 
 private:
     Ui::BossKeyDialog *ui_;
-    WindowsEngine& engine_;
+    EngineInterface& engine_;
     UGlobalHotkeys& hotkeyManager_;
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;

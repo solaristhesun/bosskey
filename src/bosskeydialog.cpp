@@ -1,9 +1,11 @@
+#include <QDebug>
+
 #include "bosskeydialog.h"
-#include "windowsengine.h"
+#include "engineinterface.h"
 #include "uglobalhotkeys.h"
 #include "ui_bosskeydialog.h"
 
-BossKeyDialog::BossKeyDialog(WindowsEngine& engine, UGlobalHotkeys& hotkeyManager)
+BossKeyDialog::BossKeyDialog(EngineInterface& engine, UGlobalHotkeys& hotkeyManager)
     : QDialog(nullptr)
     , ui_(new Ui::BossKeyDialog)
     , engine_(engine)
@@ -13,6 +15,9 @@ BossKeyDialog::BossKeyDialog(WindowsEngine& engine, UGlobalHotkeys& hotkeyManage
 
     setupHotkeys();
     createTrayIcon();
+
+    for (auto title: engine_.getWindowList())
+        qDebug() << title;
 }
 
 BossKeyDialog::~BossKeyDialog()
@@ -31,7 +36,7 @@ void BossKeyDialog::setupHotkeys()
             engine_.showWindows();
         }
         else {
-            engine_.hideWindows(QStringList() << "EditPad Pro 7");
+            engine_.hideWindows(QStringList() << "Visual Studio Code" << "Qt Creator" << "Cmder" << "Philipp Burghardt" << "Emulator");
         }
     });
 }

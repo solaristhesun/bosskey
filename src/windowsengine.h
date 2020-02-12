@@ -5,7 +5,9 @@
 
 #include <Windows.h>
 
-class WindowsEngine
+#include "engineinterface.h"
+
+class WindowsEngine: public EngineInterface
 {
 public:
     WindowsEngine();

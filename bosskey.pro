@@ -22,6 +22,7 @@ SOURCES += \
 
 HEADERS += \
     src/bosskeydialog.h \
+    src/engineinterface.h \
     src/windowsengine.h
 
 FORMS += \
