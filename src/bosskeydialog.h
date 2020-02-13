@@ -22,6 +22,7 @@
 #include <QDialog>
 #include <QSystemTrayIcon>
 #include <QMenu>
+#include <QAbstractItemDelegate>
 
 namespace Ui {
 class BossKeyDialog;
@@ -40,14 +41,23 @@ public:
 
     void closeEvent(QCloseEvent *e);
 
+    enum HotKey {
+        KeyCode_HideWindows = 0,
+        KeyCode_ShowWindows,
+    };
+
 public slots:
     void systemTracActivated(QSystemTrayIcon::ActivationReason reason);
     void addButtonClicked();
     void deleteButtonClicked();
+    void showAboutDialog();
+    void quitApplication();
+    void patternEditDone(QWidget *editor, QAbstractItemDelegate::EndEditHint hint);
 
 private:
     void setupHotkeys();
     void createTrayIcon();
+    void savePatterns();
 
 private:
     Ui::BossKeyDialog *ui_;

@@ -17,12 +17,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     src/bosskeydialog.cpp \
+    src/globals.cpp \
     src/main.cpp \
+    src/softwareversion.cpp \
     src/windowsengine.cpp
 
 HEADERS += \
     src/bosskeydialog.h \
     src/engineinterface.h \
+    src/globals.h \
+    src/softwareversion.h \
     src/windowsengine.h
 
 FORMS += \
@@ -35,6 +39,16 @@ include(libs/SingleApplication/singleapplication.pri)
 
 DEFINES += QAPPLICATION_CLASS=QApplication
 
+REVISION = $$system(git rev-list --count HEAD)
+
+isEmpty(REVISION){
+    REVISION = 0
+}
+
+DEFINES += REVISION=$${REVISION}
+
+QTPLUGIN += qsvg
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -42,3 +56,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     bosskey.qrc
+
+win32:RC_FILE += bosskey.rc
+win32:CONFIG += embed_manifest_exe

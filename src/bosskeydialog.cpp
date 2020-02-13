@@ -18,10 +18,12 @@
 
 #include <QDebug>
 #include <QSettings>
+#include <QMessageBox>
 
 #include "bosskeydialog.h"
 #include "engineinterface.h"
 #include "uglobalhotkeys.h"
+#include "globals.h"
 #include "ui_bosskeydialog.h"
 
 BossKeyDialog::BossKeyDialog(EngineInterface& engine, UGlobalHotkeys& hotkeyManager)
@@ -36,6 +38,8 @@ BossKeyDialog::BossKeyDialog(EngineInterface& engine, UGlobalHotkeys& hotkeyMana
     setupHotkeys();
     createTrayIcon();
 
+    connect(ui_->listWidget_2->itemDelegate(), SIGNAL(closeEditor(QWidget*, QAbstractItemDelegate::EndEditHint)), this, SLOT(patternEditDone(QWidget*, QAbstractItemDelegate::EndEditHint)));
+
     auto list = engine_.getWindowList();
     for (auto title: engine_.getWindowList()) {
         qDebug() << title;
@@ -43,14 +47,16 @@ BossKeyDialog::BossKeyDialog(EngineInterface& engine, UGlobalHotkeys& hotkeyMana
     }
 
     QSettings settings;
-    //tringList list2;
-    //list2 << "Visual Studio Code" << "Qt Creator" << "Cmder" << "Philipp Burghardt" << "Emulator";
     patterns_ = settings.value("patterns").toStringList();
     for (auto pattern: patterns_) {
         auto item = new QListWidgetItem(pattern);
         item->setFlags (item->flags () | Qt::ItemIsEditable);
         ui_->listWidget_2->addItem(item);
     }
+    if (patterns_.empty()) {
+        QDialog::show();
+    }
+
 }
 
 BossKeyDialog::~BossKeyDialog()
@@ -60,24 +66,31 @@ BossKeyDialog::~BossKeyDialog()
 
 void BossKeyDialog::setupHotkeys()
 {
-    hotkeyManager_.registerHotkey("Ctrl+F12", 1);
-    hotkeyManager_.registerHotkey("Ctrl+F11", 2);
+    hotkeyManager_.registerHotkey("Ctrl+F12", KeyCode_HideWindows);
+    hotkeyManager_.registerHotkey("Ctrl+F11", KeyCode_ShowWindows);
 
     QObject::connect(&hotkeyManager_, &UGlobalHotkeys::activated, [=](size_t id)
     {
-        if ( id == 2) {
+        if (id == KeyCode_ShowWindows) {
             engine_.showWindows();
         }
         else {
-            engine_.hideWindows(QStringList() << "Visual Studio Code" << "Qt Creator" << "Cmder" << "Philipp Burghardt" << "Emulator");
+            engine_.hideWindows(patterns_);
         }
     });
+}
+
+void BossKeyDialog::savePatterns()
+{
+    QSettings settings;
+    settings.setValue("patterns", patterns_);
 }
 
 void BossKeyDialog::createTrayIcon()
 {
     trayIconMenu = new QMenu(this);
     trayIconMenu->addAction(ui_->actionShowDialog);
+    trayIconMenu->addAction(ui_->actionShowAbout);
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(ui_->actionExit);
 
@@ -116,12 +129,38 @@ void BossKeyDialog::addButtonClicked()
     QListWidgetItem * newItem = new QListWidgetItem(item->text());
     newItem->setFlags (item->flags () | Qt::ItemIsEditable);
     ui_->listWidget_2->addItem(newItem);
+    patterns_.append(newItem->text());
+    savePatterns();
 }
 
 void BossKeyDialog::deleteButtonClicked()
 {
     auto item = ui_->listWidget_2->currentItem();
     ui_->listWidget_2->takeItem(ui_->listWidget_2->row(item));
+    patterns_.removeAll(item->text());
+    savePatterns();
+}
+
+void BossKeyDialog::showAboutDialog()
+{
+    const QString contents = QString(
+        "<p><font color=#000080><font size=6><b>%1</b></font> <font size=4>(revision %2)</font></font></p>"
+        "<p align=left>Copyright &copy; 2020 Stefan Scheler. %3</p>"
+        "<p><a href=\"%4\">%5</a></p>"
+        "<p>The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.</p>")
+                             .arg(Globals::ApplicationFullName, QString::number(Globals::ApplicationRevision), tr("All rights reserved."), Globals::ApplicationWebsite, tr("Visit bosskey website"));
+
+    QMessageBox::about(this, tr("About bosskey"), contents);
+}
+
+void BossKeyDialog::quitApplication()
+{
+    QApplication::quit();
+}
+
+void BossKeyDialog::patternEditDone(QWidget *editor, QAbstractItemDelegate::EndEditHint hint)
+{
+    savePatterns();
 }
 
 // EOF <stefan@scheler.com>

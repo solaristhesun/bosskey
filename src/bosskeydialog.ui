@@ -175,6 +175,15 @@
     <string>&amp;Preferences</string>
    </property>
   </action>
+  <action name="actionShowAbout">
+   <property name="icon">
+    <iconset resource="../bosskey.qrc">
+     <normaloff>:/icons/information-white</normaloff>:/icons/information-white</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;About</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="../bosskey.qrc"/>
@@ -184,7 +193,7 @@
    <sender>actionExit</sender>
    <signal>triggered()</signal>
    <receiver>BossKeyDialog</receiver>
-   <slot>close()</slot>
+   <slot>quitApplication()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -260,9 +269,27 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionShowAbout</sender>
+   <signal>triggered()</signal>
+   <receiver>BossKeyDialog</receiver>
+   <slot>showAboutDialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>421</x>
+     <y>233</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addButtonClicked()</slot>
   <slot>deleteButtonClicked()</slot>
+  <slot>showAboutDialog()</slot>
+  <slot>quitApplication()</slot>
  </slots>
 </ui>
