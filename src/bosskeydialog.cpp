@@ -82,6 +82,14 @@ void BossKeyDialog::setupHotkeys()
 
 void BossKeyDialog::savePatterns()
 {
+    patterns_.clear();
+
+    for(int i = 0; i < ui_->listWidget_2->count(); ++i)
+    {
+        QListWidgetItem* item = ui_->listWidget_2->item(i);
+        patterns_ << item->text();
+    }
+
     QSettings settings;
     settings.setValue("patterns", patterns_);
 }
@@ -129,7 +137,6 @@ void BossKeyDialog::addButtonClicked()
     QListWidgetItem * newItem = new QListWidgetItem(item->text());
     newItem->setFlags (item->flags () | Qt::ItemIsEditable);
     ui_->listWidget_2->addItem(newItem);
-    patterns_.append(newItem->text());
     savePatterns();
 }
 
@@ -137,7 +144,6 @@ void BossKeyDialog::deleteButtonClicked()
 {
     auto item = ui_->listWidget_2->currentItem();
     ui_->listWidget_2->takeItem(ui_->listWidget_2->row(item));
-    patterns_.removeAll(item->text());
     savePatterns();
 }
 
@@ -155,6 +161,7 @@ void BossKeyDialog::showAboutDialog()
 
 void BossKeyDialog::quitApplication()
 {
+    engine_.showWindows();
     QApplication::quit();
 }
 
