@@ -158,17 +158,27 @@
    </item>
   </layout>
   <action name="actionExit">
+   <property name="icon">
+    <iconset resource="../bosskey.qrc">
+     <normaloff>:/icons/door-open-out</normaloff>:/icons/door-open-out</iconset>
+   </property>
    <property name="text">
     <string>&amp;Exit</string>
    </property>
   </action>
   <action name="actionShowDialog">
+   <property name="icon">
+    <iconset resource="../bosskey.qrc">
+     <normaloff>:/icons/wrench-screwdriver</normaloff>:/icons/wrench-screwdriver</iconset>
+   </property>
    <property name="text">
     <string>&amp;Preferences</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../bosskey.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionExit</sender>
