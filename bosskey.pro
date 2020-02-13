@@ -32,6 +32,9 @@ FORMS += \
 INCLUDEPATH += src/ libs/UGlobalHotkey/
 
 include(libs/UGlobalHotkey/uglobalhotkey.pri)
+include(libs/SingleApplication/singleapplication.pri)
+
+DEFINES += QAPPLICATION_CLASS=QApplication
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

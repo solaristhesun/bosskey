@@ -1,16 +1,17 @@
 #include <QApplication>
 
+#include "singleapplication.h"
 #include "bosskeydialog.h"
 #include "uglobalhotkeys.h"
 #include "windowsengine.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    SingleApplication app(argc, argv);
     WindowsEngine engine;
     UGlobalHotkeys hotkeyManager;
     BossKeyDialog dialog(engine, hotkeyManager);
-    return a.exec();
+    return app.exec();
 }
 
 // EOF <stefan@scheler.com>
