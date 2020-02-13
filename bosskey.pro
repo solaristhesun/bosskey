@@ -26,8 +26,7 @@ HEADERS += \
     src/windowsengine.h
 
 FORMS += \
-    src/bosskeydialog.ui \
-    src/mainwindow.ui
+    src/bosskeydialog.ui
 
 INCLUDEPATH += src/ libs/UGlobalHotkey/
 
