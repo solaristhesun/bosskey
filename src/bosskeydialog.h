@@ -46,6 +46,9 @@ public:
         KeyCode_ShowWindows,
     };
 
+    void showEvent(QShowEvent *event) override;
+    void hideEvent(QHideEvent *event) override;
+
 public slots:
     void systemTracActivated(QSystemTrayIcon::ActivationReason reason);
     void addButtonClicked();
@@ -58,6 +61,7 @@ private:
     void setupHotkeys();
     void createTrayIcon();
     void savePatterns();
+    void saveHotkeys();
 
 private:
     Ui::BossKeyDialog *ui_;

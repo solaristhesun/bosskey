@@ -57,6 +57,9 @@ BossKeyDialog::BossKeyDialog(EngineInterface& engine, UGlobalHotkeys& hotkeyMana
         QDialog::show();
     }
 
+    ui_->keySequenceEdit->setKeySequence(QKeySequence(settings.value("hotkey_hide").toString()));
+    ui_->keySequenceEdit_2->setKeySequence(QKeySequence(settings.value("hotkey_show").toString()));
+
 }
 
 BossKeyDialog::~BossKeyDialog()
@@ -66,8 +69,10 @@ BossKeyDialog::~BossKeyDialog()
 
 void BossKeyDialog::setupHotkeys()
 {
-    hotkeyManager_.registerHotkey("Ctrl+F12", KeyCode_HideWindows);
-    hotkeyManager_.registerHotkey("Ctrl+F11", KeyCode_ShowWindows);
+    QSettings settings;
+
+    hotkeyManager_.registerHotkey(settings.value("hotkey_hide").toString(), KeyCode_HideWindows);
+    hotkeyManager_.registerHotkey(settings.value("hotkey_show").toString(), KeyCode_ShowWindows);
 
     QObject::connect(&hotkeyManager_, &UGlobalHotkeys::activated, [=](size_t id)
     {
@@ -78,6 +83,29 @@ void BossKeyDialog::setupHotkeys()
             engine_.hideWindows(patterns_);
         }
     });
+}
+
+void BossKeyDialog::showEvent(QShowEvent *event)
+{
+    hotkeyManager_.unregisterAllHotkeys();
+    QDialog::showEvent(event);
+    qDebug() << "show";
+
+}
+
+void BossKeyDialog::hideEvent(QHideEvent *event)
+{
+    QDialog::hideEvent(event);
+    qDebug() << "hide";
+    saveHotkeys();
+    setupHotkeys();
+}
+
+void BossKeyDialog::saveHotkeys()
+{
+    QSettings settings;
+    settings.setValue("hotkey_hide", ui_->keySequenceEdit->keySequence());
+    settings.setValue("hotkey_show", ui_->keySequenceEdit_2->keySequence());
 }
 
 void BossKeyDialog::savePatterns()

@@ -19,6 +19,7 @@ SOURCES += \
     src/bosskeydialog.cpp \
     src/globals.cpp \
     src/main.cpp \
+    src/singlekeysequenceedit.cpp \
     src/softwareversion.cpp \
     src/windowsengine.cpp
 
@@ -26,6 +27,7 @@ HEADERS += \
     src/bosskeydialog.h \
     src/engineinterface.h \
     src/globals.h \
+    src/singlekeysequenceedit.h \
     src/softwareversion.h \
     src/windowsengine.h
 

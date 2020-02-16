@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>843</width>
-    <height>468</height>
+    <width>796</width>
+    <height>491</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,13 +21,44 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <layout class="QVBoxLayout" name="verticalLayout_5">
+     <property name="spacing">
+      <number>2</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Hide Hotkey:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="SingleKeySequenceEdit" name="keySequenceEdit">
+       <property name="keySequence">
+        <string notr="true">Ctrl+F10</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Show Hotkey:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="SingleKeySequenceEdit" name="keySequenceEdit_2"/>
+     </item>
+    </layout>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Visible Windows:</string>
+          <string>Currently visible windows:</string>
          </property>
         </widget>
        </item>
@@ -185,6 +216,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SingleKeySequenceEdit</class>
+   <extends>QKeySequenceEdit</extends>
+   <header>singlekeysequenceedit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../bosskey.qrc"/>
  </resources>

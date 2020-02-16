@@ -122,8 +122,10 @@ void UGlobalHotkeys::unregisterHotkey(size_t id) {
 void UGlobalHotkeys::unregisterAllHotkeys()
 {
 #ifdef Q_OS_WIN
-    for (size_t id : Registered)
-        this->unregisterHotkey(id);
+    QSetIterator<size_t> i(Registered);
+    while (i.hasNext()) {
+        this->unregisterHotkey(i.next());
+    }
 #elif defined(Q_OS_LINUX)
     for (size_t id :Registered.keys())
         this->unregisterHotkey(id);
