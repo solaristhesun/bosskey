@@ -131,7 +131,7 @@ void BossKeyDialog::createTrayIcon()
     trayIconMenu->addAction(ui_->actionExit);
 
     trayIcon = new QSystemTrayIcon(this);
-    trayIcon->setIcon(QIcon(":/icons/assets/leader.svg"));
+    trayIcon->setIcon(QIcon(":/icons/assets/appicon/leader.svg"));
     trayIcon->setContextMenu(trayIconMenu);
     trayIcon->show();
 

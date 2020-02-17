@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
         }
 
     SingleApplication app(argc, argv);
-    app.setWindowIcon(QIcon(":/icons/assets/leader.svg"));
+    app.setWindowIcon(QIcon(":/icons/assets/appicon/leader.svg"));
     app.setQuitOnLastWindowClosed(false);
 
     QCoreApplication::setOrganizationName("SCHELER");
