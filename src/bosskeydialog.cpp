@@ -161,17 +161,18 @@ void BossKeyDialog::closeEvent(QCloseEvent *e)
 
 void BossKeyDialog::systemTracActivated(QSystemTrayIcon::ActivationReason reason)
 {
-    if (reason == QSystemTrayIcon::QSystemTrayIcon::DoubleClick)
+    if (reason == QSystemTrayIcon::QSystemTrayIcon::Trigger)
     {
         if (engine_.isHidden())
         {
-            engine_.showWindows();
+            showWindows();
         }
         else
         {
-            engine_.hideWindows(QStringList() << "Visual Studio Code" << "Qt Creator" << "Cmder" << "Philipp Burghardt" << "Emulator");
+            hideWindows();
         }
     }
+
 }
 
 void BossKeyDialog::addButtonClicked()
