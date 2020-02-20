@@ -59,7 +59,7 @@ BossKeyDialog::BossKeyDialog(EngineInterface& engine, UGlobalHotkeys& hotkeyMana
 
     ui_->keySequenceEdit->setKeySequence(QKeySequence(settings.value("hotkey_hide").toString()));
     ui_->keySequenceEdit_2->setKeySequence(QKeySequence(settings.value("hotkey_show").toString()));
-
+    ui_->hideSystrayIconCheckBox->setChecked(settings.value("hide_icon").toBool());
 }
 
 BossKeyDialog::~BossKeyDialog()
@@ -77,12 +77,27 @@ void BossKeyDialog::setupHotkeys()
     QObject::connect(&hotkeyManager_, &UGlobalHotkeys::activated, [=](size_t id)
     {
         if (id == KeyCode_ShowWindows) {
-            engine_.showWindows();
+            showWindows();
         }
         else {
-            engine_.hideWindows(patterns_);
+            hideWindows();
         }
     });
+}
+
+void BossKeyDialog::showWindows()
+{
+    engine_.showWindows();
+    trayIcon->show();
+}
+
+void BossKeyDialog::hideWindows()
+{
+    engine_.hideWindows(patterns_);
+
+    if (ui_->hideSystrayIconCheckBox->isChecked()) {
+        trayIcon->hide();
+    }
 }
 
 void BossKeyDialog::showEvent(QShowEvent *event)
@@ -90,7 +105,6 @@ void BossKeyDialog::showEvent(QShowEvent *event)
     hotkeyManager_.unregisterAllHotkeys();
     QDialog::showEvent(event);
     qDebug() << "show";
-
 }
 
 void BossKeyDialog::hideEvent(QHideEvent *event)
@@ -106,6 +120,7 @@ void BossKeyDialog::saveHotkeys()
     QSettings settings;
     settings.setValue("hotkey_hide", ui_->keySequenceEdit->keySequence());
     settings.setValue("hotkey_show", ui_->keySequenceEdit_2->keySequence());
+    settings.setValue("hide_icon", ui_->hideSystrayIconCheckBox->isChecked());
 }
 
 void BossKeyDialog::savePatterns()

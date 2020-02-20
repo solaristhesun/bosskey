@@ -62,6 +62,8 @@ private:
     void createTrayIcon();
     void savePatterns();
     void saveHotkeys();
+    void showWindows();
+    void hideWindows();
 
 private:
     Ui::BossKeyDialog *ui_;

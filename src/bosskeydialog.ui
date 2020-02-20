@@ -21,33 +21,48 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_5">
-     <property name="spacing">
-      <number>2</number>
-     </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Hide Hotkey:</string>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <property name="spacing">
+        <number>2</number>
        </property>
-      </widget>
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Hide Hotkey:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="SingleKeySequenceEdit" name="keySequenceEdit">
+         <property name="keySequence">
+          <string notr="true">Ctrl+F10</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Show Hotkey:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="SingleKeySequenceEdit" name="keySequenceEdit_2"/>
+       </item>
+      </layout>
      </item>
      <item>
-      <widget class="SingleKeySequenceEdit" name="keySequenceEdit">
-       <property name="keySequence">
-        <string notr="true">Ctrl+F10</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_4">
-       <property name="text">
-        <string>Show Hotkey:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="SingleKeySequenceEdit" name="keySequenceEdit_2"/>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QCheckBox" name="hideSystrayIconCheckBox">
+         <property name="text">
+          <string>Hide Systray icon</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>
@@ -135,7 +150,7 @@
        <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>Hidden Windows:</string>
+          <string>To be hidden:</string>
          </property>
         </widget>
        </item>

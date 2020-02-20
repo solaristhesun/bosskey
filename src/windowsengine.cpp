@@ -81,8 +81,24 @@ QStringList WindowsEngine::getWindowList()
 
         GetWindowText(hWnd, windowTitle, TITLE_SIZE);
 
+        TCHAR buffer[MAX_PATH] = {0};
+        DWORD dwProcessId = 0;
+        GetWindowThreadProcessId(hWnd, &dwProcessId);
+
+        HANDLE hProc = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ , FALSE, dwProcessId);
+        DWORD ret = GetModuleFileName((HMODULE)hProc, buffer, MAX_PATH);
+        DWORD error = GetLastError();
+
+        DWORD value = MAX_PATH;
+        wchar_t buffer2[MAX_PATH];
+        QueryFullProcessImageName(hProc, 0, buffer2, &value);
+        CloseHandle(hProc);
+
+
+
         std::wstring temp(&windowTitle[0]);
         QString title = QString::fromStdWString(temp);
+        qDebug() << title << hProc << dwProcessId << QString::fromStdWString(std::wstring(&buffer2[0])) << ret << error;
 
         if (!title.isEmpty()) {
             engine->windowList_.append(title);
