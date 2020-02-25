@@ -57,9 +57,9 @@ BossKeyDialog::BossKeyDialog(EngineInterface& engine, UGlobalHotkeys& hotkeyMana
         QDialog::show();
     }
 
-    ui_->keySequenceEdit->setKeySequence(QKeySequence(settings.value("hotkey_hide").toString()));
-    ui_->keySequenceEdit_2->setKeySequence(QKeySequence(settings.value("hotkey_show").toString()));
-    ui_->hideSystrayIconCheckBox->setChecked(settings.value("hide_icon").toBool());
+    ui_->keySequenceEdit->setKeySequence(QKeySequence(settings.value("hotkey_hide", "Ctrl+F12").toString()));
+    ui_->keySequenceEdit_2->setKeySequence(QKeySequence(settings.value("hotkey_show", "Ctrl+F11").toString()));
+    ui_->hideSystrayIconCheckBox->setChecked(settings.value("hide_icon", false).toBool());
 }
 
 BossKeyDialog::~BossKeyDialog()

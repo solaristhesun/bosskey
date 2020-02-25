@@ -18,8 +18,6 @@
 
 #include <QApplication>
 
-#include <QSetIterator>
-
 #include "singleapplication.h"
 #include "bosskeydialog.h"
 #include "uglobalhotkeys.h"
@@ -27,14 +25,6 @@
 
 int main(int argc, char *argv[])
 {
-    QSet<unsigned long long> set;
-    set.insert(0);
-    set.insert(1);
-    QSetIterator<unsigned long long> it(set);
-    while (it.hasNext()) {
-            set.remove(it.next());
-        }
-
     SingleApplication app(argc, argv);
     app.setWindowIcon(QIcon(":/icons/assets/appicon/leader.svg"));
     app.setQuitOnLastWindowClosed(false);
