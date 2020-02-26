@@ -21,10 +21,10 @@
 
 #include <QStringList>
 
-class EngineInterface
+class PlatformInterface
 {
 public:
-    virtual ~EngineInterface() {}
+    virtual ~PlatformInterface() {}
 
     virtual void hideWindows(QStringList patterns) =0;
     virtual void showWindows() =0;

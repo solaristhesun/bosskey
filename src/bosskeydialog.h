@@ -29,7 +29,7 @@ namespace Ui {
 class BossKeyDialog;
 }
 
-class EngineInterface;
+class PlatformInterface;
 class UGlobalHotkeys;
 
 class BossKeyDialog : public QDialog
@@ -37,7 +37,7 @@ class BossKeyDialog : public QDialog
     Q_OBJECT
 
 public:
-    BossKeyDialog(EngineInterface& engine, UGlobalHotkeys& hotkeyManager);
+    BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyManager);
     ~BossKeyDialog();
 
     void closeEvent(QCloseEvent *e);
@@ -69,7 +69,7 @@ private:
 
 private:
     Ui::BossKeyDialog *ui_;
-    EngineInterface& engine_;
+    PlatformInterface& engine_;
     UGlobalHotkeys& hotkeyManager_;
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;

@@ -21,12 +21,12 @@
 #include <QMessageBox>
 
 #include "bosskeydialog.h"
-#include "engineinterface.h"
+#include "platforminterface.h"
 #include "uglobalhotkeys.h"
 #include "globals.h"
 #include "ui_bosskeydialog.h"
 
-BossKeyDialog::BossKeyDialog(EngineInterface& engine, UGlobalHotkeys& hotkeyManager)
+BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyManager)
     : QDialog(nullptr)
     , ui_(new Ui::BossKeyDialog)
     , engine_(engine)

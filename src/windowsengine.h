@@ -23,9 +23,9 @@
 
 #include <Windows.h>
 
-#include "engineinterface.h"
+#include "platforminterface.h"
 
-class WindowsEngine: public EngineInterface
+class WindowsEngine: public PlatformInterface
 {
 public:
     WindowsEngine();
