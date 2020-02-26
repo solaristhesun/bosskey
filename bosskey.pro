@@ -25,8 +25,8 @@ SOURCES += \
 
 HEADERS += \
     src/bosskeydialog.h \
-    src/engineinterface.h \
     src/globals.h \
+    src/platforminterface.h \
     src/singlekeysequenceedit.h \
     src/softwareversion.h \
     src/windowsengine.h

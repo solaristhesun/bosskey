@@ -58,6 +58,7 @@ public slots:
     void quitApplication();
     void patternEditDone(QWidget *editor, QAbstractItemDelegate::EndEditHint hint);
     void onTimeout();
+    void enableDisableAutoHideIntervalEdit(bool bEnabled);
 
 private:
     void setupHotkeys();

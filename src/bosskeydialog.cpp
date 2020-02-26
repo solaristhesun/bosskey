@@ -57,9 +57,14 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
         QDialog::show();
     }
 
+    ui_->autoHideIntervalEdit->setValidator(new QIntValidator(0, 7200, this));
+
     ui_->keySequenceEdit->setKeySequence(QKeySequence(settings.value("hotkey_hide", "Ctrl+F12").toString()));
     ui_->keySequenceEdit_2->setKeySequence(QKeySequence(settings.value("hotkey_show", "Ctrl+F11").toString()));
     ui_->hideSystrayIconCheckBox->setChecked(settings.value("hide_icon", false).toBool());
+    ui_->autoHideCheckBox->setChecked(settings.value("auto_hide", false).toBool());
+    ui_->autoHideIntervalEdit->setText(QString::number(settings.value("auto_hide_interval", 5).toInt()));
+    ui_->autoHideIntervalEdit->setEnabled(ui_->autoHideCheckBox->isChecked());
 
     connect(&timer_, SIGNAL(timeout()), this, SLOT(onTimeout()));
     timer_.start(1000);
@@ -126,6 +131,8 @@ void BossKeyDialog::saveHotkeys()
     settings.setValue("hotkey_hide", ui_->keySequenceEdit->keySequence());
     settings.setValue("hotkey_show", ui_->keySequenceEdit_2->keySequence());
     settings.setValue("hide_icon", ui_->hideSystrayIconCheckBox->isChecked());
+    settings.setValue("auto_hide", ui_->autoHideCheckBox->isChecked());
+    settings.setValue("auto_hide_interval", ui_->autoHideIntervalEdit->text());
 }
 
 void BossKeyDialog::savePatterns()
@@ -223,9 +230,19 @@ void BossKeyDialog::patternEditDone(QWidget *editor, QAbstractItemDelegate::EndE
 
 void BossKeyDialog::onTimeout()
 {
-    if (engine_.getUserIdleTime() >= 5) {
-        hideWindows();
+    QSettings settings;
+
+    if (settings.value("auto_hide", false).toBool() && QDialog::isVisible()) {
+        uint autoHideTime = settings.value("auto_hide_interval", 5).toUInt();
+        if (engine_.getUserIdleTime() >= autoHideTime) {
+            hideWindows();
+        }
     }
+}
+
+void BossKeyDialog::enableDisableAutoHideIntervalEdit(bool bEnabled)
+{
+    ui_->autoHideIntervalEdit->setEnabled(bEnabled);
 }
 
 // EOF <stefan@scheler.com>
