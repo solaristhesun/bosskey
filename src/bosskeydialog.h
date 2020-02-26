@@ -23,6 +23,7 @@
 #include <QSystemTrayIcon>
 #include <QMenu>
 #include <QAbstractItemDelegate>
+#include <QTimer>
 
 namespace Ui {
 class BossKeyDialog;
@@ -56,6 +57,7 @@ public slots:
     void showAboutDialog();
     void quitApplication();
     void patternEditDone(QWidget *editor, QAbstractItemDelegate::EndEditHint hint);
+    void onTimeout();
 
 private:
     void setupHotkeys();
@@ -72,6 +74,7 @@ private:
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
     QStringList patterns_;
+    QTimer timer_;
 };
 
 #endif // BOSSKEYDIALOG_H

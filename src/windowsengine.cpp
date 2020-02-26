@@ -115,4 +115,14 @@ bool WindowsEngine::isHidden() const
     return !hiddenWindows_.isEmpty();
 }
 
+quint32 WindowsEngine::getUserIdleTime() const
+{
+    LASTINPUTINFO lastInputInfo = { sizeof(lastInputInfo), 0 };
+    ::GetLastInputInfo(&lastInputInfo);
+
+    DWORD dwTickCount = ::GetTickCount();
+
+    return (dwTickCount - lastInputInfo.dwTime) / 1000;
+}
+
 // EOF <stefan@scheler.com>

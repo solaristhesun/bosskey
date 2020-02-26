@@ -60,6 +60,9 @@ BossKeyDialog::BossKeyDialog(EngineInterface& engine, UGlobalHotkeys& hotkeyMana
     ui_->keySequenceEdit->setKeySequence(QKeySequence(settings.value("hotkey_hide", "Ctrl+F12").toString()));
     ui_->keySequenceEdit_2->setKeySequence(QKeySequence(settings.value("hotkey_show", "Ctrl+F11").toString()));
     ui_->hideSystrayIconCheckBox->setChecked(settings.value("hide_icon", false).toBool());
+
+    connect(&timer_, SIGNAL(timeout()), this, SLOT(onTimeout()));
+    timer_.start(1000);
 }
 
 BossKeyDialog::~BossKeyDialog()
@@ -93,10 +96,12 @@ void BossKeyDialog::showWindows()
 
 void BossKeyDialog::hideWindows()
 {
-    engine_.hideWindows(patterns_);
+    if (!engine_.isHidden()) {
+        engine_.hideWindows(patterns_);
 
-    if (ui_->hideSystrayIconCheckBox->isChecked()) {
-        trayIcon->hide();
+        if (ui_->hideSystrayIconCheckBox->isChecked()) {
+            trayIcon->hide();
+        }
     }
 }
 
@@ -214,6 +219,13 @@ void BossKeyDialog::quitApplication()
 void BossKeyDialog::patternEditDone(QWidget *editor, QAbstractItemDelegate::EndEditHint hint)
 {
     savePatterns();
+}
+
+void BossKeyDialog::onTimeout()
+{
+    if (engine_.getUserIdleTime() >= 5) {
+        hideWindows();
+    }
 }
 
 // EOF <stefan@scheler.com>

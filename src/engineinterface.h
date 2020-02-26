@@ -30,6 +30,7 @@ public:
     virtual void showWindows() =0;
     virtual QStringList getWindowList() =0;
     virtual bool isHidden() const =0;
+    virtual quint32 getUserIdleTime() const =0;
 };
 
 #endif // ENGINEINTERFACE_H

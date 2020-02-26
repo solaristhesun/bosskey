@@ -34,6 +34,7 @@ public:
     void showWindows();
     QStringList getWindowList();
     bool isHidden() const;
+    quint32 getUserIdleTime() const;
 
 private:
     QList<HWND> hiddenWindows_;
