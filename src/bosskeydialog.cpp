@@ -232,7 +232,7 @@ void BossKeyDialog::onTimeout()
 {
     QSettings settings;
 
-    if (settings.value("auto_hide", false).toBool() && QDialog::isVisible()) {
+    if (settings.value("auto_hide", false).toBool() && !QDialog::isVisible()) {
         uint autoHideTime = settings.value("auto_hide_interval", 5).toUInt();
         if (engine_.getUserIdleTime() >= autoHideTime) {
             hideWindows();
