@@ -25,6 +25,16 @@
 
 #include "platforminterface.h"
 
+
+class Window
+{
+public:
+    QString title;
+    QString processImage;
+
+};
+
+
 class WindowsEngine: public PlatformInterface
 {
 public:
@@ -40,6 +50,7 @@ private:
     QList<HWND> hiddenWindows_;
     QStringList patterns_;
     QStringList windowList_;
+    QList<Window> windowList2_;
     bool bHidden_;
 };
 

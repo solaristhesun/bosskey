@@ -94,18 +94,19 @@ QStringList WindowsEngine::getWindowList()
         QueryFullProcessImageName(hProc, 0, buffer2, &value);
         CloseHandle(hProc);
 
+        Window w;
+        w.processImage = QString::fromStdWString(std::wstring(&buffer2[0]));
+        w.title =QString::fromStdWString(std::wstring(&windowTitle[0]));
 
-
-        std::wstring temp(&windowTitle[0]);
-        QString title = QString::fromStdWString(temp);
-        qDebug() << title << hProc << dwProcessId << QString::fromStdWString(std::wstring(&buffer2[0])) << ret << error;
-
-        if (!title.isEmpty()) {
-            engine->windowList_.append(title);
+        if (!w.title.isEmpty()) {
+            engine->windowList_.append(w.title);
+            engine->windowList2_.append(w);
         }
 
         return TRUE;
     }, reinterpret_cast<LPARAM>(this));
+
+    qDebug() << list.length() << list;
 
     return windowList_;
 }
