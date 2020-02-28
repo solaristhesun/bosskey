@@ -19,6 +19,7 @@
 #include <QDebug>
 
 #include "windowsengine.h"
+#include "windowlistviewmodel.h"
 
 WindowsEngine::WindowsEngine()
 {
@@ -66,9 +67,9 @@ void WindowsEngine::hideWindows(const QStringList patterns)
     }, reinterpret_cast<LPARAM>(this));
 }
 
-QStringList WindowsEngine::getWindowList()
+QList<Window> WindowsEngine::getWindowList()
 {
-    windowList_.clear();
+    windowList2_.clear();
 
     ::EnumWindows([](HWND hWnd, LPARAM lParam) -> BOOL {
         if (!IsWindowVisible(hWnd)) {
@@ -106,9 +107,9 @@ QStringList WindowsEngine::getWindowList()
         return TRUE;
     }, reinterpret_cast<LPARAM>(this));
 
-    qDebug() << list.length() << list;
+    //qDebug() << list.length() << list;
 
-    return windowList_;
+    return windowList2_;
 }
 
 bool WindowsEngine::isHidden() const

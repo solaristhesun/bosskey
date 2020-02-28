@@ -24,15 +24,8 @@
 #include <Windows.h>
 
 #include "platforminterface.h"
-
-
-class Window
-{
-public:
-    QString title;
-    QString processImage;
-
-};
+#include "window.h"
+class WindowListViewModel;
 
 
 class WindowsEngine: public PlatformInterface
@@ -42,7 +35,7 @@ public:
 
     void hideWindows(QStringList patterns);
     void showWindows();
-    QStringList getWindowList();
+    QList<Window> getWindowList();
     bool isHidden() const;
     quint32 getUserIdleTime() const;
 

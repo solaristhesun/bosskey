@@ -21,6 +21,8 @@
 
 #include <QStringList>
 
+#include "window.h"
+
 class PlatformInterface
 {
 public:
@@ -28,7 +30,7 @@ public:
 
     virtual void hideWindows(QStringList patterns) =0;
     virtual void showWindows() =0;
-    virtual QStringList getWindowList() =0;
+    virtual QList<Window> getWindowList() =0;
     virtual bool isHidden() const =0;
     virtual quint32 getUserIdleTime() const =0;
 };

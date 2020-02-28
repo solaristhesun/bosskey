@@ -25,6 +25,7 @@
 #include "uglobalhotkeys.h"
 #include "globals.h"
 #include "ui_bosskeydialog.h"
+#include "windowlistviewmodel.h"
 
 BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyManager)
     : QDialog(nullptr)
@@ -40,11 +41,14 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
 
     connect(ui_->listWidget_2->itemDelegate(), SIGNAL(closeEditor(QWidget*, QAbstractItemDelegate::EndEditHint)), this, SLOT(patternEditDone(QWidget*, QAbstractItemDelegate::EndEditHint)));
 
-    auto list = engine_.getWindowList();
-    for (auto title: engine_.getWindowList()) {
+    WindowListViewModel *model = new WindowListViewModel();
+    ui_->tableView->setModel(model);
+    model->setWindowList(engine_.getWindowList());
+
+    /*for (auto title: engine_.getWindowList()) {
         qDebug() << title;
         ui_->listWidget->addItem(title);
-    }
+    }*/
 
     QSettings settings;
     patterns_ = settings.value("patterns").toStringList();
@@ -68,6 +72,8 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
 
     connect(&timer_, SIGNAL(timeout()), this, SLOT(onTimeout()));
     timer_.start(1000);
+
+
 }
 
 BossKeyDialog::~BossKeyDialog()
@@ -189,11 +195,12 @@ void BossKeyDialog::systemTracActivated(QSystemTrayIcon::ActivationReason reason
 
 void BossKeyDialog::addButtonClicked()
 {
+    /*
     auto item = ui_->listWidget->currentItem();
     QListWidgetItem * newItem = new QListWidgetItem(item->text());
     newItem->setFlags (item->flags () | Qt::ItemIsEditable);
     ui_->listWidget_2->addItem(newItem);
-    savePatterns();
+    savePatterns();*/
 }
 
 void BossKeyDialog::deleteButtonClicked()
