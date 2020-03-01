@@ -163,8 +163,15 @@
           <number>28</number>
          </attribute>
          <attribute name="verticalHeaderDefaultSectionSize">
-          <number>20</number>
+          <number>28</number>
          </attribute>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="refreshButton">
+         <property name="text">
+          <string>&amp;Refresh</string>
+         </property>
         </widget>
        </item>
       </layout>
@@ -434,6 +441,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>refreshButton</sender>
+   <signal>pressed()</signal>
+   <receiver>BossKeyDialog</receiver>
+   <slot>refreshVisibleWindowList()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>241</x>
+     <y>588</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addButtonClicked()</slot>
@@ -441,5 +464,6 @@
   <slot>showAboutDialog()</slot>
   <slot>quitApplication()</slot>
   <slot>enableDisableAutoHideIntervalEdit(bool)</slot>
+  <slot>refreshVisibleWindowList()</slot>
  </slots>
 </ui>

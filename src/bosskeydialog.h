@@ -25,6 +25,8 @@
 #include <QAbstractItemDelegate>
 #include <QTimer>
 
+#include "windowlistviewmodel.h"
+
 namespace Ui {
 class BossKeyDialog;
 }
@@ -59,6 +61,7 @@ public slots:
     void patternEditDone(QWidget *editor, QAbstractItemDelegate::EndEditHint hint);
     void onTimeout();
     void enableDisableAutoHideIntervalEdit(bool bEnabled);
+    void refreshVisibleWindowList();
 
 private:
     void setupHotkeys();
@@ -77,6 +80,7 @@ private:
     QMenu *trayIconMenu;
     QStringList patterns_;
     QTimer timer_;
+    WindowListViewModel windowList_;
 };
 
 #endif // BOSSKEYDIALOG_H

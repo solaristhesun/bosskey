@@ -41,9 +41,8 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
 
     connect(ui_->listWidget_2->itemDelegate(), SIGNAL(closeEditor(QWidget*, QAbstractItemDelegate::EndEditHint)), this, SLOT(patternEditDone(QWidget*, QAbstractItemDelegate::EndEditHint)));
 
-    WindowListViewModel *model = new WindowListViewModel();
-    ui_->tableView->setModel(model);
-    model->setWindowList(engine_.getWindowList());
+    ui_->tableView->setModel(&windowList_);
+    windowList_.setWindowList(engine_.getWindowList());
 
     /*for (auto title: engine_.getWindowList()) {
         qDebug() << title;
@@ -97,6 +96,11 @@ void BossKeyDialog::setupHotkeys()
             hideWindows();
         }
     });
+}
+
+void BossKeyDialog::refreshVisibleWindowList()
+{
+    windowList_.setWindowList(engine_.getWindowList());
 }
 
 void BossKeyDialog::showWindows()
