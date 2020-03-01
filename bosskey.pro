@@ -21,6 +21,8 @@ SOURCES += \
     src/main.cpp \
     src/singlekeysequenceedit.cpp \
     src/softwareversion.cpp \
+    src/window.cpp \
+    src/windowlistviewmodel.cpp \
     src/windowsengine.cpp
 
 HEADERS += \
@@ -29,6 +31,8 @@ HEADERS += \
     src/platforminterface.h \
     src/singlekeysequenceedit.h \
     src/softwareversion.h \
+    src/window.h \
+    src/windowlistviewmodel.h \
     src/windowsengine.h
 
 FORMS += \
