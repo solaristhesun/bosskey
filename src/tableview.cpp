@@ -27,7 +27,7 @@ TableView::TableView(QWidget *parent)
 void TableView::dropEvent(QDropEvent *event)
 {
     QTableView::dropEvent(event);
-    QTableView::resizeColumnsToContents();
+    QTableView::resizeColumnToContents(0);
 }
 
 // EOF <stefan@scheler.com>
