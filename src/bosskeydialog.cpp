@@ -48,11 +48,6 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     windowList_.setWindowList(engine_.getWindowList());
     ui_->tableView->resizeColumnsToContents();
 
-    /*for (auto title: engine_.getWindowList()) {
-        qDebug() << title;
-        ui_->listWidget->addItem(title);
-    }*/
-
     QSettings settings;
     patterns_ = settings.value("patterns").toStringList();
     for (auto pattern: patterns_) {
@@ -74,7 +69,10 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     ui_->autoHideIntervalEdit->setEnabled(ui_->autoHideCheckBox->isChecked());
 
     connect(&timer_, SIGNAL(timeout()), this, SLOT(onTimeout()));
-    timer_.start(1000);
+
+    if (settings.value("auto_hide", false).toBool()) {
+        timer_.start(1000);
+    }
 
     applyFocusLineHack(ui_->tableView);
 }
@@ -130,6 +128,7 @@ void BossKeyDialog::showEvent(QShowEvent *event)
     hotkeyManager_.unregisterAllHotkeys();
     QDialog::showEvent(event);
     qDebug() << "show";
+    timer_.stop();
 }
 
 void BossKeyDialog::hideEvent(QHideEvent *event)
@@ -138,6 +137,11 @@ void BossKeyDialog::hideEvent(QHideEvent *event)
     qDebug() << "hide";
     saveHotkeys();
     setupHotkeys();
+
+    QSettings settings;
+    if (settings.value("auto_hide", false).toBool()) {
+        timer_.start(1000);
+    }
 }
 
 void BossKeyDialog::saveHotkeys()
