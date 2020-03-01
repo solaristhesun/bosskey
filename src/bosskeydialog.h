@@ -81,6 +81,7 @@ private:
     QStringList patterns_;
     QTimer timer_;
     WindowListViewModel windowList_;
+    WindowListViewModel patternList_;
 };
 
 #endif // BOSSKEYDIALOG_H

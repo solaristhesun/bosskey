@@ -46,7 +46,8 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     proxyModel->setSourceModel(&windowList_);
     ui_->windowsTableView->setModel(proxyModel);
     windowList_.setWindowList(engine_.getWindowList());
-    ui_->windowsTableView->resizeColumnsToContents();
+    ui_->patternTableView->setModel(&patternList_);
+
 
     QSettings settings;
     patterns_ = settings.value("patterns").toStringList();
@@ -75,6 +76,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     }
 
     applyFocusLineHack(ui_->windowsTableView);
+    applyFocusLineHack(ui_->patternTableView);
 }
 
 BossKeyDialog::~BossKeyDialog()

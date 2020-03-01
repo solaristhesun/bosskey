@@ -13,4 +13,7 @@ public:
 
 };
 
+QDataStream &operator<<(QDataStream &ds, const Window&w);
+QDataStream &operator >> (QDataStream &ds, Window &w);
+
 #endif // WINDOW_H
