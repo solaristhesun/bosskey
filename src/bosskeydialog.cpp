@@ -19,6 +19,7 @@
 #include <QDebug>
 #include <QSettings>
 #include <QMessageBox>
+#include <QSortFilterProxyModel>
 
 #include "bosskeydialog.h"
 #include "platforminterface.h"
@@ -41,8 +42,11 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
 
     connect(ui_->listWidget_2->itemDelegate(), SIGNAL(closeEditor(QWidget*, QAbstractItemDelegate::EndEditHint)), this, SLOT(patternEditDone(QWidget*, QAbstractItemDelegate::EndEditHint)));
 
-    ui_->tableView->setModel(&windowList_);
+    QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(this);
+    proxyModel->setSourceModel(&windowList_);
+    ui_->tableView->setModel(proxyModel);
     windowList_.setWindowList(engine_.getWindowList());
+    ui_->tableView->resizeColumnsToContents();
 
     /*for (auto title: engine_.getWindowList()) {
         qDebug() << title;
@@ -101,6 +105,7 @@ void BossKeyDialog::setupHotkeys()
 void BossKeyDialog::refreshVisibleWindowList()
 {
     windowList_.setWindowList(engine_.getWindowList());
+    ui_->tableView->resizeColumnsToContents();
 }
 
 void BossKeyDialog::showWindows()

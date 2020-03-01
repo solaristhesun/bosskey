@@ -99,6 +99,9 @@ QList<Window> WindowsEngine::getWindowList()
         w.processImage = QString::fromStdWString(std::wstring(&buffer2[0]));
         w.title =QString::fromStdWString(std::wstring(&windowTitle[0]));
 
+        if (w.processImage.contains("WindowsInternal.ComposableShell.Experiences.TextInput.InputApp.exe"))
+            return TRUE;
+
         if (!w.title.isEmpty()) {
             engine->windowList_.append(w.title);
             engine->windowList2_.append(w);
