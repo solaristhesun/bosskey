@@ -44,9 +44,9 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
 
     QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(this);
     proxyModel->setSourceModel(&windowList_);
-    ui_->tableView->setModel(proxyModel);
+    ui_->windowsTableView->setModel(proxyModel);
     windowList_.setWindowList(engine_.getWindowList());
-    ui_->tableView->resizeColumnsToContents();
+    ui_->windowsTableView->resizeColumnsToContents();
 
     QSettings settings;
     patterns_ = settings.value("patterns").toStringList();
@@ -74,7 +74,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
         timer_.start(1000);
     }
 
-    applyFocusLineHack(ui_->tableView);
+    applyFocusLineHack(ui_->windowsTableView);
 }
 
 BossKeyDialog::~BossKeyDialog()
@@ -103,7 +103,7 @@ void BossKeyDialog::setupHotkeys()
 void BossKeyDialog::refreshVisibleWindowList()
 {
     windowList_.setWindowList(engine_.getWindowList());
-    ui_->tableView->resizeColumnsToContents();
+    ui_->windowsTableView->resizeColumnsToContents();
 }
 
 void BossKeyDialog::showWindows()
