@@ -73,7 +73,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     connect(&timer_, SIGNAL(timeout()), this, SLOT(onTimeout()));
     timer_.start(1000);
 
-
+    applyFocusLineHack(ui_->tableView);
 }
 
 BossKeyDialog::~BossKeyDialog()
@@ -250,6 +250,11 @@ void BossKeyDialog::onTimeout()
 void BossKeyDialog::enableDisableAutoHideIntervalEdit(bool bEnabled)
 {
     ui_->autoHideIntervalEdit->setEnabled(bEnabled);
+}
+
+void BossKeyDialog::applyFocusLineHack(QWidget *widget)
+{
+    widget->setStyleSheet(QString("QTableView::item::focus { outline: 0; background-color:%1; } QTableView { outline: 0; }").arg(this->palette().color(QPalette::Highlight).name()));
 }
 
 // EOF <stefan@scheler.com>

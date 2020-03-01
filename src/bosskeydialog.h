@@ -67,6 +67,7 @@ private:
     void saveHotkeys();
     void showWindows();
     void hideWindows();
+    void applyFocusLineHack(QWidget* widget);
 
 private:
     Ui::BossKeyDialog *ui_;
