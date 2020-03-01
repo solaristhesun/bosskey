@@ -245,6 +245,9 @@ void BossKeyDialog::quitApplication()
 
 void BossKeyDialog::patternEditDone(QWidget *editor, QAbstractItemDelegate::EndEditHint hint)
 {
+    Q_UNUSED(editor)
+    Q_UNUSED(hint)
+
     savePatterns();
 }
 

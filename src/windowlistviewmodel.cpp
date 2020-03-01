@@ -31,11 +31,13 @@ void WindowListViewModel::setWindowList(QList<Window> windowList)
 
 int WindowListViewModel::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent)
     return windowList_.length();
 }
 
 int WindowListViewModel::columnCount(const QModelIndex &parent ) const
 {
+    Q_UNUSED(parent)
     return 2;
 }
 
