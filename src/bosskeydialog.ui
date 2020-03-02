@@ -44,7 +44,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="icon">
@@ -63,124 +63,170 @@
          <widget class="QWidget" name="layoutWidget">
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
-            <widget class="QLabel" name="label">
-             <property name="styleSheet">
-              <string notr="true">font-weight: bold;</string>
-             </property>
-             <property name="text">
+            <widget class="QGroupBox" name="groupBox_4">
+             <property name="title">
               <string>Currently visible windows:</string>
              </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout">
+                <item>
+                 <widget class="QTableView" name="windowsTableView">
+                  <property name="acceptDrops">
+                   <bool>false</bool>
+                  </property>
+                  <property name="dragEnabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="dragDropOverwriteMode">
+                   <bool>false</bool>
+                  </property>
+                  <property name="dragDropMode">
+                   <enum>QAbstractItemView::DragOnly</enum>
+                  </property>
+                  <property name="selectionMode">
+                   <enum>QAbstractItemView::SingleSelection</enum>
+                  </property>
+                  <property name="selectionBehavior">
+                   <enum>QAbstractItemView::SelectRows</enum>
+                  </property>
+                  <property name="showGrid">
+                   <bool>false</bool>
+                  </property>
+                  <property name="sortingEnabled">
+                   <bool>true</bool>
+                  </property>
+                  <attribute name="horizontalHeaderDefaultSectionSize">
+                   <number>150</number>
+                  </attribute>
+                  <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                   <bool>true</bool>
+                  </attribute>
+                  <attribute name="horizontalHeaderStretchLastSection">
+                   <bool>true</bool>
+                  </attribute>
+                  <attribute name="verticalHeaderVisible">
+                   <bool>false</bool>
+                  </attribute>
+                  <attribute name="verticalHeaderMinimumSectionSize">
+                   <number>28</number>
+                  </attribute>
+                  <attribute name="verticalHeaderDefaultSectionSize">
+                   <number>28</number>
+                  </attribute>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_3">
+                  <item>
+                   <widget class="QPushButton" name="refreshButton">
+                    <property name="text">
+                     <string>&amp;Refresh</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../bosskey.qrc">
+                      <normaloff>:/icons/arrow-circle-double-135</normaloff>:/icons/arrow-circle-double-135</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer_2">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+             </layout>
             </widget>
            </item>
            <item>
-            <widget class="QTableView" name="windowsTableView">
-             <property name="acceptDrops">
-              <bool>false</bool>
+            <widget class="QGroupBox" name="groupBox_3">
+             <property name="title">
+              <string>Windows that will be hidden</string>
              </property>
-             <property name="dragEnabled">
-              <bool>true</bool>
-             </property>
-             <property name="dragDropOverwriteMode">
-              <bool>false</bool>
-             </property>
-             <property name="dragDropMode">
-              <enum>QAbstractItemView::DragOnly</enum>
-             </property>
-             <property name="selectionMode">
-              <enum>QAbstractItemView::SingleSelection</enum>
-             </property>
-             <property name="selectionBehavior">
-              <enum>QAbstractItemView::SelectRows</enum>
-             </property>
-             <property name="showGrid">
-              <bool>false</bool>
-             </property>
-             <property name="sortingEnabled">
-              <bool>true</bool>
-             </property>
-             <attribute name="horizontalHeaderDefaultSectionSize">
-              <number>150</number>
-             </attribute>
-             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-              <bool>true</bool>
-             </attribute>
-             <attribute name="horizontalHeaderStretchLastSection">
-              <bool>true</bool>
-             </attribute>
-             <attribute name="verticalHeaderVisible">
-              <bool>false</bool>
-             </attribute>
-             <attribute name="verticalHeaderMinimumSectionSize">
-              <number>28</number>
-             </attribute>
-             <attribute name="verticalHeaderDefaultSectionSize">
-              <number>28</number>
-             </attribute>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="refreshButton">
-             <property name="text">
-              <string>&amp;Refresh</string>
-             </property>
-             <property name="icon">
-              <iconset resource="../bosskey.qrc">
-               <normaloff>:/icons/arrow-circle-double-135</normaloff>:/icons/arrow-circle-double-135</iconset>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="layoutWidget">
-          <layout class="QVBoxLayout" name="verticalLayout_3">
-           <item>
-            <widget class="QLabel" name="label_2">
-             <property name="text">
-              <string>To be hidden:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="TableView" name="patternTableView">
-             <property name="acceptDrops">
-              <bool>true</bool>
-             </property>
-             <property name="showDropIndicator" stdset="0">
-              <bool>false</bool>
-             </property>
-             <property name="dragEnabled">
-              <bool>false</bool>
-             </property>
-             <property name="dragDropOverwriteMode">
-              <bool>false</bool>
-             </property>
-             <property name="dragDropMode">
-              <enum>QAbstractItemView::DropOnly</enum>
-             </property>
-             <property name="defaultDropAction">
-              <enum>Qt::CopyAction</enum>
-             </property>
-             <property name="selectionMode">
-              <enum>QAbstractItemView::SingleSelection</enum>
-             </property>
-             <property name="selectionBehavior">
-              <enum>QAbstractItemView::SelectRows</enum>
-             </property>
-             <property name="showGrid">
-              <bool>false</bool>
-             </property>
-             <attribute name="horizontalHeaderDefaultSectionSize">
-              <number>150</number>
-             </attribute>
-             <attribute name="horizontalHeaderStretchLastSection">
-              <bool>true</bool>
-             </attribute>
-             <attribute name="verticalHeaderVisible">
-              <bool>false</bool>
-             </attribute>
-             <attribute name="verticalHeaderDefaultSectionSize">
-              <number>28</number>
-             </attribute>
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <item>
+                 <widget class="TableView" name="patternTableView">
+                  <property name="acceptDrops">
+                   <bool>true</bool>
+                  </property>
+                  <property name="showDropIndicator" stdset="0">
+                   <bool>false</bool>
+                  </property>
+                  <property name="dragEnabled">
+                   <bool>false</bool>
+                  </property>
+                  <property name="dragDropOverwriteMode">
+                   <bool>false</bool>
+                  </property>
+                  <property name="dragDropMode">
+                   <enum>QAbstractItemView::DropOnly</enum>
+                  </property>
+                  <property name="defaultDropAction">
+                   <enum>Qt::CopyAction</enum>
+                  </property>
+                  <property name="selectionMode">
+                   <enum>QAbstractItemView::SingleSelection</enum>
+                  </property>
+                  <property name="selectionBehavior">
+                   <enum>QAbstractItemView::SelectRows</enum>
+                  </property>
+                  <property name="showGrid">
+                   <bool>false</bool>
+                  </property>
+                  <attribute name="horizontalHeaderDefaultSectionSize">
+                   <number>150</number>
+                  </attribute>
+                  <attribute name="horizontalHeaderStretchLastSection">
+                   <bool>true</bool>
+                  </attribute>
+                  <attribute name="verticalHeaderVisible">
+                   <bool>false</bool>
+                  </attribute>
+                  <attribute name="verticalHeaderDefaultSectionSize">
+                   <number>28</number>
+                  </attribute>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_8">
+                  <item>
+                   <widget class="QPushButton" name="clearButton">
+                    <property name="text">
+                     <string>&amp;Clear</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer_3">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+             </layout>
             </widget>
            </item>
            <item>

@@ -41,7 +41,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     createTrayIcon();
 
     connect(ui_->listWidget_2->itemDelegate(), SIGNAL(closeEditor(QWidget*, QAbstractItemDelegate::EndEditHint)), this, SLOT(patternEditDone(QWidget*, QAbstractItemDelegate::EndEditHint)));
-
+    ui_->listWidget_2->hide();
     QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(this);
     proxyModel->setSourceModel(&windowList_);
     ui_->windowsTableView->setModel(proxyModel);
