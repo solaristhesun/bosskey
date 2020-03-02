@@ -37,10 +37,20 @@
    </property>
    <item>
     <widget class="QTabWidget" name="tabWidget">
+     <property name="tabPosition">
+      <enum>QTabWidget::North</enum>
+     </property>
+     <property name="tabShape">
+      <enum>QTabWidget::Rounded</enum>
+     </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
+      <attribute name="icon">
+       <iconset resource="../bosskey.qrc">
+        <normaloff>:/icons/application-blue</normaloff>:/icons/application-blue</iconset>
+      </attribute>
       <attribute name="title">
        <string>Windows</string>
       </attribute>
@@ -187,6 +197,10 @@
       </layout>
      </widget>
      <widget class="QWidget" name="tab_2">
+      <attribute name="icon">
+       <iconset resource="../bosskey.qrc">
+        <normaloff>:/icons/gear</normaloff>:/icons/gear</iconset>
+      </attribute>
       <attribute name="title">
        <string>Settings</string>
       </attribute>

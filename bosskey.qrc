@@ -5,5 +5,7 @@
         <file alias="wrench-screwdriver">assets/fugue/wrench-screwdriver.png</file>
         <file alias="information-white">assets/fugue/information-white.png</file>
         <file alias="arrow-circle-double-135">assets/fugue/arrow-circle-double-135.png</file>
+        <file alias="application-blue">assets/fugue/application-blue.png</file>
+        <file alias="gear">assets/fugue/gear.png</file>
     </qresource>
 </RCC>
