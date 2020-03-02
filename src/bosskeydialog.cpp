@@ -128,6 +128,7 @@ void BossKeyDialog::hideWindows()
 void BossKeyDialog::showEvent(QShowEvent *event)
 {
     hotkeyManager_.unregisterAllHotkeys();
+    ui_->tabWidget->setCurrentIndex(0);
     QDialog::showEvent(event);
     qDebug() << "show";
     timer_.stop();
