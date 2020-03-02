@@ -281,4 +281,13 @@ void BossKeyDialog::applyFocusLineHack(QWidget *widget)
     widget->setStyleSheet(QString("QTableView::item::focus { outline: 0; background-color:%1; } QTableView { outline: 0; }").arg(this->palette().color(QPalette::Highlight).name()));
 }
 
+void BossKeyDialog::showContextMenu(const QPoint & point)
+{
+    QMenu contextMenu;
+
+    contextMenu.addAction(ui_->actionClearPatterns);
+
+    contextMenu.exec(ui_->patternTableView->viewport()->mapToGlobal(point));
+}
+
 // EOF <stefan@scheler.com>

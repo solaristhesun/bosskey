@@ -99,6 +99,9 @@
                   <attribute name="horizontalHeaderDefaultSectionSize">
                    <number>150</number>
                   </attribute>
+                  <attribute name="horizontalHeaderHighlightSections">
+                   <bool>false</bool>
+                  </attribute>
                   <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
                    <bool>true</bool>
                   </attribute>
@@ -159,6 +162,9 @@
                <layout class="QHBoxLayout" name="horizontalLayout_3">
                 <item>
                  <widget class="TableView" name="patternTableView">
+                  <property name="contextMenuPolicy">
+                   <enum>Qt::CustomContextMenu</enum>
+                  </property>
                   <property name="acceptDrops">
                    <bool>true</bool>
                   </property>
@@ -188,6 +194,9 @@
                   </property>
                   <attribute name="horizontalHeaderDefaultSectionSize">
                    <number>150</number>
+                  </attribute>
+                  <attribute name="horizontalHeaderHighlightSections">
+                   <bool>false</bool>
                   </attribute>
                   <attribute name="horizontalHeaderStretchLastSection">
                    <bool>true</bool>
@@ -435,6 +444,11 @@
     <string>&amp;About</string>
    </property>
   </action>
+  <action name="actionClearPatterns">
+   <property name="text">
+    <string>&amp;Clear</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -564,6 +578,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>patternTableView</sender>
+   <signal>customContextMenuRequested(QPoint)</signal>
+   <receiver>BossKeyDialog</receiver>
+   <slot>showContextMenu(QPoint)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>448</x>
+     <y>344</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionClearPatterns</sender>
+   <signal>triggered()</signal>
+   <receiver>BossKeyDialog</receiver>
+   <slot>clearPatterns()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addButtonClicked()</slot>
@@ -573,5 +619,6 @@
   <slot>enableDisableAutoHideIntervalEdit(bool)</slot>
   <slot>refreshVisibleWindowList()</slot>
   <slot>clearPatterns()</slot>
+  <slot>showContextMenu(QPoint)</slot>
  </slots>
 </ui>

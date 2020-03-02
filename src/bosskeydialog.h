@@ -63,6 +63,7 @@ public slots:
     void enableDisableAutoHideIntervalEdit(bool bEnabled);
     void refreshVisibleWindowList();
     void clearPatterns();
+    void showContextMenu(const QPoint & point);
 
 private:
     void setupHotkeys();
