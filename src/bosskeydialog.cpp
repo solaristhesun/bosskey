@@ -254,6 +254,11 @@ void BossKeyDialog::patternEditDone(QWidget *editor, QAbstractItemDelegate::EndE
     savePatterns();
 }
 
+void BossKeyDialog::clearPatterns()
+{
+    patternList_.clear();
+}
+
 void BossKeyDialog::onTimeout()
 {
     QSettings settings;

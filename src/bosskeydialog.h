@@ -62,6 +62,7 @@ public slots:
     void onTimeout();
     void enableDisableAutoHideIntervalEdit(bool bEnabled);
     void refreshVisibleWindowList();
+    void clearPatterns();
 
 private:
     void setupHotkeys();

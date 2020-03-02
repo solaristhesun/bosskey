@@ -30,6 +30,13 @@ void WindowListViewModel::setWindowList(QList<Window> windowList)
     endResetModel();
 }
 
+void WindowListViewModel::clear()
+{
+    beginResetModel();
+    windowList_.clear();
+    endResetModel();
+}
+
 int WindowListViewModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)

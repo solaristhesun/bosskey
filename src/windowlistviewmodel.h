@@ -25,6 +25,7 @@ public:
                                              int row, int column,
                                              const QModelIndex &parent) const override;
 
+    void clear();
     void addWindow(Window w);
     void setWindowList(QList<Window> windowList);
 
