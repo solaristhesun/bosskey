@@ -28,6 +28,7 @@ public:
     void clear();
     void addWindow(Window w);
     void setWindowList(QList<Window> windowList);
+    QList<Window> getWindowList() const;
 
 private:
     QList<Window> windowList_;

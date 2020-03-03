@@ -48,13 +48,17 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
 
 
     QSettings settings;
-    patterns_ = settings.value("patterns").toStringList();
-/*    for (auto pattern: patterns_) {
-        auto item = new QListWidgetItem(pattern);
-        item->setFlags (item->flags () | Qt::ItemIsEditable);
-        ui_->listWidget_2->addItem(item);
-    }*/
-    if (patterns_.empty()) {
+    int size = settings.beginReadArray("windows");
+    for (int i = 0; i < size; ++i) {
+        settings.setArrayIndex(i);
+        Window w;
+        w.processImage = settings.value("ProcessImage").toString();
+        w.title = settings.value("WindowTitle").toString();
+        patternList_.addWindow(w);
+    }
+    settings.endArray();
+
+    if (size == 0) {
         QDialog::show();
     }
 
@@ -127,17 +131,18 @@ void BossKeyDialog::showEvent(QShowEvent *event)
 {
     hotkeyManager_.unregisterAllHotkeys();
     ui_->tabWidget->setCurrentIndex(0);
-    QDialog::showEvent(event);
-    qDebug() << "show";
     timer_.stop();
+
+    QDialog::showEvent(event);
 }
 
 void BossKeyDialog::hideEvent(QHideEvent *event)
 {
     QDialog::hideEvent(event);
-    qDebug() << "hide";
+
     saveHotkeys();
     setupHotkeys();
+    savePatterns();
 
     QSettings settings;
     if (settings.value("auto_hide", false).toBool()) {
@@ -157,16 +162,18 @@ void BossKeyDialog::saveHotkeys()
 
 void BossKeyDialog::savePatterns()
 {
-    patterns_.clear();
-/*
-    for(int i = 0; i < ui_->listWidget_2->count(); ++i)
-    {
-        QListWidgetItem* item = ui_->listWidget_2->item(i);
-        patterns_ << item->text();
-    }
-*/
     QSettings settings;
-    settings.setValue("patterns", patterns_);
+
+    settings.beginWriteArray("windows");
+    settings.remove("");
+
+    auto windowList = patternList_.getWindowList();
+    for (int i = 0; i < windowList.size(); ++i) {
+        settings.setArrayIndex(i);
+        settings.setValue("ProcessImage",  windowList.at(i).processImage);
+        settings.setValue("WindowTitle", windowList.at(i).title);
+    }
+    settings.endArray();
 }
 
 void BossKeyDialog::createTrayIcon()

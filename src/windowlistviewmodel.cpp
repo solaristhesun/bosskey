@@ -30,6 +30,11 @@ void WindowListViewModel::setWindowList(QList<Window> windowList)
     endResetModel();
 }
 
+QList<Window> WindowListViewModel::getWindowList() const
+{
+    return windowList_;
+}
+
 void WindowListViewModel::clear()
 {
     beginResetModel();
