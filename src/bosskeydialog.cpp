@@ -40,8 +40,6 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     setupHotkeys();
     createTrayIcon();
 
-    connect(ui_->listWidget_2->itemDelegate(), SIGNAL(closeEditor(QWidget*, QAbstractItemDelegate::EndEditHint)), this, SLOT(patternEditDone(QWidget*, QAbstractItemDelegate::EndEditHint)));
-    ui_->listWidget_2->hide();
     QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(this);
     proxyModel->setSourceModel(&windowList_);
     ui_->windowsTableView->setModel(proxyModel);
@@ -51,11 +49,11 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
 
     QSettings settings;
     patterns_ = settings.value("patterns").toStringList();
-    for (auto pattern: patterns_) {
+/*    for (auto pattern: patterns_) {
         auto item = new QListWidgetItem(pattern);
         item->setFlags (item->flags () | Qt::ItemIsEditable);
         ui_->listWidget_2->addItem(item);
-    }
+    }*/
     if (patterns_.empty()) {
         QDialog::show();
     }
@@ -160,13 +158,13 @@ void BossKeyDialog::saveHotkeys()
 void BossKeyDialog::savePatterns()
 {
     patterns_.clear();
-
+/*
     for(int i = 0; i < ui_->listWidget_2->count(); ++i)
     {
         QListWidgetItem* item = ui_->listWidget_2->item(i);
         patterns_ << item->text();
     }
-
+*/
     QSettings settings;
     settings.setValue("patterns", patterns_);
 }
@@ -221,8 +219,8 @@ void BossKeyDialog::addButtonClicked()
 
 void BossKeyDialog::deleteButtonClicked()
 {
-    auto item = ui_->listWidget_2->currentItem();
-    ui_->listWidget_2->takeItem(ui_->listWidget_2->row(item));
+    /*auto item = ui_->listWidget_2->currentItem();
+    ui_->listWidget_2->takeItem(ui_->listWidget_2->row(item));*/
     savePatterns();
 }
 
