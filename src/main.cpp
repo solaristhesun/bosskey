@@ -21,7 +21,11 @@
 #include "singleapplication.h"
 #include "bosskeydialog.h"
 #include "uglobalhotkeys.h"
+#if defined(Q_OS_WIN)
 #include "windowsplatform.h"
+#elif defined(Q_OS_LINUX)
+#include "linuxplatform.h"
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -33,9 +37,13 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("scheler.com");
     QCoreApplication::setApplicationName("bosskey");
 
-    WindowsPlatform engine;
+#if defined(Q_OS_WIN)
+    WindowsPlatform platform;
+#elif defined(Q_OS_LINUX)
+    LinuxPlatform platform;
+#endif
     UGlobalHotkeys hotkeyManager;
-    BossKeyDialog dialog(engine, hotkeyManager);
+    BossKeyDialog dialog(platform, hotkeyManager);
 
     return app.exec();
 }

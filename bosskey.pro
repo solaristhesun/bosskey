@@ -23,8 +23,17 @@ SOURCES += \
     src/softwareversion.cpp \
     src/tableview.cpp \
     src/window.cpp \
-    src/windowlistviewmodel.cpp \
+    src/windowlistviewmodel.cpp
+
+win32 {
+SOURCES += \
     src/windowsplatform.cpp
+}
+
+linux-g++* {
+SOURCES += \
+    src/linuxplatform.cpp
+}
 
 HEADERS += \
     src/bosskeydialog.h \
@@ -34,8 +43,18 @@ HEADERS += \
     src/softwareversion.h \
     src/tableview.h \
     src/window.h \
-    src/windowlistviewmodel.h \
+    src/windowlistviewmodel.h
+
+win32 {
+HEADERS += \
     src/windowsplatform.h
+}
+
+linux-g++* {
+HEADERS += \
+    src/linuxplatform.h
+}
+
 
 FORMS += \
     src/bosskeydialog.ui
