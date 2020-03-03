@@ -19,7 +19,7 @@
 #ifndef ENGINEINTERFACE_H
 #define ENGINEINTERFACE_H
 
-#include <QStringList>
+#include <QList>
 
 #include "window.h"
 
@@ -28,7 +28,7 @@ class PlatformInterface
 public:
     virtual ~PlatformInterface() {}
 
-    virtual void hideWindows(QStringList patterns) =0;
+    virtual void hideWindows(QList<Window> patternList) =0;
     virtual void showWindows() =0;
     virtual QList<Window> getWindowList() =0;
     virtual bool isHidden() const =0;

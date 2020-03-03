@@ -25,26 +25,28 @@
 
 #include "platforminterface.h"
 #include "window.h"
-class WindowListViewModel;
 
+class WindowListViewModel;
 
 class WindowsEngine: public PlatformInterface
 {
 public:
     WindowsEngine();
 
-    void hideWindows(QStringList patterns);
+    void hideWindows(QList<Window> patternList);
     void showWindows();
     QList<Window> getWindowList();
     bool isHidden() const;
     quint32 getUserIdleTime() const;
 
 private:
+    QString getWindowTitle(HWND hWindow) const;
+    QString getProcessImageName(HWND hWindow) const;
+
+private:
     QList<HWND> hiddenWindows_;
-    QStringList patterns_;
-    QStringList windowList_;
-    QList<Window> windowList2_;
-    bool bHidden_;
+    QList<Window> windowList_;
+    QList<Window> patternList_;
 };
 
 #endif // WINDOWSENGINE_H

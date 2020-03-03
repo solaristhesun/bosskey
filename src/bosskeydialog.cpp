@@ -119,7 +119,7 @@ void BossKeyDialog::showWindows()
 void BossKeyDialog::hideWindows()
 {
     if (!engine_.isHidden()) {
-        engine_.hideWindows(patterns_);
+        engine_.hideWindows(patternList_.getWindowList());
 
         if (ui_->hideSystrayIconCheckBox->isChecked()) {
             trayIcon->hide();
