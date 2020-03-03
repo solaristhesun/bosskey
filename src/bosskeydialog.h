@@ -76,7 +76,7 @@ private:
 
 private:
     Ui::BossKeyDialog *ui_;
-    PlatformInterface& engine_;
+    PlatformInterface& platform_;
     UGlobalHotkeys& hotkeyManager_;
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;

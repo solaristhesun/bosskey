@@ -24,7 +24,7 @@ SOURCES += \
     src/tableview.cpp \
     src/window.cpp \
     src/windowlistviewmodel.cpp \
-    src/windowsengine.cpp
+    src/windowsplatform.cpp
 
 HEADERS += \
     src/bosskeydialog.h \
@@ -35,7 +35,7 @@ HEADERS += \
     src/tableview.h \
     src/window.h \
     src/windowlistviewmodel.h \
-    src/windowsengine.h
+    src/windowsplatform.h
 
 FORMS += \
     src/bosskeydialog.ui

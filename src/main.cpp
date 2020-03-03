@@ -21,7 +21,7 @@
 #include "singleapplication.h"
 #include "bosskeydialog.h"
 #include "uglobalhotkeys.h"
-#include "windowsengine.h"
+#include "windowsplatform.h"
 
 int main(int argc, char *argv[])
 {
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("scheler.com");
     QCoreApplication::setApplicationName("bosskey");
 
-    WindowsEngine engine;
+    WindowsPlatform engine;
     UGlobalHotkeys hotkeyManager;
     BossKeyDialog dialog(engine, hotkeyManager);
 

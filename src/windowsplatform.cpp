@@ -18,30 +18,30 @@
 
 #include <QDebug>
 
-#include "windowsengine.h"
+#include "WindowsPlatform.h"
 #include "windowlistviewmodel.h"
 
-WindowsEngine::WindowsEngine()
+WindowsPlatform::WindowsPlatform()
 {
     // empty
 }
 
-void WindowsEngine::showWindows()
+void WindowsPlatform::showWindows()
 {
-    for (auto window : hiddenWindows_) {
-        qDebug() << "showing" << getWindowTitle(window);
-        ShowWindow(window, SW_SHOW);
+    for (auto hWindow : hiddenWindows_) {
+        qDebug() << "showing" << getWindowTitle(hWindow);
+        ShowWindow(hWindow, SW_SHOW);
     }
     hiddenWindows_.clear();
 }
 
-void WindowsEngine::hideWindows(QList<Window> patternList)
+void WindowsPlatform::hideWindows(QList<Window> patternList)
 {
     patternList_ = patternList;
 
     ::EnumWindows([](HWND hWindow, LPARAM lParam) -> BOOL {
         if (IsWindowVisible(hWindow)) {
-            WindowsEngine* engine = reinterpret_cast<WindowsEngine*>(lParam);
+            WindowsPlatform* engine = reinterpret_cast<WindowsPlatform*>(lParam);
 
             QString title = engine->getWindowTitle(hWindow);
 
@@ -58,13 +58,13 @@ void WindowsEngine::hideWindows(QList<Window> patternList)
     }, reinterpret_cast<LPARAM>(this));
 }
 
-QList<Window> WindowsEngine::getWindowList()
+QList<Window> WindowsPlatform::getWindowList()
 {
     windowList_.clear();
 
     ::EnumWindows([](HWND hWindow, LPARAM lParam) -> BOOL {
         if (IsWindowVisible(hWindow)) {
-            WindowsEngine* engine = reinterpret_cast<WindowsEngine*>(lParam);
+            WindowsPlatform* engine = reinterpret_cast<WindowsPlatform*>(lParam);
 
             Window w;
             w.processImage = engine->getProcessImageName(hWindow);
@@ -83,12 +83,12 @@ QList<Window> WindowsEngine::getWindowList()
     return windowList_;
 }
 
-bool WindowsEngine::isHidden() const
+bool WindowsPlatform::isHidden() const
 {
     return !hiddenWindows_.isEmpty();
 }
 
-quint32 WindowsEngine::getUserIdleTime() const
+quint32 WindowsPlatform::getUserIdleTime() const
 {
     LASTINPUTINFO lastInputInfo = { sizeof(lastInputInfo), 0 };
     ::GetLastInputInfo(&lastInputInfo);
@@ -98,7 +98,7 @@ quint32 WindowsEngine::getUserIdleTime() const
     return (dwTickCount - lastInputInfo.dwTime) / 1000;
 }
 
-QString WindowsEngine::getWindowTitle(HWND hWindow) const
+QString WindowsPlatform::getWindowTitle(HWND hWindow) const
 {
     int textLength = ::GetWindowTextLength(hWindow);
 
@@ -114,7 +114,7 @@ QString WindowsEngine::getWindowTitle(HWND hWindow) const
     return QString();
 }
 
-QString WindowsEngine::getProcessImageName(HWND hWindow) const
+QString WindowsPlatform::getProcessImageName(HWND hWindow) const
 {
     DWORD dwProcessId = 0;
     ::GetWindowThreadProcessId(hWindow, &dwProcessId);

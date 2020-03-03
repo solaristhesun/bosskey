@@ -31,7 +31,7 @@
 BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyManager)
     : QDialog(nullptr)
     , ui_(new Ui::BossKeyDialog)
-    , engine_(engine)
+    , platform_(engine)
     , hotkeyManager_(hotkeyManager)
 
 {
@@ -43,7 +43,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(this);
     proxyModel->setSourceModel(&windowList_);
     ui_->windowsTableView->setModel(proxyModel);
-    windowList_.setWindowList(engine_.getWindowList());
+    windowList_.setWindowList(platform_.getWindowList());
     ui_->patternTableView->setModel(&patternList_);
 
 
@@ -106,20 +106,20 @@ void BossKeyDialog::setupHotkeys()
 
 void BossKeyDialog::refreshVisibleWindowList()
 {
-    windowList_.setWindowList(engine_.getWindowList());
+    windowList_.setWindowList(platform_.getWindowList());
     ui_->windowsTableView->resizeColumnsToContents();
 }
 
 void BossKeyDialog::showWindows()
 {
-    engine_.showWindows();
+    platform_.showWindows();
     trayIcon->show();
 }
 
 void BossKeyDialog::hideWindows()
 {
-    if (!engine_.isHidden()) {
-        engine_.hideWindows(patternList_.getWindowList());
+    if (!platform_.isHidden()) {
+        platform_.hideWindows(patternList_.getWindowList());
 
         if (ui_->hideSystrayIconCheckBox->isChecked()) {
             trayIcon->hide();
@@ -202,7 +202,7 @@ void BossKeyDialog::systemTracActivated(QSystemTrayIcon::ActivationReason reason
 {
     if (reason == QSystemTrayIcon::QSystemTrayIcon::Trigger)
     {
-        if (engine_.isHidden())
+        if (platform_.isHidden())
         {
             showWindows();
         }
@@ -247,7 +247,7 @@ void BossKeyDialog::showAboutDialog()
 
 void BossKeyDialog::quitApplication()
 {
-    engine_.showWindows();
+    platform_.showWindows();
     QApplication::quit();
 }
 
@@ -270,7 +270,7 @@ void BossKeyDialog::onTimeout()
 
     if (settings.value("auto_hide", false).toBool() && !QDialog::isVisible()) {
         uint autoHideTime = settings.value("auto_hide_interval", 5).toUInt();
-        if (engine_.getUserIdleTime() >= autoHideTime) {
+        if (platform_.getUserIdleTime() >= autoHideTime) {
             hideWindows();
         }
     }

@@ -16,8 +16,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WINDOWSENGINE_H
-#define WINDOWSENGINE_H
+#ifndef WINDOWSPLATFORM_H
+#define WINDOWSPLATFORM_H
 
 #include <QList>
 
@@ -28,10 +28,10 @@
 
 class WindowListViewModel;
 
-class WindowsEngine: public PlatformInterface
+class WindowsPlatform: public PlatformInterface
 {
 public:
-    WindowsEngine();
+    WindowsPlatform();
 
     void hideWindows(QList<Window> patternList);
     void showWindows();
@@ -49,4 +49,4 @@ private:
     QList<Window> patternList_;
 };
 
-#endif // WINDOWSENGINE_H
+#endif // WINDOWSPLATFORM_H
