@@ -24,7 +24,7 @@
 #include "bosskeydialog.h"
 #include "platforminterface.h"
 #include "uglobalhotkeys.h"
-#include "globals.h"
+#include "misc/globals.h"
 #include "ui_bosskeydialog.h"
 #include "windowlistviewmodel.h"
 

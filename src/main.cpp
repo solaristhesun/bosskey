@@ -22,9 +22,9 @@
 #include "bosskeydialog.h"
 #include "uglobalhotkeys.h"
 #if defined(Q_OS_WIN)
-#include "windowsplatform.h"
+#include "platforms/windowsplatform.h"
 #elif defined(Q_OS_LINUX)
-#include "linuxplatform.h"
+#include "platforms/linuxplatform.h"
 #endif
 
 int main(int argc, char *argv[])

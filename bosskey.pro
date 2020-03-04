@@ -17,42 +17,42 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     src/bosskeydialog.cpp \
-    src/globals.cpp \
     src/main.cpp \
-    src/singlekeysequenceedit.cpp \
-    src/softwareversion.cpp \
-    src/tableview.cpp \
+    src/widgets/singlekeysequenceedit.cpp \
+    src/widgets/tableview.cpp \
+    src/misc/globals.cpp \
+    src/misc/softwareversion.cpp \
     src/window.cpp \
     src/windowlistviewmodel.cpp
 
 win32 {
 SOURCES += \
-    src/windowsplatform.cpp
+    src/platforms/windowsplatform.cpp
 }
 
 linux-g++* {
 SOURCES += \
-    src/linuxplatform.cpp
+    src/platforms/linuxplatform.cpp
 }
 
 HEADERS += \
     src/bosskeydialog.h \
-    src/globals.h \
     src/platforminterface.h \
-    src/singlekeysequenceedit.h \
-    src/softwareversion.h \
-    src/tableview.h \
+    src/widgets/singlekeysequenceedit.h \
+    src/widgets/tableview.h \
+    src/misc/softwareversion.h \
+    src/misc/globals.h \
     src/window.h \
     src/windowlistviewmodel.h
 
 win32 {
 HEADERS += \
-    src/windowsplatform.h
+    src/platforms/windowsplatform.h
 }
 
 linux-g++* {
 HEADERS += \
-    src/linuxplatform.h
+    src/platforms/linuxplatform.h
 }
 
 

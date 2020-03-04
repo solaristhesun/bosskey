@@ -44,7 +44,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="icon">
@@ -466,12 +466,12 @@
   <customwidget>
    <class>SingleKeySequenceEdit</class>
    <extends>QKeySequenceEdit</extends>
-   <header>singlekeysequenceedit.h</header>
+   <header>widgets/singlekeysequenceedit.h</header>
   </customwidget>
   <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
-   <header>tableview.h</header>
+   <header>widgets/tableview.h</header>
   </customwidget>
  </customwidgets>
  <resources>
