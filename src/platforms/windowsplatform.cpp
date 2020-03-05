@@ -46,7 +46,7 @@ void WindowsPlatform::hideWindows(QList<Window> patternList)
             QString title = engine->getWindowTitle(hWindow);
 
             for (auto window: engine->patternList_) {
-                if (window.title == title) {
+                if (window.ignoreTitle || window.title == title) {
                     qDebug() << "hiding" << title << hWindow;
                     ShowWindow(hWindow, SW_HIDE);
 

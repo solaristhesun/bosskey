@@ -45,6 +45,7 @@ public:
 
     void clear();
     void addWindow(Window w);
+    void removeItem(QModelIndex& index);
     void setWindowList(QList<Window> windowList);
     QList<Window> getWindowList() const;
 

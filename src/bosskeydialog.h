@@ -24,6 +24,7 @@
 #include <QMenu>
 #include <QAbstractItemDelegate>
 #include <QTimer>
+#include <QItemSelection>
 
 #include "windowlistviewmodel.h"
 
@@ -63,7 +64,9 @@ public slots:
     void enableDisableAutoHideIntervalEdit(bool bEnabled);
     void refreshVisibleWindowList();
     void clearPatterns();
+    void removePattern();
     void showContextMenu(const QPoint & point);
+    void patternViewSelectionChanged(const QItemSelection & selected, const QItemSelection & deselected);
 
 private:
     void setupHotkeys();

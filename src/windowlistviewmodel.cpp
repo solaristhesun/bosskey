@@ -136,7 +136,6 @@ Qt::DropActions WindowListViewModel::supportedDropActions() const
 
 QMimeData *WindowListViewModel::mimeData(const QModelIndexList &indexes) const
 {
-    qDebug() << "mimeData";
     QMimeData *mimeData = new QMimeData();
     QByteArray encodedData;
 
@@ -187,6 +186,13 @@ bool WindowListViewModel::canDropMimeData(const QMimeData *data, Qt::DropAction 
     bool bVal = QAbstractItemModel::canDropMimeData(data,action,row,column,parent);
     qDebug() << "candrop" << bVal;
     return bVal;
+}
+
+void WindowListViewModel::removeItem(QModelIndex& index)
+{
+    beginRemoveRows(index.parent(), index.row(), index.row());
+    windowList_.removeAt(index.row());
+    endRemoveRows();
 }
 
 // EOF <stefan@scheler.com>

@@ -17,6 +17,7 @@
  */
 
 #include <QFileInfo>
+#include <QDataStream>
 
 #include "window.h"
 
@@ -28,7 +29,7 @@ QString Window::fileName() const
 
 QDataStream &operator<<(QDataStream &ds, const Window&w)
 {
-    ds << w.title << w.processImage;
+    ds << w.title << w.processImage << w.ignoreTitle;
     return ds;
 }
 
@@ -36,6 +37,7 @@ QDataStream &operator >> (QDataStream &ds, Window &w)
 {
     ds >> w.title;
     ds >> w.processImage;
+    ds >> w.ignoreTitle;
     return ds;
 }
 

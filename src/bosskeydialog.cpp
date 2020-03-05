@@ -77,6 +77,8 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
         timer_.start(1000);
     }
 
+    connect(ui_->patternTableView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &BossKeyDialog::patternViewSelectionChanged);
+
     applyFocusLineHack(ui_->windowsTableView);
     applyFocusLineHack(ui_->patternTableView);
 }
@@ -261,6 +263,7 @@ void BossKeyDialog::patternEditDone(QWidget *editor, QAbstractItemDelegate::EndE
 
 void BossKeyDialog::clearPatterns()
 {
+    ui_->patternTableView->clearSelection();
     patternList_.clear();
 }
 
@@ -286,13 +289,29 @@ void BossKeyDialog::applyFocusLineHack(QWidget *widget)
     widget->setStyleSheet(QString("QTableView::item::focus { outline: 0; background-color:%1; } QTableView { outline: 0; }").arg(this->palette().color(QPalette::Highlight).name()));
 }
 
-void BossKeyDialog::showContextMenu(const QPoint & point)
+void BossKeyDialog::showContextMenu(const QPoint & pos)
 {
     QMenu contextMenu;
-
     contextMenu.addAction(ui_->actionClearPatterns);
 
-    contextMenu.exec(ui_->patternTableView->viewport()->mapToGlobal(point));
+    auto index = ui_->patternTableView->indexAt(pos);
+
+    if (index.isValid()) {
+        contextMenu.addAction(ui_->actionRemovePattern);
+    }
+
+    contextMenu.exec(ui_->patternTableView->viewport()->mapToGlobal(pos));
+}
+
+void BossKeyDialog::removePattern()
+{
+    auto index = ui_->patternTableView->currentIndex();
+    patternList_.removeItem(index);
+}
+
+void BossKeyDialog::patternViewSelectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
+{
+    ui_->removeButton->setEnabled(!selected.empty());
 }
 
 // EOF <stefan@scheler.com>

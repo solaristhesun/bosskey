@@ -219,6 +219,16 @@
                    </widget>
                   </item>
                   <item>
+                   <widget class="QPushButton" name="removeButton">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>&amp;Remove</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <spacer name="verticalSpacer_3">
                     <property name="orientation">
                      <enum>Qt::Vertical</enum>
@@ -461,6 +471,11 @@
     <string>&amp;Clear</string>
    </property>
   </action>
+  <action name="actionRemovePattern">
+   <property name="text">
+    <string>&amp;Remove</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -622,6 +637,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionRemovePattern</sender>
+   <signal>triggered()</signal>
+   <receiver>BossKeyDialog</receiver>
+   <slot>removePattern()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>removeButton</sender>
+   <signal>pressed()</signal>
+   <receiver>BossKeyDialog</receiver>
+   <slot>removePattern()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>919</x>
+     <y>354</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addButtonClicked()</slot>
@@ -632,5 +679,6 @@
   <slot>refreshVisibleWindowList()</slot>
   <slot>clearPatterns()</slot>
   <slot>showContextMenu(QPoint)</slot>
+  <slot>removePattern()</slot>
  </slots>
 </ui>
