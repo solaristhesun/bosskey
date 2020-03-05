@@ -16,12 +16,15 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QLineEdit>
+
 #include "singlekeysequenceedit.h"
 
 SingleKeySequenceEdit::SingleKeySequenceEdit(QWidget *parent)
     : QKeySequenceEdit(parent)
 {
-    // empty
+    QLineEdit *widget = this->findChild<QLineEdit*>("qt_keysequenceedit_lineedit");
+    widget->setClearButtonEnabled(true);
 }
 
 SingleKeySequenceEdit::~SingleKeySequenceEdit()
