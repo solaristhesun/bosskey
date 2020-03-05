@@ -44,7 +44,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="icon">
@@ -396,7 +396,7 @@
      <item>
       <widget class="QLabel" name="donationLabel">
        <property name="text">
-        <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://www.buymeacoffee.com/solaristhesun&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#155b8a;&quot;&gt;If this software is useful to you, please consider making a donation.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://scheler.com/bosskey/donate&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#1f8cd4;&quot;&gt;If this software is useful to you, please consider making a donation.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="openExternalLinks">
         <bool>true</bool>
