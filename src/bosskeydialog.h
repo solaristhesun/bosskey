@@ -69,9 +69,11 @@ public slots:
     void toggleIgnoreTitle();
     void showContextMenu(const QPoint & point);
     void patternViewSelectionChanged(const QItemSelection & selected, const QItemSelection & deselected);
+    void windowsViewSelectionChanged(const QItemSelection & selected, const QItemSelection & deselected);
     void languageChanged(int index);
     void showWindows();
     void hideWindows();
+    void addWindow();
 
 private:
     void loadUserInterfaceSettings();

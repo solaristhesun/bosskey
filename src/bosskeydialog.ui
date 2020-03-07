@@ -154,6 +154,20 @@
                 </widget>
                </item>
                <item>
+                <widget class="QPushButton" name="addButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>&amp;Hide</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="../assets/bosskey.qrc">
+                   <normaloff>:/fugue/application--plus.png</normaloff>:/fugue/application--plus.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <spacer name="verticalSpacer_2">
                  <property name="orientation">
                   <enum>Qt::Vertical</enum>
@@ -916,6 +930,22 @@ padding: 8px;</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>addButton</sender>
+   <signal>pressed()</signal>
+   <receiver>BossKeyDialog</receiver>
+   <slot>addWindow()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>905</x>
+     <y>131</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addButtonClicked()</slot>
@@ -932,5 +962,6 @@ padding: 8px;</string>
   <slot>languageChanged(int)</slot>
   <slot>hideWindows()</slot>
   <slot>showWindows()</slot>
+  <slot>addWindow()</slot>
  </slots>
 </ui>

@@ -68,6 +68,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
         timer_.start(1000);
     }
 
+    connect(ui_->windowsTableView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &BossKeyDialog::windowsViewSelectionChanged);
     connect(ui_->patternTableView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &BossKeyDialog::patternViewSelectionChanged);
 
     applyFocusLineHack(ui_->windowsTableView);
@@ -334,6 +335,12 @@ void BossKeyDialog::patternViewSelectionChanged(const QItemSelection & selected,
     ui_->removeButton->setEnabled(!selected.empty());
 }
 
+void BossKeyDialog::windowsViewSelectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
+{
+    ui_->addButton->setEnabled(!selected.empty());
+}
+
+
 void BossKeyDialog::languageChanged(int index)
 {
     QString locale = ui_->languageComboBox->itemData(index).toString();
@@ -411,6 +418,13 @@ void BossKeyDialog::setupLocalization()
 void BossKeyDialog::refreshTrayToolTip()
 {
     trayIcon->setToolTip(QString(tr("%1 hidden windows")).arg(platform_.hiddenWindowsCount()));
+}
+
+void BossKeyDialog::addWindow()
+{
+    auto index = ui_->windowsTableView->currentIndex();
+    auto window = windowList_.getWindow(index);
+    patternList_.addWindow(window);
 }
 
 // EOF <stefan@scheler.com>

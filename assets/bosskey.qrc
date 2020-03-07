@@ -13,5 +13,6 @@
         <file>translations/bosskey_en.qm</file>
         <file>flags/de.png</file>
         <file>flags/en.png</file>
+        <file>fugue/application--plus.png</file>
     </qresource>
 </RCC>
