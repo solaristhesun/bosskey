@@ -64,6 +64,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     ui_->autoHideCheckBox->setChecked(settings.value("auto_hide", false).toBool());
     ui_->autoHideIntervalEdit->setText(QString::number(settings.value("auto_hide_interval", 5).toInt()));
     ui_->autoHideIntervalEdit->setEnabled(ui_->autoHideCheckBox->isChecked());
+    ui_->hideOnClickCheckBox->setChecked(settings.value("hide_on_click", true).toBool());
 
     connect(&timer_, SIGNAL(timeout()), this, SLOT(onTimeout()));
 
@@ -157,11 +158,13 @@ void BossKeyDialog::hideEvent(QHideEvent *event)
 void BossKeyDialog::saveHotkeys()
 {
     QSettings settings;
+
     settings.setValue("hotkey_hide", ui_->keySequenceEdit->keySequence());
     settings.setValue("hotkey_show", ui_->keySequenceEdit_2->keySequence());
     settings.setValue("hide_icon", ui_->hideSystrayIconCheckBox->isChecked());
     settings.setValue("auto_hide", ui_->autoHideCheckBox->isChecked());
     settings.setValue("auto_hide_interval", ui_->autoHideIntervalEdit->text());
+    settings.setValue("hide_on_click", ui_->hideOnClickCheckBox->isChecked());
 }
 
 void BossKeyDialog::createTrayIcon()
@@ -190,32 +193,21 @@ void BossKeyDialog::systemTracActivated(QSystemTrayIcon::ActivationReason reason
 {
     if (reason == QSystemTrayIcon::QSystemTrayIcon::Trigger)
     {
-        if (platform_.isHidden())
+        QSettings settings;
+
+        if (settings.value("hide_on_click", true).toBool())
         {
-            showWindows();
-        }
-        else
-        {
-            hideWindows();
+            if (platform_.isHidden())
+            {
+                showWindows();
+            }
+            else
+            {
+                hideWindows();
+            }
         }
     }
 
-}
-
-void BossKeyDialog::addButtonClicked()
-{
-    /*
-    auto item = ui_->listWidget->currentItem();
-    QListWidgetItem * newItem = new QListWidgetItem(item->text());
-    newItem->setFlags (item->flags () | Qt::ItemIsEditable);
-    ui_->listWidget_2->addItem(newItem);
-    savePatterns();*/
-}
-
-void BossKeyDialog::deleteButtonClicked()
-{
-    /*auto item = ui_->listWidget_2->currentItem();
-    ui_->listWidget_2->takeItem(ui_->listWidget_2->row(item));*/
 }
 
 void BossKeyDialog::showAboutDialog()

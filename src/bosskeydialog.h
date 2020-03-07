@@ -56,8 +56,6 @@ public:
 
 public slots:
     void systemTracActivated(QSystemTrayIcon::ActivationReason reason);
-    void addButtonClicked();
-    void deleteButtonClicked();
     void showAboutDialog();
     void quitApplication();
     void onTimeout();
