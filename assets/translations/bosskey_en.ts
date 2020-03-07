@@ -15,7 +15,7 @@
     </message>
     <message>
         <location filename="../../src/bosskeydialog.ui" line="72"/>
-        <source>Currently visible windows:</source>
+        <source>Currently visible windows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -149,6 +149,14 @@
     <message>
         <location filename="../../src/bosskeydialog.cpp" line="267"/>
         <source>About bosskey</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Window</name>
+    <message>
+        <location filename="../../src/window.cpp" line="40"/>
+        <source>(any title)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

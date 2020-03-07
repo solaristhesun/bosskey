@@ -48,7 +48,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="icon">
@@ -69,7 +69,7 @@
            <item>
             <widget class="QGroupBox" name="groupBox_4">
              <property name="title">
-              <string>Currently visible windows:</string>
+              <string>Currently visible windows</string>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_6">
               <item>

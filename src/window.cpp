@@ -17,6 +17,7 @@
  */
 
 #include <QFileInfo>
+#include <QCoreApplication>
 #include <QDataStream>
 
 #include "window.h"
@@ -36,7 +37,7 @@ QString Window::fileName() const
 QString Window::getText() const
 {
     if (ignoreTitle)
-        return "(any title)";
+        return QCoreApplication::translate("Window", "(any title)");
     else
         return title;
 }

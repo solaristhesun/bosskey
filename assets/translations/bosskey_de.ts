@@ -14,9 +14,13 @@
         <translation>Fenster</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="72"/>
         <source>Currently visible windows:</source>
-        <translation>Aktuell sichtbare Fenster:</translation>
+        <translation type="vanished">Aktuell sichtbare Fenster:</translation>
+    </message>
+    <message>
+        <location filename="../../src/bosskeydialog.ui" line="72"/>
+        <source>Currently visible windows</source>
+        <translation>Aktuell sichtbare Fenster</translation>
     </message>
     <message>
         <location filename="../../src/bosskeydialog.ui" line="131"/>
@@ -26,7 +30,7 @@
     <message>
         <location filename="../../src/bosskeydialog.ui" line="162"/>
         <source>Windows that will be hidden</source>
-        <translation type="unfinished">Zu versteckende Fenster:</translation>
+        <translation>Zu versteckende Fenster</translation>
     </message>
     <message>
         <location filename="../../src/bosskeydialog.ui" line="224"/>
@@ -129,7 +133,7 @@
     <message>
         <location filename="../../src/bosskeydialog.ui" line="588"/>
         <source>&amp;About</source>
-        <translation>&amp;Über</translation>
+        <translation type="unfinished">&amp;Über BossKey</translation>
     </message>
     <message>
         <location filename="../../src/bosskeydialog.ui" line="611"/>
@@ -144,12 +148,20 @@
     <message>
         <location filename="../../src/bosskeydialog.cpp" line="265"/>
         <source>Visit bosskey website</source>
-        <translation>Besuchen Sie die BossKey Webseite</translation>
+        <translation>BossKey Webseite besuchen</translation>
     </message>
     <message>
         <location filename="../../src/bosskeydialog.cpp" line="267"/>
         <source>About bosskey</source>
-        <translation>Über bosskey</translation>
+        <translation type="unfinished">Über BossKey</translation>
+    </message>
+</context>
+<context>
+    <name>Window</name>
+    <message>
+        <location filename="../../src/window.cpp" line="40"/>
+        <source>(any title)</source>
+        <translation>(beliebiger Fenstertitel)</translation>
     </message>
 </context>
 <context>
