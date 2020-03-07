@@ -86,8 +86,13 @@ void BossKeyDialog::setupHotkeys()
 {
     QSettings settings;
 
-    hotkeyManager_.registerHotkey(settings.value("hotkey_hide", "Ctrl+F12").toString(), KeyCode_HideWindows);
-    hotkeyManager_.registerHotkey(settings.value("hotkey_show", "Ctrl+F11").toString(), KeyCode_ShowWindows);
+    try {
+        hotkeyManager_.registerHotkey(settings.value("hotkey_hide", "Ctrl+F12").toString(), KeyCode_HideWindows);
+        hotkeyManager_.registerHotkey(settings.value("hotkey_show", "Ctrl+F11").toString(), KeyCode_ShowWindows);
+    }
+    catch (UException& e) {
+        qDebug() << e.what();
+    }
 
     QList<QKeySequence> sequenceHide;
     sequenceHide.push_back(QKeySequence(settings.value("hotkey_hide", "Ctrl+F12").toString()));
