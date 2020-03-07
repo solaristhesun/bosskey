@@ -70,6 +70,8 @@ public slots:
     void showContextMenu(const QPoint & point);
     void patternViewSelectionChanged(const QItemSelection & selected, const QItemSelection & deselected);
     void languageChanged(int index);
+    void showWindows();
+    void hideWindows();
 
 private:
     void loadUserInterfaceSettings();
@@ -77,8 +79,6 @@ private:
     void setupHotkeys();
     void createTrayIcon();
     void saveHotkeys();
-    void showWindows();
-    void hideWindows();
     void loadLanguage(const QString& language);
     void switchTranslator(QTranslator& translator, const QString& filename);
     void applyFocusLineHack(QWidget* widget);

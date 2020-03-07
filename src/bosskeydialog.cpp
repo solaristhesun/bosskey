@@ -89,6 +89,15 @@ void BossKeyDialog::setupHotkeys()
     hotkeyManager_.registerHotkey(settings.value("hotkey_hide", "Ctrl+F12").toString(), KeyCode_HideWindows);
     hotkeyManager_.registerHotkey(settings.value("hotkey_show", "Ctrl+F11").toString(), KeyCode_ShowWindows);
 
+    QList<QKeySequence> sequenceHide;
+    sequenceHide.push_back(QKeySequence(settings.value("hotkey_hide", "Ctrl+F12").toString()));
+
+    QList<QKeySequence> sequenceShow;
+    sequenceShow.push_back(QKeySequence(settings.value("hotkey_show", "Ctrl+F11").toString()));
+
+    ui_->actionHideWindows->setShortcuts(sequenceHide);
+    ui_->actionShowWindows->setShortcuts(sequenceShow);
+
     QObject::connect(&hotkeyManager_, &UGlobalHotkeys::activated, [=](size_t id)
     {
         if (id == KeyCode_ShowWindows) {
@@ -183,6 +192,9 @@ void BossKeyDialog::saveHotkeys()
 void BossKeyDialog::createTrayIcon()
 {
     trayIconMenu = new QMenu(this);
+    trayIconMenu->addAction(ui_->actionHideWindows);
+    trayIconMenu->addAction(ui_->actionShowWindows);
+    trayIconMenu->addSeparator();
     trayIconMenu->addAction(ui_->actionShowDialog);
     trayIconMenu->addAction(ui_->actionShowAbout);
     trayIconMenu->addSeparator();

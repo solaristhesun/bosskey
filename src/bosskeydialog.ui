@@ -633,6 +633,16 @@ padding: 8px;</string>
     <string>Ignore Title</string>
    </property>
   </action>
+  <action name="actionHideWindows">
+   <property name="text">
+    <string>Hide Windows</string>
+   </property>
+  </action>
+  <action name="actionShowWindows">
+   <property name="text">
+    <string>Show windows</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -874,6 +884,38 @@ padding: 8px;</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionHideWindows</sender>
+   <signal>triggered()</signal>
+   <receiver>BossKeyDialog</receiver>
+   <slot>hideWindows()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShowWindows</sender>
+   <signal>triggered()</signal>
+   <receiver>BossKeyDialog</receiver>
+   <slot>showWindows()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addButtonClicked()</slot>
@@ -888,5 +930,7 @@ padding: 8px;</string>
   <slot>toggleIgnoreTitle()</slot>
   <slot>clearBringToFrontList()</slot>
   <slot>languageChanged(int)</slot>
+  <slot>hideWindows()</slot>
+  <slot>showWindows()</slot>
  </slots>
 </ui>
