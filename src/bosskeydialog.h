@@ -72,6 +72,8 @@ public slots:
     void languageChanged(int index);
 
 private:
+    void loadUserInterfaceSettings();
+    void setupLocalization();
     void setupHotkeys();
     void createTrayIcon();
     void saveHotkeys();
@@ -93,6 +95,7 @@ private:
     WindowListViewModel windowList_;
     WindowListViewModel patternList_;
     SingleWindowListViewModel bringToFrontList_;
+    QString language_;
 };
 
 #endif // BOSSKEYDIALOG_H

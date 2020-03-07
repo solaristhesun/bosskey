@@ -29,7 +29,7 @@
 #include "ui_bosskeydialog.h"
 
 BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyManager)
-    : QDialog(nullptr)
+    : QDialog(nullptr, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
     , ui_(new Ui::BossKeyDialog)
     , platform_(engine)
     , hotkeyManager_(hotkeyManager)
@@ -57,17 +57,9 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
 
     ui_->autoHideIntervalEdit->setValidator(new QIntValidator(0, 7200, this));
 
+    loadUserInterfaceSettings();
+
     QSettings settings;
-
-    ui_->keySequenceEdit->setKeySequence(QKeySequence(settings.value("hotkey_hide", "Ctrl+F12").toString()));
-    ui_->keySequenceEdit_2->setKeySequence(QKeySequence(settings.value("hotkey_show", "Ctrl+F11").toString()));
-    ui_->hideSystrayIconCheckBox->setChecked(settings.value("hide_icon", false).toBool());
-    ui_->autoHideCheckBox->setChecked(settings.value("auto_hide", false).toBool());
-    ui_->autoHideIntervalEdit->setText(QString::number(settings.value("auto_hide_interval", 5).toInt()));
-    ui_->autoHideIntervalEdit->setEnabled(ui_->autoHideCheckBox->isChecked());
-    ui_->hideOnClickCheckBox->setChecked(settings.value("hide_on_click", true).toBool());
-    loadLanguage(settings.value("language", "en").toString());
-
 
     connect(&timer_, SIGNAL(timeout()), this, SLOT(onTimeout()));
 
@@ -81,31 +73,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     applyFocusLineHack(ui_->patternTableView);
     applyFocusLineHack(ui_->bringToFrontTableView);
 
-    // set up language menu
-    QString defaultLocale = QLocale::system().name(); // e.g. "de_DE"
-    defaultLocale.truncate(defaultLocale.lastIndexOf('_')); // e.g. "de"
-
-    QDirIterator it(":/translations", QDirIterator::Subdirectories);
-    while (it.hasNext()) {
-        QString locale = it.next();
-        locale.truncate(locale.lastIndexOf('.')); // "TranslationExample_de"
-        locale.remove(0, locale.indexOf('_') + 1); // "de"
-        QString lang = QLocale::languageToString(QLocale(locale).language());
-        QIcon icon(QString(":/flags/%1.png").arg(locale));
-        qDebug() << lang;
-        ui_->languageComboBox->addItem(icon, lang, locale);
-    }
-
-    int index = ui_->languageComboBox->findData(settings.value("language", "en").toString());
-    if (index != -1) {
-        ui_->languageComboBox->setCurrentIndex(index);
-    }
-    else {
-        index = ui_->languageComboBox->findData(defaultLocale);
-        if (index != -1) {
-            ui_->languageComboBox->setCurrentIndex(index);
-        }
-    }
+    setupLocalization();
 }
 
 BossKeyDialog::~BossKeyDialog()
@@ -345,9 +313,14 @@ void BossKeyDialog::patternViewSelectionChanged(const QItemSelection & selected,
 void BossKeyDialog::languageChanged(int index)
 {
     QString locale = ui_->languageComboBox->itemData(index).toString();
-    loadLanguage(locale);
-    QSettings settings;
-    settings.setValue("language", locale);
+
+    if (locale != language_) {
+        qDebug() << "language changed" << index;
+        loadLanguage(locale);
+        QSettings settings;
+        settings.setValue("language", locale);
+        language_ = locale;
+    }
 }
 
 void BossKeyDialog::loadLanguage(const QString& language)
@@ -365,5 +338,50 @@ void BossKeyDialog::switchTranslator(QTranslator& translator, const QString& fil
         qApp->installTranslator(&translator);
 }
 
+void BossKeyDialog::loadUserInterfaceSettings()
+{
+    QSettings settings;
+
+    ui_->keySequenceEdit->setKeySequence(QKeySequence(settings.value("hotkey_hide", "Ctrl+F12").toString()));
+    ui_->keySequenceEdit_2->setKeySequence(QKeySequence(settings.value("hotkey_show", "Ctrl+F11").toString()));
+    ui_->hideSystrayIconCheckBox->setChecked(settings.value("hide_icon", false).toBool());
+    ui_->autoHideCheckBox->setChecked(settings.value("auto_hide", false).toBool());
+    ui_->autoHideIntervalEdit->setText(QString::number(settings.value("auto_hide_interval", 5).toInt()));
+    ui_->autoHideIntervalEdit->setEnabled(ui_->autoHideCheckBox->isChecked());
+    ui_->hideOnClickCheckBox->setChecked(settings.value("hide_on_click", true).toBool());
+}
+
+void BossKeyDialog::setupLocalization()
+{
+    QSettings settings;
+
+    QString defaultLocale = QLocale::system().name(); // e.g. "de_DE"
+    defaultLocale.truncate(defaultLocale.lastIndexOf('_')); // e.g. "de"
+
+    QDirIterator it(":/translations", QDirIterator::Subdirectories);
+    while (it.hasNext()) {
+        QString locale = it.next();
+        locale.truncate(locale.lastIndexOf('.')); // "TranslationExample_de"
+        locale.remove(0, locale.indexOf('_') + 1); // "de"
+        QString lang = QLocale::languageToString(QLocale(locale).language());
+        QIcon icon(QString(":/flags/%1.png").arg(locale));
+        ui_->languageComboBox->addItem(icon, lang, locale);
+        qDebug() << "adding" << lang << locale;
+    }
+
+    int index = ui_->languageComboBox->findData(settings.value("language", defaultLocale));
+
+    if (index != -1) {
+        ui_->languageComboBox->setCurrentIndex(index);
+    }
+    else {
+        index = ui_->languageComboBox->findData("en");
+        if (index != -1) {
+            ui_->languageComboBox->setCurrentIndex(index);
+        }
+    }
+
+    languageChanged(ui_->languageComboBox->currentIndex());
+}
 
 // EOF <stefan@scheler.com>

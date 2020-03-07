@@ -854,7 +854,7 @@
   </connection>
   <connection>
    <sender>languageComboBox</sender>
-   <signal>currentIndexChanged(int)</signal>
+   <signal>activated(int)</signal>
    <receiver>BossKeyDialog</receiver>
    <slot>languageChanged(int)</slot>
    <hints>
