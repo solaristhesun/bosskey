@@ -25,7 +25,7 @@
     </message>
     <message>
         <location filename="../../src/bosskeydialog.ui" line="224"/>
-        <location filename="../../src/bosskeydialog.ui" line="606"/>
+        <location filename="../../src/bosskeydialog.ui" line="597"/>
         <source>&amp;Remove</source>
         <translation>Entfernen</translation>
     </message>
@@ -37,7 +37,7 @@
     <message>
         <location filename="../../src/bosskeydialog.ui" line="245"/>
         <location filename="../../src/bosskeydialog.ui" line="329"/>
-        <location filename="../../src/bosskeydialog.ui" line="597"/>
+        <location filename="../../src/bosskeydialog.ui" line="588"/>
         <source>&amp;Clear</source>
         <translation>&amp;Leeren</translation>
     </message>
@@ -102,47 +102,47 @@
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="531"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://scheler.com/bosskey/donate&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#1f8cd4;&quot;&gt;If this software is useful to you, please consider making a donation.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://scheler.com/bosskey/donate&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#1f8cd4;&quot;&gt;Bitte denken Sie über eine Spende nach, wenn Ihnen dieses Programm gefällt.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../../src/bosskeydialog.ui" line="554"/>
+        <location filename="../../src/bosskeydialog.ui" line="545"/>
         <source>&amp;Close</source>
         <translation>&amp;Schließen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="570"/>
+        <location filename="../../src/bosskeydialog.ui" line="561"/>
         <source>&amp;Exit</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="579"/>
+        <location filename="../../src/bosskeydialog.ui" line="570"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Einstellungen...</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="588"/>
+        <location filename="../../src/bosskeydialog.ui" line="579"/>
         <source>&amp;About</source>
         <translation>&amp;Über</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="611"/>
+        <location filename="../../src/bosskeydialog.ui" line="602"/>
         <source>Ignore Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="234"/>
+        <location filename="../../src/bosskeydialog.cpp" line="52"/>
+        <source>If this software is useful to you, please consider making a donation.</source>
+        <translation>Bitte denken Sie über eine Spende nach, wenn Ihnen dieses Programm gefällt.</translation>
+    </message>
+    <message>
+        <location filename="../../src/bosskeydialog.cpp" line="236"/>
         <source>All rights reserved.</source>
         <translation>Alle Rechte vorbehalten.</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="234"/>
+        <location filename="../../src/bosskeydialog.cpp" line="236"/>
         <source>Visit bosskey website</source>
         <translation>BossKey Webseite besuchen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="236"/>
+        <location filename="../../src/bosskeydialog.cpp" line="238"/>
         <source>About bosskey</source>
         <translation>Über BossKey</translation>
     </message>

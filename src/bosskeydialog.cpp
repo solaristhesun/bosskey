@@ -160,6 +160,7 @@ void BossKeyDialog::changeEvent(QEvent *event)
         case QEvent::LanguageChange:
             qDebug() << "retranslate";
             ui_->retranslateUi(this);
+            ui_->donationLabel->setText(QString("<html><head/><body><p><a href=\"https://scheler.com/bosskey/donate\"><span style=\" font-weight:600; text-decoration: underline; color:white;\">%1</span></a></p></body></html>").arg(tr("If this software is useful to you, please consider making a donation.")));
             break;
         default:
             break;
