@@ -75,7 +75,7 @@
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout">
                 <item>
-                 <widget class="QTableView" name="windowsTableView">
+                 <widget class="TableView" name="windowsTableView">
                   <property name="acceptDrops">
                    <bool>false</bool>
                   </property>
@@ -99,6 +99,9 @@
                   </property>
                   <property name="sortingEnabled">
                    <bool>true</bool>
+                  </property>
+                  <property name="emptyText" stdset="0">
+                   <string>No visible windows</string>
                   </property>
                   <attribute name="horizontalHeaderDefaultSectionSize">
                    <number>150</number>
