@@ -36,6 +36,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
 
 {
     ui_->setupUi(this);
+    QDialog::setWindowTitle(Globals::ApplicationFullName);
 
     setupHotkeys();
     createTrayIcon();

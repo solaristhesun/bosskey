@@ -4,18 +4,9 @@
 <context>
     <name>BossKeyDialog</name>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="14"/>
-        <source>Preferences</source>
-        <translation>Einstellungen</translation>
-    </message>
-    <message>
         <location filename="../../src/bosskeydialog.ui" line="59"/>
         <source>Windows</source>
         <translation>Fenster</translation>
-    </message>
-    <message>
-        <source>Currently visible windows:</source>
-        <translation type="vanished">Aktuell sichtbare Fenster:</translation>
     </message>
     <message>
         <location filename="../../src/bosskeydialog.ui" line="72"/>
@@ -127,13 +118,13 @@
     </message>
     <message>
         <location filename="../../src/bosskeydialog.ui" line="579"/>
-        <source>&amp;Preferences</source>
-        <translation>&amp;Einstellungen</translation>
+        <source>&amp;Preferences...</source>
+        <translation>&amp;Einstellungen...</translation>
     </message>
     <message>
         <location filename="../../src/bosskeydialog.ui" line="588"/>
         <source>&amp;About</source>
-        <translation type="unfinished">&amp;Über BossKey</translation>
+        <translation>&amp;Über</translation>
     </message>
     <message>
         <location filename="../../src/bosskeydialog.ui" line="611"/>
@@ -141,19 +132,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="265"/>
+        <location filename="../../src/bosskeydialog.cpp" line="234"/>
         <source>All rights reserved.</source>
         <translation>Alle Rechte vorbehalten.</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="265"/>
+        <location filename="../../src/bosskeydialog.cpp" line="234"/>
         <source>Visit bosskey website</source>
         <translation>BossKey Webseite besuchen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="267"/>
+        <location filename="../../src/bosskeydialog.cpp" line="236"/>
         <source>About bosskey</source>
-        <translation type="unfinished">Über BossKey</translation>
+        <translation>Über BossKey</translation>
     </message>
 </context>
 <context>

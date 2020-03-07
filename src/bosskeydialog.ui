@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Preferences</string>
+   <string notr="true">BossKey</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../assets/bosskey.qrc">
@@ -48,7 +48,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="icon">
@@ -497,7 +497,7 @@
            <widget class="QComboBox" name="languageComboBox">
             <property name="maximumSize">
              <size>
-              <width>100</width>
+              <width>120</width>
               <height>16777215</height>
              </size>
             </property>
@@ -576,7 +576,7 @@
      <normaloff>:/wrench-screwdriver</normaloff>:/wrench-screwdriver</iconset>
    </property>
    <property name="text">
-    <string>&amp;Preferences</string>
+    <string>&amp;Preferences...</string>
    </property>
   </action>
   <action name="actionShowAbout">

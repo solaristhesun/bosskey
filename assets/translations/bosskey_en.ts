@@ -4,11 +4,6 @@
 <context>
     <name>BossKeyDialog</name>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="14"/>
-        <source>Preferences</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/bosskeydialog.ui" line="59"/>
         <source>Windows</source>
         <translation type="unfinished"></translation>
@@ -123,7 +118,7 @@
     </message>
     <message>
         <location filename="../../src/bosskeydialog.ui" line="579"/>
-        <source>&amp;Preferences</source>
+        <source>&amp;Preferences...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -137,17 +132,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="265"/>
+        <location filename="../../src/bosskeydialog.cpp" line="234"/>
         <source>All rights reserved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="265"/>
+        <location filename="../../src/bosskeydialog.cpp" line="234"/>
         <source>Visit bosskey website</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="267"/>
+        <location filename="../../src/bosskeydialog.cpp" line="236"/>
         <source>About bosskey</source>
         <translation type="unfinished"></translation>
     </message>
