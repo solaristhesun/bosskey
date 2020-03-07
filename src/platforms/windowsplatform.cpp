@@ -76,6 +76,9 @@ QList<Window> WindowsPlatform::getWindowList()
             if (w.processImage.contains("WindowsInternal.ComposableShell.Experiences.TextInput.InputApp.exe"))
                 return TRUE;
 
+            if (w.processImage.contains("bosskey.exe"))
+                return TRUE;
+
             if (!w.title.isEmpty()) {
                 engine->windowList_.append(w);
             }
