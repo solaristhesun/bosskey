@@ -14,135 +14,136 @@
         <translation>Aktuell sichtbare Fenster</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="131"/>
+        <location filename="../../src/bosskeydialog.ui" line="137"/>
         <source>&amp;Refresh</source>
         <translation>&amp;Aktualisieren</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="162"/>
+        <location filename="../../src/bosskeydialog.ui" line="168"/>
         <source>Windows that will be hidden</source>
-        <translation type="unfinished">Zu verbergende Fenster</translation>
+        <translation>Zu verbergende Fenster</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="224"/>
-        <location filename="../../src/bosskeydialog.ui" line="597"/>
+        <location filename="../../src/bosskeydialog.ui" line="206"/>
+        <location filename="../../src/bosskeydialog.ui" line="322"/>
+        <source>Drag and drop windows from above here.</source>
+        <translation>Ziehen Sie Fenster von oben per Drag and Drop hier herein.</translation>
+    </message>
+    <message>
+        <location filename="../../src/bosskeydialog.ui" line="239"/>
+        <location filename="../../src/bosskeydialog.ui" line="617"/>
         <source>&amp;Remove</source>
         <translation>&amp;Entfernen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="238"/>
-        <source>&amp;Ignore Title</source>
-        <translation>Fenstertitel ignorieren</translation>
-    </message>
-    <message>
-        <location filename="../../src/bosskeydialog.ui" line="245"/>
-        <location filename="../../src/bosskeydialog.ui" line="329"/>
-        <location filename="../../src/bosskeydialog.ui" line="588"/>
+        <location filename="../../src/bosskeydialog.ui" line="256"/>
+        <location filename="../../src/bosskeydialog.ui" line="349"/>
+        <location filename="../../src/bosskeydialog.ui" line="608"/>
         <source>&amp;Clear</source>
         <translation>&amp;Alle entfernen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="276"/>
+        <location filename="../../src/bosskeydialog.ui" line="287"/>
         <source>Bring to Front</source>
         <translation>In den Vordergrund bringen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="369"/>
+        <location filename="../../src/bosskeydialog.ui" line="389"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="375"/>
+        <location filename="../../src/bosskeydialog.ui" line="395"/>
         <source>Hotkeys</source>
         <translation>Tastenkürzel</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="381"/>
+        <location filename="../../src/bosskeydialog.ui" line="401"/>
         <source>Hide Hotkey:</source>
         <translation>Fenster verbergen:</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="395"/>
+        <location filename="../../src/bosskeydialog.ui" line="415"/>
         <source>Show Hotkey:</source>
         <translation>Fenster anzeigen:</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="408"/>
+        <location filename="../../src/bosskeydialog.ui" line="428"/>
         <source>Systray</source>
         <translation>Benachrichtigungsfeld</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="414"/>
+        <location filename="../../src/bosskeydialog.ui" line="434"/>
         <source>Hide Systray icon</source>
         <translation>Icon im Benachrichtungsfeld verbergen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="421"/>
+        <location filename="../../src/bosskeydialog.ui" line="441"/>
         <source>Hide windows with left click on systray icon</source>
         <translation>Fenster verbergen durch Linksklick auf Icon im Benachrichtungsfeld</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="431"/>
+        <location filename="../../src/bosskeydialog.ui" line="451"/>
         <source>Misc</source>
         <translation>Sonstiges</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="439"/>
+        <location filename="../../src/bosskeydialog.ui" line="459"/>
         <source>Auto-Hide on inactivity after</source>
         <translation>Fenster automatisch verbergen nach</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="468"/>
+        <location filename="../../src/bosskeydialog.ui" line="488"/>
         <source>seconds</source>
         <translation>Sekunden</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="493"/>
+        <location filename="../../src/bosskeydialog.ui" line="513"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="545"/>
+        <location filename="../../src/bosskeydialog.ui" line="565"/>
         <source>&amp;Close</source>
         <translation>&amp;Schließen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="561"/>
+        <location filename="../../src/bosskeydialog.ui" line="581"/>
         <source>&amp;Exit</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="570"/>
+        <location filename="../../src/bosskeydialog.ui" line="590"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Einstellungen...</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="579"/>
+        <location filename="../../src/bosskeydialog.ui" line="599"/>
         <source>&amp;About</source>
         <translation>&amp;Über</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="602"/>
+        <location filename="../../src/bosskeydialog.ui" line="625"/>
         <source>Ignore Title</source>
         <translation>Fenstertitel ignorieren</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="52"/>
+        <location filename="../../src/bosskeydialog.cpp" line="163"/>
         <source>If this software is useful to you, please consider making a donation.</source>
         <translation>Bitte denken Sie über eine Spende nach, wenn Ihnen dieses Programm gefällt.</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="236"/>
+        <location filename="../../src/bosskeydialog.cpp" line="235"/>
         <source>All rights reserved.</source>
         <translation>Alle Rechte vorbehalten.</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="236"/>
+        <location filename="../../src/bosskeydialog.cpp" line="235"/>
         <source>Visit bosskey website</source>
         <translation>BossKey Webseite besuchen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="238"/>
+        <location filename="../../src/bosskeydialog.cpp" line="237"/>
         <source>About bosskey</source>
         <translation>Über BossKey</translation>
     </message>
@@ -158,12 +159,12 @@
 <context>
     <name>WindowListViewModel</name>
     <message>
-        <location filename="../../src/windowlistviewmodel.cpp" line="84"/>
+        <location filename="../../src/windowlistviewmodel.cpp" line="86"/>
         <source>Process Name</source>
         <translation>Prozessname</translation>
     </message>
     <message>
-        <location filename="../../src/windowlistviewmodel.cpp" line="87"/>
+        <location filename="../../src/windowlistviewmodel.cpp" line="89"/>
         <source>Window Title</source>
         <translation>Fenstertitel</translation>
     </message>

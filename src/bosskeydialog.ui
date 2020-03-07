@@ -202,6 +202,9 @@
                   <property name="showGrid">
                    <bool>false</bool>
                   </property>
+                  <property name="emptyText" stdset="0">
+                   <string>Drag and drop windows from above here.</string>
+                  </property>
                   <attribute name="horizontalHeaderDefaultSectionSize">
                    <number>150</number>
                   </attribute>
@@ -287,7 +290,7 @@
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_7">
                 <item>
-                 <widget class="QTableView" name="bringToFrontTableView">
+                 <widget class="TableView" name="bringToFrontTableView">
                   <property name="maximumSize">
                    <size>
                     <width>16777215</width>
@@ -314,6 +317,9 @@
                   </property>
                   <property name="showGrid">
                    <bool>false</bool>
+                  </property>
+                  <property name="emptyText" stdset="0">
+                   <string>Drag and drop windows from above here.</string>
                   </property>
                   <attribute name="horizontalHeaderDefaultSectionSize">
                    <number>150</number>

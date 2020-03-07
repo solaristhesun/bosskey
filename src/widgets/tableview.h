@@ -23,10 +23,25 @@
 
 class TableView : public QTableView
 {
+    Q_OBJECT
+    Q_PROPERTY(QString emptyText READ emptyText WRITE setEmptyText)
+
 public:
     TableView(QWidget *parent = nullptr);
 
     void dropEvent(QDropEvent *event) override;
+
+    void paintEvent(QPaintEvent *e) override;
+
+    void setEmptyText(QString text);
+
+    QString emptyText() const;
+
+private:
+    void drawEmptyText();
+
+private:
+    QString emptyText_;
 };
 
 #endif // TABLEVIEW_H
