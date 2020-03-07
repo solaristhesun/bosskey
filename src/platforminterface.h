@@ -34,6 +34,7 @@ public:
     virtual bool isHidden() const =0;
     virtual quint32 getUserIdleTime() const =0;
     virtual void bringToFront(Window window) =0;
+    virtual int hiddenWindowsCount() const =0;
 };
 
 #endif // ENGINEINTERFACE_H

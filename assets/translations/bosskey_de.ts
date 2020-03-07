@@ -143,24 +143,29 @@
         <translation>Fenster anzeigen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="172"/>
+        <location filename="../../src/bosskeydialog.cpp" line="181"/>
         <source>If this software is useful to you, please consider making a donation.</source>
         <translation>Bitte denken Sie über eine Spende nach, wenn Ihnen dieses Programm gefällt.</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="247"/>
+        <location filename="../../src/bosskeydialog.cpp" line="256"/>
         <source>All rights reserved.</source>
         <translation>Alle Rechte vorbehalten.</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="247"/>
+        <location filename="../../src/bosskeydialog.cpp" line="256"/>
         <source>Visit bosskey website</source>
         <translation>BossKey Webseite besuchen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="249"/>
+        <location filename="../../src/bosskeydialog.cpp" line="258"/>
         <source>About bosskey</source>
         <translation>Über BossKey</translation>
+    </message>
+    <message>
+        <location filename="../../src/bosskeydialog.cpp" line="413"/>
+        <source>%1 hidden windows</source>
+        <translation>%1 verborgene Fenster</translation>
     </message>
 </context>
 <context>

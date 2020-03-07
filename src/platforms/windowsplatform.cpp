@@ -160,4 +160,9 @@ void WindowsPlatform::bringToFront(Window window)
     }, reinterpret_cast<LPARAM>(this));
 }
 
+int WindowsPlatform::hiddenWindowsCount() const
+{
+    return hiddenWindows_.count();
+}
+
 // EOF <stefan@scheler.com>

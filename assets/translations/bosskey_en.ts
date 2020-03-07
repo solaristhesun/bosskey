@@ -143,23 +143,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="172"/>
+        <location filename="../../src/bosskeydialog.cpp" line="181"/>
         <source>If this software is useful to you, please consider making a donation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="247"/>
+        <location filename="../../src/bosskeydialog.cpp" line="256"/>
         <source>All rights reserved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="247"/>
+        <location filename="../../src/bosskeydialog.cpp" line="256"/>
         <source>Visit bosskey website</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="249"/>
+        <location filename="../../src/bosskeydialog.cpp" line="258"/>
         <source>About bosskey</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/bosskeydialog.cpp" line="413"/>
+        <source>%1 hidden windows</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

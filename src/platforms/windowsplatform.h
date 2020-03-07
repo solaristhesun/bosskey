@@ -39,6 +39,7 @@ public:
     QList<Window> getWindowList();
     bool isHidden() const;
     quint32 getUserIdleTime() const;
+    int hiddenWindowsCount() const;
 
 private:
     QString getWindowTitle(HWND hWindow) const;

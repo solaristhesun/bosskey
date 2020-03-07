@@ -75,6 +75,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     applyFocusLineHack(ui_->bringToFrontTableView);
 
     setupLocalization();
+    refreshTrayToolTip();
 }
 
 BossKeyDialog::~BossKeyDialog()
@@ -123,6 +124,7 @@ void BossKeyDialog::refreshVisibleWindowList()
 void BossKeyDialog::showWindows()
 {
     platform_.showWindows();
+    refreshTrayToolTip();
     trayIcon->show();
 }
 
@@ -140,6 +142,8 @@ void BossKeyDialog::hideWindows()
         if (ui_->hideSystrayIconCheckBox->isChecked()) {
             trayIcon->hide();
         }
+
+        refreshTrayToolTip();
     }
 }
 
@@ -402,6 +406,11 @@ void BossKeyDialog::setupLocalization()
     }
 
     languageChanged(ui_->languageComboBox->currentIndex());
+}
+
+void BossKeyDialog::refreshTrayToolTip()
+{
+    trayIcon->setToolTip(QString(tr("%1 hidden windows")).arg(platform_.hiddenWindowsCount()));
 }
 
 // EOF <stefan@scheler.com>

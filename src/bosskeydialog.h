@@ -82,6 +82,7 @@ private:
     void loadLanguage(const QString& language);
     void switchTranslator(QTranslator& translator, const QString& filename);
     void applyFocusLineHack(QWidget* widget);
+    void refreshTrayToolTip();
 
 private:
     QTranslator translator_;
