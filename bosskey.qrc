@@ -7,5 +7,7 @@
         <file alias="arrow-circle-double-135">assets/fugue/arrow-circle-double-135.png</file>
         <file alias="application-blue">assets/fugue/application-blue.png</file>
         <file alias="gear">assets/fugue/gear.png</file>
+        <file alias="cross-script">assets/fugue/cross-script.png</file>
+        <file alias="application-minus">assets/fugue/application--minus.png</file>
     </qresource>
 </RCC>

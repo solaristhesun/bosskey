@@ -212,19 +212,16 @@
                 <item>
                  <layout class="QVBoxLayout" name="verticalLayout_8">
                   <item>
-                   <widget class="QPushButton" name="clearButton">
-                    <property name="text">
-                     <string>&amp;Clear</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
                    <widget class="QPushButton" name="removeButton">
                     <property name="enabled">
                      <bool>false</bool>
                     </property>
                     <property name="text">
                      <string>&amp;Remove</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../bosskey.qrc">
+                      <normaloff>:/icons/application-minus</normaloff>:/icons/application-minus</iconset>
                     </property>
                    </widget>
                   </item>
@@ -235,6 +232,17 @@
                     </property>
                     <property name="text">
                      <string>&amp;Ignore Title</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="clearButton">
+                    <property name="text">
+                     <string>&amp;Clear</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../bosskey.qrc">
+                      <normaloff>:/icons/cross-script</normaloff>:/icons/cross-script</iconset>
                     </property>
                    </widget>
                   </item>
@@ -315,6 +323,10 @@
                    <widget class="QPushButton" name="clearBringToFrontButton">
                     <property name="text">
                      <string>&amp;Clear</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../bosskey.qrc">
+                      <normaloff>:/icons/cross-script</normaloff>:/icons/cross-script</iconset>
                     </property>
                    </widget>
                   </item>
@@ -538,11 +550,19 @@
    </property>
   </action>
   <action name="actionClearPatterns">
+   <property name="icon">
+    <iconset resource="../bosskey.qrc">
+     <normaloff>:/icons/cross-script</normaloff>:/icons/cross-script</iconset>
+   </property>
    <property name="text">
     <string>&amp;Clear</string>
    </property>
   </action>
   <action name="actionRemovePattern">
+   <property name="icon">
+    <iconset resource="../bosskey.qrc">
+     <normaloff>:/icons/application-minus</normaloff>:/icons/application-minus</iconset>
+   </property>
    <property name="text">
     <string>&amp;Remove</string>
    </property>
