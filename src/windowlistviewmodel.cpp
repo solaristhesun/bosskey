@@ -102,7 +102,7 @@ QVariant WindowListViewModel::data(const QModelIndex &index, int role) const
 
     if (role == Qt::DisplayRole || role == Qt::EditRole) {
         if (index.column() == 1) {
-            return windowList_.at(index.row()).title;
+            return windowList_.at(index.row()).getText();
         }
         else  {
             QFileInfo info(windowList_.at(index.row()).processImage);
@@ -188,11 +188,22 @@ bool WindowListViewModel::canDropMimeData(const QMimeData *data, Qt::DropAction 
     return bVal;
 }
 
-void WindowListViewModel::removeItem(QModelIndex& index)
+void WindowListViewModel::removeItem(const QModelIndex& index)
 {
     beginRemoveRows(index.parent(), index.row(), index.row());
     windowList_.removeAt(index.row());
     endRemoveRows();
+}
+
+void WindowListViewModel::toggleIgnoreTitle(const QModelIndex &index)
+{
+    if (!index.isValid())
+        return;
+
+    Window& w = windowList_[index.row()];
+    w.ignoreTitle = !w.ignoreTitle;
+
+    emit dataChanged(index, index);
 }
 
 // EOF <stefan@scheler.com>

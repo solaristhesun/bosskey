@@ -45,7 +45,8 @@ public:
 
     void clear();
     void addWindow(Window w);
-    void removeItem(QModelIndex& index);
+    void removeItem(const QModelIndex& index);
+    void toggleIgnoreTitle(const QModelIndex& index);
     void setWindowList(QList<Window> windowList);
     QList<Window> getWindowList() const;
 

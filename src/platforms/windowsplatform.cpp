@@ -44,13 +44,16 @@ void WindowsPlatform::hideWindows(QList<Window> patternList)
             WindowsPlatform* engine = reinterpret_cast<WindowsPlatform*>(lParam);
 
             QString title = engine->getWindowTitle(hWindow);
+            QString imageName = engine->getProcessImageName(hWindow);
 
             for (auto window: engine->patternList_) {
-                if (window.ignoreTitle || window.title == title) {
-                    qDebug() << "hiding" << title << hWindow;
-                    ShowWindow(hWindow, SW_HIDE);
+                if (window.processImage == imageName) {
+                    if (window.ignoreTitle || window.title == title) {
+                        qDebug() << "hiding" << title << hWindow;
+                        ShowWindow(hWindow, SW_HIDE);
 
-                    engine->hiddenWindows_.append(hWindow);
+                        engine->hiddenWindows_.append(hWindow);
+                    }
                 }
             }
         }

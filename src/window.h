@@ -24,9 +24,13 @@
 class Window
 {
 public:
+    Window();
+
     QString title;
     QString processImage;
     bool ignoreTitle;
+
+    QString getText() const;
 
     QString fileName() const;
 };

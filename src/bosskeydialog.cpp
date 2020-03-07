@@ -54,6 +54,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
         Window w;
         w.processImage = settings.value("ProcessImage").toString();
         w.title = settings.value("WindowTitle").toString();
+        w.ignoreTitle = settings.value("IgnoreTitle").toBool();
         patternList_.addWindow(w);
     }
     settings.endArray();
@@ -174,6 +175,7 @@ void BossKeyDialog::savePatterns()
         settings.setArrayIndex(i);
         settings.setValue("ProcessImage",  windowList.at(i).processImage);
         settings.setValue("WindowTitle", windowList.at(i).title);
+        settings.setValue("IgnoreTitle", windowList.at(i).ignoreTitle);
     }
     settings.endArray();
 }
@@ -292,13 +294,16 @@ void BossKeyDialog::applyFocusLineHack(QWidget *widget)
 void BossKeyDialog::showContextMenu(const QPoint & pos)
 {
     QMenu contextMenu;
-    contextMenu.addAction(ui_->actionClearPatterns);
 
     auto index = ui_->patternTableView->indexAt(pos);
 
     if (index.isValid()) {
+        contextMenu.addAction(ui_->actionToggleIgnoreTitle);
         contextMenu.addAction(ui_->actionRemovePattern);
+        contextMenu.addSeparator();
     }
+
+    contextMenu.addAction(ui_->actionClearPatterns);
 
     contextMenu.exec(ui_->patternTableView->viewport()->mapToGlobal(pos));
 }
@@ -309,9 +314,16 @@ void BossKeyDialog::removePattern()
     patternList_.removeItem(index);
 }
 
+void BossKeyDialog::toggleIgnoreTitle()
+{
+    auto index = ui_->patternTableView->currentIndex();
+    patternList_.toggleIgnoreTitle(index);
+}
+
 void BossKeyDialog::patternViewSelectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
 {
     ui_->removeButton->setEnabled(!selected.empty());
+    ui_->toggleIgnoreButton->setEnabled(!selected.empty());
 }
 
 // EOF <stefan@scheler.com>

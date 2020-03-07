@@ -21,10 +21,24 @@
 
 #include "window.h"
 
+Window::Window()
+    : ignoreTitle(false)
+{
+    // empty
+}
+
 QString Window::fileName() const
 {
     QFileInfo info(processImage);
     return info.fileName();
+}
+
+QString Window::getText() const
+{
+    if (ignoreTitle)
+        return "*";
+    else
+        return title;
 }
 
 QDataStream &operator<<(QDataStream &ds, const Window&w)

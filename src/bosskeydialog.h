@@ -65,6 +65,7 @@ public slots:
     void refreshVisibleWindowList();
     void clearPatterns();
     void removePattern();
+    void toggleIgnoreTitle();
     void showContextMenu(const QPoint & point);
     void patternViewSelectionChanged(const QItemSelection & selected, const QItemSelection & deselected);
 

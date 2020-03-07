@@ -229,6 +229,16 @@
                    </widget>
                   </item>
                   <item>
+                   <widget class="QPushButton" name="toggleIgnoreButton">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>&amp;Ignore Title</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <spacer name="verticalSpacer_3">
                     <property name="orientation">
                      <enum>Qt::Vertical</enum>
@@ -476,6 +486,11 @@
     <string>&amp;Remove</string>
    </property>
   </action>
+  <action name="actionToggleIgnoreTitle">
+   <property name="text">
+    <string>Ignore Title</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -669,6 +684,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionToggleIgnoreTitle</sender>
+   <signal>triggered()</signal>
+   <receiver>BossKeyDialog</receiver>
+   <slot>toggleIgnoreTitle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toggleIgnoreButton</sender>
+   <signal>pressed()</signal>
+   <receiver>BossKeyDialog</receiver>
+   <slot>toggleIgnoreTitle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>919</x>
+     <y>388</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addButtonClicked()</slot>
@@ -680,5 +727,6 @@
   <slot>clearPatterns()</slot>
   <slot>showContextMenu(QPoint)</slot>
   <slot>removePattern()</slot>
+  <slot>toggleIgnoreTitle()</slot>
  </slots>
 </ui>
