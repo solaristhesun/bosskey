@@ -18,7 +18,7 @@
     <normaloff>:/appicon/leader.svg</normaloff>:/appicon/leader.svg</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">QPushButton { height: 20px; }</string>
+   <string notr="true">QPushButton { height: 20px;}</string>
   </property>
   <property name="sizeGripEnabled">
    <bool>false</bool>
@@ -82,6 +82,9 @@
           <layout class="QHBoxLayout" name="horizontalLayout_6">
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout">
+             <property name="spacing">
+              <number>6</number>
+             </property>
              <item>
               <widget class="TableView" name="windowsTableView">
                <property name="acceptDrops">
@@ -136,20 +139,30 @@
              </item>
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_3">
+               <property name="spacing">
+                <number>4</number>
+               </property>
                <item>
                 <widget class="QPushButton" name="refreshButton">
                  <property name="minimumSize">
                   <size>
-                   <width>120</width>
-                   <height>0</height>
+                   <width>36</width>
+                   <height>36</height>
                   </size>
                  </property>
-                 <property name="text">
-                  <string>&amp;Refresh</string>
+                 <property name="toolTip">
+                  <string>Refresh visible windows</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">margin-top: -1px;
+</string>
                  </property>
                  <property name="icon">
                   <iconset resource="../assets/bosskey.qrc">
                    <normaloff>:/arrow-circle-double-135</normaloff>:/arrow-circle-double-135</iconset>
+                 </property>
+                 <property name="autoDefault">
+                  <bool>false</bool>
                  </property>
                 </widget>
                </item>
@@ -158,12 +171,44 @@
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
-                 <property name="text">
-                  <string>&amp;Hide</string>
+                 <property name="minimumSize">
+                  <size>
+                   <width>36</width>
+                   <height>36</height>
+                  </size>
+                 </property>
+                 <property name="toolTip">
+                  <string>Hide this window</string>
                  </property>
                  <property name="icon">
                   <iconset resource="../assets/bosskey.qrc">
-                   <normaloff>:/fugue/application--plus.png</normaloff>:/fugue/application--plus.png</iconset>
+                   <normaloff>:/famfamfam/application_put.png</normaloff>:/famfamfam/application_put.png</iconset>
+                 </property>
+                 <property name="autoDefault">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="bringToTopButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>36</width>
+                   <height>36</height>
+                  </size>
+                 </property>
+                 <property name="toolTip">
+                  <string>Bring this window to the front</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="../assets/bosskey.qrc">
+                   <normaloff>:/famfamfam/application_double.png</normaloff>:/famfamfam/application_double.png</iconset>
+                 </property>
+                 <property name="autoDefault">
+                  <bool>false</bool>
                  </property>
                 </widget>
                </item>
@@ -195,6 +240,9 @@
           <layout class="QHBoxLayout" name="horizontalLayout_5">
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <property name="sizeConstraint">
+              <enum>QLayout::SetDefaultConstraint</enum>
+             </property>
              <item>
               <widget class="TableView" name="patternTableView">
                <property name="contextMenuPolicy">
@@ -249,6 +297,9 @@
              </item>
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_8">
+               <property name="spacing">
+                <number>4</number>
+               </property>
                <item>
                 <widget class="QPushButton" name="removeButton">
                  <property name="enabled">
@@ -256,16 +307,22 @@
                  </property>
                  <property name="minimumSize">
                   <size>
-                   <width>120</width>
-                   <height>0</height>
+                   <width>36</width>
+                   <height>36</height>
                   </size>
                  </property>
-                 <property name="text">
-                  <string>&amp;Remove</string>
+                 <property name="toolTip">
+                  <string>Do not hide this window</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">margin-top: -1px;</string>
                  </property>
                  <property name="icon">
                   <iconset resource="../assets/bosskey.qrc">
-                   <normaloff>:/application-minus</normaloff>:/application-minus</iconset>
+                   <normaloff>:/famfamfam/application_get.png</normaloff>:/famfamfam/application_get.png</iconset>
+                 </property>
+                 <property name="autoDefault">
+                  <bool>false</bool>
                  </property>
                 </widget>
                </item>
@@ -273,16 +330,19 @@
                 <widget class="QPushButton" name="clearButton">
                  <property name="minimumSize">
                   <size>
-                   <width>120</width>
-                   <height>0</height>
+                   <width>36</width>
+                   <height>36</height>
                   </size>
                  </property>
-                 <property name="text">
-                  <string>&amp;Clear</string>
+                 <property name="toolTip">
+                  <string>Clear list</string>
                  </property>
                  <property name="icon">
                   <iconset resource="../assets/bosskey.qrc">
-                   <normaloff>:/cross-script</normaloff>:/cross-script</iconset>
+                   <normaloff>:/misc/trash.png</normaloff>:/misc/trash.png</iconset>
+                 </property>
+                 <property name="autoDefault">
+                  <bool>false</bool>
                  </property>
                 </widget>
                </item>
@@ -366,16 +426,22 @@
                 <widget class="QPushButton" name="clearBringToFrontButton">
                  <property name="minimumSize">
                   <size>
-                   <width>120</width>
-                   <height>0</height>
+                   <width>36</width>
+                   <height>36</height>
                   </size>
                  </property>
-                 <property name="text">
-                  <string>&amp;Clear</string>
+                 <property name="toolTip">
+                  <string>Clear list</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">margin-top: -1px;</string>
                  </property>
                  <property name="icon">
                   <iconset resource="../assets/bosskey.qrc">
-                   <normaloff>:/cross-script</normaloff>:/cross-script</iconset>
+                   <normaloff>:/misc/trash.png</normaloff>:/misc/trash.png</iconset>
+                 </property>
+                 <property name="autoDefault">
+                  <bool>false</bool>
                  </property>
                 </widget>
                </item>
@@ -708,7 +774,7 @@ padding: 8px;</string>
   </connection>
   <connection>
    <sender>closeButton</sender>
-   <signal>pressed()</signal>
+   <signal>clicked()</signal>
    <receiver>BossKeyDialog</receiver>
    <slot>hide()</slot>
    <hints>
@@ -946,6 +1012,22 @@ padding: 8px;</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>bringToTopButton</sender>
+   <signal>pressed()</signal>
+   <receiver>BossKeyDialog</receiver>
+   <slot>bringWindowToFront()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>947</x>
+     <y>179</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addButtonClicked()</slot>
@@ -963,5 +1045,6 @@ padding: 8px;</string>
   <slot>hideWindows()</slot>
   <slot>showWindows()</slot>
   <slot>addWindow()</slot>
+  <slot>bringWindowToFront()</slot>
  </slots>
 </ui>

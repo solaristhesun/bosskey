@@ -74,6 +74,7 @@ public slots:
     void showWindows();
     void hideWindows();
     void addWindow();
+    void bringWindowToFront();
 
 private:
     void loadUserInterfaceSettings();

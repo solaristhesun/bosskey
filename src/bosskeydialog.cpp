@@ -118,8 +118,10 @@ void BossKeyDialog::setupHotkeys()
 
 void BossKeyDialog::refreshVisibleWindowList()
 {
+    ui_->windowsTableView->clearSelection();
     windowList_.setWindowList(platform_.getWindowList());
     ui_->windowsTableView->resizeColumnsToContents();
+
 }
 
 void BossKeyDialog::showWindows()
@@ -338,6 +340,7 @@ void BossKeyDialog::patternViewSelectionChanged(const QItemSelection & selected,
 void BossKeyDialog::windowsViewSelectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
 {
     ui_->addButton->setEnabled(!selected.empty());
+    ui_->bringToTopButton->setEnabled(!selected.empty());
 }
 
 
@@ -425,6 +428,13 @@ void BossKeyDialog::addWindow()
     auto index = ui_->windowsTableView->currentIndex();
     auto window = windowList_.getWindow(index);
     patternList_.addWindow(window);
+}
+
+void BossKeyDialog::bringWindowToFront()
+{
+    auto index = ui_->windowsTableView->currentIndex();
+    auto window = windowList_.getWindow(index);
+    bringToFrontList_.addWindow(window);
 }
 
 // EOF <stefan@scheler.com>

@@ -5,14 +5,14 @@
         <file alias="wrench-screwdriver">fugue/wrench-screwdriver.png</file>
         <file alias="information-white">fugue/information-white.png</file>
         <file alias="arrow-circle-double-135">fugue/arrow-circle-double-135.png</file>
-        <file alias="application-blue">fugue/application-blue.png</file>
         <file alias="gear">fugue/gear.png</file>
-        <file alias="cross-script">fugue/cross-script.png</file>
-        <file alias="application-minus">fugue/application--minus.png</file>
         <file>translations/bosskey_de.qm</file>
         <file>translations/bosskey_en.qm</file>
         <file>flags/de.png</file>
         <file>flags/en.png</file>
-        <file>fugue/application--plus.png</file>
+        <file>famfamfam/application_get.png</file>
+        <file>famfamfam/application_put.png</file>
+        <file>famfamfam/application_double.png</file>
+        <file>misc/trash.png</file>
     </qresource>
 </RCC>
