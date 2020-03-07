@@ -18,7 +18,7 @@
 
 #include <QDebug>
 
-#include "WindowsPlatform.h"
+#include "windowsplatform.h"
 #include "windowlistviewmodel.h"
 
 WindowsPlatform::WindowsPlatform()
