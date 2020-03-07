@@ -20,6 +20,7 @@
 #include <QSettings>
 #include <QMessageBox>
 #include <QSortFilterProxyModel>
+#include <QDirIterator>
 
 #include "bosskeydialog.h"
 #include "platforminterface.h"
@@ -65,6 +66,8 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     ui_->autoHideIntervalEdit->setText(QString::number(settings.value("auto_hide_interval", 5).toInt()));
     ui_->autoHideIntervalEdit->setEnabled(ui_->autoHideCheckBox->isChecked());
     ui_->hideOnClickCheckBox->setChecked(settings.value("hide_on_click", true).toBool());
+    loadLanguage(settings.value("language", "en").toString());
+
 
     connect(&timer_, SIGNAL(timeout()), this, SLOT(onTimeout()));
 
@@ -77,6 +80,32 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     applyFocusLineHack(ui_->windowsTableView);
     applyFocusLineHack(ui_->patternTableView);
     applyFocusLineHack(ui_->bringToFrontTableView);
+
+    // set up language menu
+    QString defaultLocale = QLocale::system().name(); // e.g. "de_DE"
+    defaultLocale.truncate(defaultLocale.lastIndexOf('_')); // e.g. "de"
+
+    QDirIterator it(":/translations", QDirIterator::Subdirectories);
+    while (it.hasNext()) {
+        QString locale = it.next();
+        locale.truncate(locale.lastIndexOf('.')); // "TranslationExample_de"
+        locale.remove(0, locale.indexOf('_') + 1); // "de"
+        QString lang = QLocale::languageToString(QLocale(locale).language());
+        QIcon icon(QString(":/flags/%1.png").arg(locale));
+        qDebug() << lang;
+        ui_->languageComboBox->addItem(icon, lang, locale);
+    }
+
+    int index = ui_->languageComboBox->findData(settings.value("language", "en").toString());
+    if (index != -1) {
+        ui_->languageComboBox->setCurrentIndex(index);
+    }
+    else {
+        index = ui_->languageComboBox->findData(defaultLocale);
+        if (index != -1) {
+            ui_->languageComboBox->setCurrentIndex(index);
+        }
+    }
 }
 
 BossKeyDialog::~BossKeyDialog()
@@ -155,6 +184,20 @@ void BossKeyDialog::hideEvent(QHideEvent *event)
     }
 }
 
+void BossKeyDialog::changeEvent(QEvent *event)
+{
+    if (event != nullptr) {
+        switch(event->type()) {
+        case QEvent::LanguageChange:
+            qDebug() << "retranslate";
+            ui_->retranslateUi(this);
+            break;
+        default:
+            break;
+        }
+    }
+}
+
 void BossKeyDialog::saveHotkeys()
 {
     QSettings settings;
@@ -176,7 +219,7 @@ void BossKeyDialog::createTrayIcon()
     trayIconMenu->addAction(ui_->actionExit);
 
     trayIcon = new QSystemTrayIcon(this);
-    trayIcon->setIcon(QIcon(":/icons/assets/appicon/leader.svg"));
+    trayIcon->setIcon(QIcon(":/appicon/leader.svg"));
     trayIcon->setContextMenu(trayIconMenu);
     trayIcon->show();
 
@@ -298,5 +341,29 @@ void BossKeyDialog::patternViewSelectionChanged(const QItemSelection & selected,
     ui_->removeButton->setEnabled(!selected.empty());
     ui_->toggleIgnoreButton->setEnabled(!selected.empty());
 }
+
+void BossKeyDialog::languageChanged(int index)
+{
+    QString locale = ui_->languageComboBox->itemData(index).toString();
+    loadLanguage(locale);
+    QSettings settings;
+    settings.setValue("language", locale);
+}
+
+void BossKeyDialog::loadLanguage(const QString& language)
+{
+    switchTranslator(translator_, QString("bosskey_%1.qm").arg(language));
+}
+
+void BossKeyDialog::switchTranslator(QTranslator& translator, const QString& filename)
+{
+    // remove the old translator
+    qApp->removeTranslator(&translator);
+
+    // load the new translator
+    if(translator.load(":/translations/" + filename))
+        qApp->installTranslator(&translator);
+}
+
 
 // EOF <stefan@scheler.com>

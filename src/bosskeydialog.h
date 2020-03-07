@@ -25,6 +25,7 @@
 #include <QAbstractItemDelegate>
 #include <QTimer>
 #include <QItemSelection>
+#include <QTranslator>
 
 #include "windowlistviewmodel.h"
 #include "singlewindowlistviewmodel.h"
@@ -53,6 +54,7 @@ public:
 
     void showEvent(QShowEvent *event) override;
     void hideEvent(QHideEvent *event) override;
+    void changeEvent(QEvent* event) override;
 
 public slots:
     void systemTracActivated(QSystemTrayIcon::ActivationReason reason);
@@ -67,6 +69,7 @@ public slots:
     void toggleIgnoreTitle();
     void showContextMenu(const QPoint & point);
     void patternViewSelectionChanged(const QItemSelection & selected, const QItemSelection & deselected);
+    void languageChanged(int index);
 
 private:
     void setupHotkeys();
@@ -74,9 +77,12 @@ private:
     void saveHotkeys();
     void showWindows();
     void hideWindows();
+    void loadLanguage(const QString& language);
+    void switchTranslator(QTranslator& translator, const QString& filename);
     void applyFocusLineHack(QWidget* widget);
 
 private:
+    QTranslator translator_;
     Ui::BossKeyDialog *ui_;
     PlatformInterface& platform_;
     UGlobalHotkeys& hotkeyManager_;

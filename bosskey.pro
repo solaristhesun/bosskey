@@ -84,7 +84,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    bosskey.qrc
+    assets/bosskey.qrc
 
 win32:RC_FILE += bosskey.rc
 win32:CONFIG += embed_manifest_exe
+
+TRANSLATIONS += \
+    assets/translations/bosskey_en.ts \
+    assets/translations/bosskey_de.ts

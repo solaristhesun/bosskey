@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Preferences</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../assets/bosskey.qrc">
+    <normaloff>:/appicon/leader.svg</normaloff>:/appicon/leader.svg</iconset>
+  </property>
   <property name="sizeGripEnabled">
    <bool>false</bool>
   </property>
@@ -48,8 +52,8 @@
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="icon">
-       <iconset resource="../bosskey.qrc">
-        <normaloff>:/icons/application-blue</normaloff>:/icons/application-blue</iconset>
+       <iconset resource="../assets/bosskey.qrc">
+        <normaloff>:/application-blue</normaloff>:/application-blue</iconset>
       </attribute>
       <attribute name="title">
        <string>Windows</string>
@@ -127,8 +131,8 @@
                      <string>&amp;Refresh</string>
                     </property>
                     <property name="icon">
-                     <iconset resource="../bosskey.qrc">
-                      <normaloff>:/icons/arrow-circle-double-135</normaloff>:/icons/arrow-circle-double-135</iconset>
+                     <iconset resource="../assets/bosskey.qrc">
+                      <normaloff>:/arrow-circle-double-135</normaloff>:/arrow-circle-double-135</iconset>
                     </property>
                    </widget>
                   </item>
@@ -220,8 +224,8 @@
                      <string>&amp;Remove</string>
                     </property>
                     <property name="icon">
-                     <iconset resource="../bosskey.qrc">
-                      <normaloff>:/icons/application-minus</normaloff>:/icons/application-minus</iconset>
+                     <iconset resource="../assets/bosskey.qrc">
+                      <normaloff>:/application-minus</normaloff>:/application-minus</iconset>
                     </property>
                    </widget>
                   </item>
@@ -241,8 +245,8 @@
                      <string>&amp;Clear</string>
                     </property>
                     <property name="icon">
-                     <iconset resource="../bosskey.qrc">
-                      <normaloff>:/icons/cross-script</normaloff>:/icons/cross-script</iconset>
+                     <iconset resource="../assets/bosskey.qrc">
+                      <normaloff>:/cross-script</normaloff>:/cross-script</iconset>
                     </property>
                    </widget>
                   </item>
@@ -325,8 +329,8 @@
                      <string>&amp;Clear</string>
                     </property>
                     <property name="icon">
-                     <iconset resource="../bosskey.qrc">
-                      <normaloff>:/icons/cross-script</normaloff>:/icons/cross-script</iconset>
+                     <iconset resource="../assets/bosskey.qrc">
+                      <normaloff>:/cross-script</normaloff>:/cross-script</iconset>
                     </property>
                    </widget>
                   </item>
@@ -358,8 +362,8 @@
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="icon">
-       <iconset resource="../bosskey.qrc">
-        <normaloff>:/icons/gear</normaloff>:/icons/gear</iconset>
+       <iconset resource="../assets/bosskey.qrc">
+        <normaloff>:/gear</normaloff>:/gear</iconset>
       </attribute>
       <attribute name="title">
        <string>Settings</string>
@@ -445,7 +449,7 @@
                </size>
               </property>
               <property name="text">
-               <string>5</string>
+               <string notr="true">5</string>
               </property>
               <property name="maxLength">
                <number>4</number>
@@ -484,6 +488,25 @@
         </widget>
        </item>
        <item>
+        <widget class="QGroupBox" name="groupBox_7">
+         <property name="title">
+          <string>Language</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_12">
+          <item>
+           <widget class="QComboBox" name="languageComboBox">
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -505,7 +528,7 @@
      <item>
       <widget class="QLabel" name="donationLabel">
        <property name="text">
-        <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://scheler.com/bosskey/donate&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#1f8cd4;&quot;&gt;If this software is useful to you, please consider making a donation.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://scheler.com/bosskey/donate&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#1f8cd4;&quot;&gt;If this software is useful to you, please consider making a donation.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="openExternalLinks">
         <bool>true</bool>
@@ -540,8 +563,8 @@
   </layout>
   <action name="actionExit">
    <property name="icon">
-    <iconset resource="../bosskey.qrc">
-     <normaloff>:/icons/door-open-out</normaloff>:/icons/door-open-out</iconset>
+    <iconset resource="../assets/bosskey.qrc">
+     <normaloff>:/door-open-out</normaloff>:/door-open-out</iconset>
    </property>
    <property name="text">
     <string>&amp;Exit</string>
@@ -549,8 +572,8 @@
   </action>
   <action name="actionShowDialog">
    <property name="icon">
-    <iconset resource="../bosskey.qrc">
-     <normaloff>:/icons/wrench-screwdriver</normaloff>:/icons/wrench-screwdriver</iconset>
+    <iconset resource="../assets/bosskey.qrc">
+     <normaloff>:/wrench-screwdriver</normaloff>:/wrench-screwdriver</iconset>
    </property>
    <property name="text">
     <string>&amp;Preferences</string>
@@ -558,8 +581,8 @@
   </action>
   <action name="actionShowAbout">
    <property name="icon">
-    <iconset resource="../bosskey.qrc">
-     <normaloff>:/icons/information-white</normaloff>:/icons/information-white</iconset>
+    <iconset resource="../assets/bosskey.qrc">
+     <normaloff>:/information-white</normaloff>:/information-white</iconset>
    </property>
    <property name="text">
     <string>&amp;About</string>
@@ -567,8 +590,8 @@
   </action>
   <action name="actionClearPatterns">
    <property name="icon">
-    <iconset resource="../bosskey.qrc">
-     <normaloff>:/icons/cross-script</normaloff>:/icons/cross-script</iconset>
+    <iconset resource="../assets/bosskey.qrc">
+     <normaloff>:/cross-script</normaloff>:/cross-script</iconset>
    </property>
    <property name="text">
     <string>&amp;Clear</string>
@@ -576,8 +599,8 @@
   </action>
   <action name="actionRemovePattern">
    <property name="icon">
-    <iconset resource="../bosskey.qrc">
-     <normaloff>:/icons/application-minus</normaloff>:/icons/application-minus</iconset>
+    <iconset resource="../assets/bosskey.qrc">
+     <normaloff>:/application-minus</normaloff>:/application-minus</iconset>
    </property>
    <property name="text">
     <string>&amp;Remove</string>
@@ -602,7 +625,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../bosskey.qrc"/>
+  <include location="../assets/bosskey.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -829,6 +852,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>languageComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>BossKeyDialog</receiver>
+   <slot>languageChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>78</x>
+     <y>368</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addButtonClicked()</slot>
@@ -842,5 +881,6 @@
   <slot>removePattern()</slot>
   <slot>toggleIgnoreTitle()</slot>
   <slot>clearBringToFrontList()</slot>
+  <slot>languageChanged(int)</slot>
  </slots>
 </ui>
