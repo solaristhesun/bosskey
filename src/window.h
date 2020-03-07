@@ -33,6 +33,8 @@ public:
     QString getText() const;
 
     QString fileName() const;
+
+    bool operator== (Window rhs);
 };
 
 QDataStream &operator<<(QDataStream &ds, const Window&w);

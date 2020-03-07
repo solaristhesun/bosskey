@@ -42,6 +42,11 @@ QString Window::getText() const
         return title;
 }
 
+bool Window::operator== (Window rhs)
+{
+    return rhs.processImage == this->processImage && (rhs.title == this->title || this->ignoreTitle);
+}
+
 QDataStream &operator<<(QDataStream &ds, const Window&w)
 {
     ds << w.title << w.processImage << w.ignoreTitle;

@@ -34,9 +34,11 @@ WindowListViewModel::WindowListViewModel(QObject *parent)
 
 void WindowListViewModel::addWindow(Window w)
 {
-    beginInsertRows(QModelIndex(), windowList_.length(), windowList_.length()+1);
-    windowList_.push_back(w);
-    endInsertRows();
+    if (!windowList_.contains(w)) {
+        beginInsertRows(QModelIndex(), windowList_.length(), windowList_.length()+1);
+        windowList_.push_back(w);
+        endInsertRows();
+    }
 }
 
 void WindowListViewModel::setWindowList(QList<Window> windowList)
@@ -145,6 +147,7 @@ QMimeData *WindowListViewModel::mimeData(const QModelIndexList &indexes) const
     foreach (QModelIndex index, indexes) {
         if (index.isValid()) {
             Window w = windowList_.at(index.row());
+            w.ignoreTitle = false;
             stream << w;
         }
     }
