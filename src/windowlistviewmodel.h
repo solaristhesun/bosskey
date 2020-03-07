@@ -39,18 +39,17 @@ public:
     bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent) override;
     QMimeData *mimeData(const QModelIndexList &indexes) const override;
     QStringList mimeTypes() const override;
-    bool canDropMimeData(const QMimeData *data, Qt::DropAction action,
-                                             int row, int column,
-                                             const QModelIndex &parent) const override;
 
     void clear();
-    void addWindow(Window w);
+    virtual void addWindow(Window w);
     void removeItem(const QModelIndex& index);
     void toggleIgnoreTitle(const QModelIndex& index);
     void setWindowList(QList<Window> windowList);
     QList<Window> getWindowList() const;
+    void saveToSettings(QString key);
+    void loadFromSettings(QString key);
 
-private:
+protected:
     QList<Window> windowList_;
 };
 

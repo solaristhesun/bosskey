@@ -27,6 +27,7 @@
 #include <QItemSelection>
 
 #include "windowlistviewmodel.h"
+#include "singlewindowlistviewmodel.h"
 
 namespace Ui {
 class BossKeyDialog;
@@ -59,11 +60,11 @@ public slots:
     void deleteButtonClicked();
     void showAboutDialog();
     void quitApplication();
-    void patternEditDone(QWidget *editor, QAbstractItemDelegate::EndEditHint hint);
     void onTimeout();
     void enableDisableAutoHideIntervalEdit(bool bEnabled);
     void refreshVisibleWindowList();
     void clearPatterns();
+    void clearBringToFrontList();
     void removePattern();
     void toggleIgnoreTitle();
     void showContextMenu(const QPoint & point);
@@ -72,7 +73,6 @@ public slots:
 private:
     void setupHotkeys();
     void createTrayIcon();
-    void savePatterns();
     void saveHotkeys();
     void showWindows();
     void hideWindows();
@@ -88,6 +88,7 @@ private:
     QTimer timer_;
     WindowListViewModel windowList_;
     WindowListViewModel patternList_;
+    SingleWindowListViewModel bringToFrontList_;
 };
 
 #endif // BOSSKEYDIALOG_H

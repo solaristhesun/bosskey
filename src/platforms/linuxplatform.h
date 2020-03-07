@@ -13,6 +13,7 @@ public:
     QList<Window> getWindowList();
     bool isHidden() const;
     quint32 getUserIdleTime() const;
+    void bringToFront(Window window);
 };
 
 #endif // LINUXPLATFORM_H

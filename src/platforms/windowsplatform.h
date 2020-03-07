@@ -35,6 +35,7 @@ public:
 
     void hideWindows(QList<Window> patternList);
     void showWindows();
+    void bringToFront(Window window);
     QList<Window> getWindowList();
     bool isHidden() const;
     quint32 getUserIdleTime() const;
@@ -47,6 +48,7 @@ private:
     QList<HWND> hiddenWindows_;
     QList<Window> windowList_;
     QList<Window> patternList_;
+    Window window_;
 };
 
 #endif // WINDOWSPLATFORM_H

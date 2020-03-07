@@ -30,4 +30,9 @@ quint32 LinuxPlatform::getUserIdleTime() const
 
 }
 
+void LinuxPlatform::bringToFront(Window window)
+{
+
+}
+
 // EOF <stefan@scheler.com>

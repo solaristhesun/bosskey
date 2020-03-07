@@ -26,7 +26,6 @@
 #include "uglobalhotkeys.h"
 #include "misc/globals.h"
 #include "ui_bosskeydialog.h"
-#include "windowlistviewmodel.h"
 
 BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyManager)
     : QDialog(nullptr)
@@ -46,24 +45,18 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     windowList_.setWindowList(platform_.getWindowList());
     ui_->patternTableView->setModel(&patternList_);
 
+    ui_->bringToFrontTableView->setModel(&bringToFrontList_);
 
-    QSettings settings;
-    int size = settings.beginReadArray("windows");
-    for (int i = 0; i < size; ++i) {
-        settings.setArrayIndex(i);
-        Window w;
-        w.processImage = settings.value("ProcessImage").toString();
-        w.title = settings.value("WindowTitle").toString();
-        w.ignoreTitle = settings.value("IgnoreTitle").toBool();
-        patternList_.addWindow(w);
-    }
-    settings.endArray();
+    patternList_.loadFromSettings("hide");
+    bringToFrontList_.loadFromSettings("bringToFront");
 
-    if (size == 0) {
+    if (patternList_.rowCount() == 0) {
         QDialog::show();
     }
 
     ui_->autoHideIntervalEdit->setValidator(new QIntValidator(0, 7200, this));
+
+    QSettings settings;
 
     ui_->keySequenceEdit->setKeySequence(QKeySequence(settings.value("hotkey_hide", "Ctrl+F12").toString()));
     ui_->keySequenceEdit_2->setKeySequence(QKeySequence(settings.value("hotkey_show", "Ctrl+F11").toString()));
@@ -82,6 +75,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
 
     applyFocusLineHack(ui_->windowsTableView);
     applyFocusLineHack(ui_->patternTableView);
+    applyFocusLineHack(ui_->bringToFrontTableView);
 }
 
 BossKeyDialog::~BossKeyDialog()
@@ -124,6 +118,12 @@ void BossKeyDialog::hideWindows()
     if (!platform_.isHidden()) {
         platform_.hideWindows(patternList_.getWindowList());
 
+        auto bringToFrontList = bringToFrontList_.getWindowList();
+
+        if (!bringToFrontList.isEmpty()) {
+            platform_.bringToFront(bringToFrontList.front());
+        }
+
         if (ui_->hideSystrayIconCheckBox->isChecked()) {
             trayIcon->hide();
         }
@@ -145,7 +145,8 @@ void BossKeyDialog::hideEvent(QHideEvent *event)
 
     saveHotkeys();
     setupHotkeys();
-    savePatterns();
+    patternList_.saveToSettings("hide");
+    bringToFrontList_.saveToSettings("bringToFront");
 
     QSettings settings;
     if (settings.value("auto_hide", false).toBool()) {
@@ -161,23 +162,6 @@ void BossKeyDialog::saveHotkeys()
     settings.setValue("hide_icon", ui_->hideSystrayIconCheckBox->isChecked());
     settings.setValue("auto_hide", ui_->autoHideCheckBox->isChecked());
     settings.setValue("auto_hide_interval", ui_->autoHideIntervalEdit->text());
-}
-
-void BossKeyDialog::savePatterns()
-{
-    QSettings settings;
-
-    settings.beginWriteArray("windows");
-    settings.remove("");
-
-    auto windowList = patternList_.getWindowList();
-    for (int i = 0; i < windowList.size(); ++i) {
-        settings.setArrayIndex(i);
-        settings.setValue("ProcessImage",  windowList.at(i).processImage);
-        settings.setValue("WindowTitle", windowList.at(i).title);
-        settings.setValue("IgnoreTitle", windowList.at(i).ignoreTitle);
-    }
-    settings.endArray();
 }
 
 void BossKeyDialog::createTrayIcon()
@@ -232,7 +216,6 @@ void BossKeyDialog::deleteButtonClicked()
 {
     /*auto item = ui_->listWidget_2->currentItem();
     ui_->listWidget_2->takeItem(ui_->listWidget_2->row(item));*/
-    savePatterns();
 }
 
 void BossKeyDialog::showAboutDialog()
@@ -255,18 +238,16 @@ void BossKeyDialog::quitApplication()
     QApplication::quit();
 }
 
-void BossKeyDialog::patternEditDone(QWidget *editor, QAbstractItemDelegate::EndEditHint hint)
-{
-    Q_UNUSED(editor)
-    Q_UNUSED(hint)
-
-    savePatterns();
-}
-
 void BossKeyDialog::clearPatterns()
 {
     ui_->patternTableView->clearSelection();
     patternList_.clear();
+}
+
+void BossKeyDialog::clearBringToFrontList()
+{
+    ui_->bringToFrontTableView->clearSelection();
+    bringToFrontList_.clear();
 }
 
 void BossKeyDialog::onTimeout()

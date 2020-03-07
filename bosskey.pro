@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     src/bosskeydialog.cpp \
     src/main.cpp \
+    src/singlewindowlistviewmodel.cpp \
     src/widgets/singlekeysequenceedit.cpp \
     src/widgets/tableview.cpp \
     src/misc/globals.cpp \
@@ -38,6 +39,7 @@ SOURCES += \
 HEADERS += \
     src/bosskeydialog.h \
     src/platforminterface.h \
+    src/singlewindowlistviewmodel.h \
     src/widgets/singlekeysequenceedit.h \
     src/widgets/tableview.h \
     src/misc/softwareversion.h \

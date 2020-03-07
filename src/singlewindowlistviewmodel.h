@@ -16,24 +16,17 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ENGINEINTERFACE_H
-#define ENGINEINTERFACE_H
+#ifndef SINGLEWINDOWLISTVIEWMODEL_H
+#define SINGLEWINDOWLISTVIEWMODEL_H
 
-#include <QList>
+#include "windowlistviewmodel.h"
 
-#include "window.h"
-
-class PlatformInterface
+class SingleWindowListViewModel: public WindowListViewModel
 {
 public:
-    virtual ~PlatformInterface() {}
+    SingleWindowListViewModel(QObject *parent = nullptr);
 
-    virtual void hideWindows(QList<Window> patternList) =0;
-    virtual void showWindows() =0;
-    virtual QList<Window> getWindowList() =0;
-    virtual bool isHidden() const =0;
-    virtual quint32 getUserIdleTime() const =0;
-    virtual void bringToFront(Window window) =0;
+    void addWindow(Window w) override;
 };
 
-#endif // ENGINEINTERFACE_H
+#endif // SINGLEWINDOWLISTVIEWMODEL_H

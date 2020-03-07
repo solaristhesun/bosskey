@@ -36,7 +36,7 @@ QString Window::fileName() const
 QString Window::getText() const
 {
     if (ignoreTitle)
-        return "*";
+        return "(any title)";
     else
         return title;
 }

@@ -137,4 +137,24 @@ QString WindowsPlatform::getProcessImageName(HWND hWindow) const
     return QString();
 }
 
+void WindowsPlatform::bringToFront(Window window)
+{
+    window_ = window;
+
+    ::EnumWindows([](HWND hWindow, LPARAM lParam) -> BOOL {
+        if (IsWindowVisible(hWindow)) {
+            WindowsPlatform* engine = reinterpret_cast<WindowsPlatform*>(lParam);
+
+            QString title = engine->getWindowTitle(hWindow);
+            QString imageName = engine->getProcessImageName(hWindow);
+
+            if (engine->window_.processImage == imageName && engine->window_.title == title) {
+                qDebug() << "bringing to front 3" << title << hWindow;
+                ::SetForegroundWindow(hWindow);
+            }
+        }
+        return TRUE;
+    }, reinterpret_cast<LPARAM>(this));
+}
+
 // EOF <stefan@scheler.com>

@@ -21,6 +21,7 @@
 #include <QFileIconProvider>
 #include <QIcon>
 #include <QMimeData>
+#include <QSettings>
 #include <QDebug>
 
 #include "windowlistviewmodel.h"
@@ -161,7 +162,7 @@ QStringList WindowListViewModel::mimeTypes() const
 
 bool WindowListViewModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent)
 {
-    qDebug() << "drop" << parent << data->data("application/vnd.text.list");
+    qDebug() << "drop";
 
     if(!canDropMimeData(data, action, row, column, parent))
         return false;
@@ -180,14 +181,6 @@ bool WindowListViewModel::dropMimeData(const QMimeData *data, Qt::DropAction act
     return true;
 }
 
-bool WindowListViewModel::canDropMimeData(const QMimeData *data, Qt::DropAction action,
-                     int row, int column,
-                                          const QModelIndex &parent) const {
-    bool bVal = QAbstractItemModel::canDropMimeData(data,action,row,column,parent);
-    qDebug() << "candrop" << bVal;
-    return bVal;
-}
-
 void WindowListViewModel::removeItem(const QModelIndex& index)
 {
     beginRemoveRows(index.parent(), index.row(), index.row());
@@ -204,6 +197,42 @@ void WindowListViewModel::toggleIgnoreTitle(const QModelIndex &index)
     w.ignoreTitle = !w.ignoreTitle;
 
     emit dataChanged(index, index);
+}
+
+void WindowListViewModel::saveToSettings(QString key)
+{
+    QSettings settings;
+
+    settings.beginWriteArray(key);
+    settings.remove("");
+
+    for (int i = 0; i < windowList_.size(); ++i) {
+        settings.setArrayIndex(i);
+        settings.setValue("ProcessImage",  windowList_.at(i).processImage);
+        settings.setValue("WindowTitle", windowList_.at(i).title);
+        settings.setValue("IgnoreTitle", windowList_.at(i).ignoreTitle);
+    }
+    settings.endArray();
+}
+
+void WindowListViewModel::loadFromSettings(QString key)
+{
+    QSettings settings;
+    int size = settings.beginReadArray(key);
+
+    beginResetModel();
+    windowList_.clear();
+    for (int i = 0; i < size; ++i) {
+        settings.setArrayIndex(i);
+        Window w;
+        w.processImage = settings.value("ProcessImage").toString();
+        w.title = settings.value("WindowTitle").toString();
+        w.ignoreTitle = settings.value("IgnoreTitle").toBool();
+        windowList_.push_back(w);
+    }
+    endResetModel();
+
+    settings.endArray();
 }
 
 // EOF <stefan@scheler.com>
