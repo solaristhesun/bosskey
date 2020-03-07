@@ -48,7 +48,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="icon">
@@ -127,6 +127,12 @@
                  <layout class="QVBoxLayout" name="verticalLayout_3">
                   <item>
                    <widget class="QPushButton" name="refreshButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>120</width>
+                      <height>0</height>
+                     </size>
+                    </property>
                     <property name="text">
                      <string>&amp;Refresh</string>
                     </property>
@@ -220,6 +226,12 @@
                     <property name="enabled">
                      <bool>false</bool>
                     </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>120</width>
+                      <height>0</height>
+                     </size>
+                    </property>
                     <property name="text">
                      <string>&amp;Remove</string>
                     </property>
@@ -230,17 +242,13 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="toggleIgnoreButton">
-                    <property name="enabled">
-                     <bool>false</bool>
-                    </property>
-                    <property name="text">
-                     <string>&amp;Ignore Title</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
                    <widget class="QPushButton" name="clearButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>120</width>
+                      <height>0</height>
+                     </size>
+                    </property>
                     <property name="text">
                      <string>&amp;Clear</string>
                     </property>
@@ -325,6 +333,12 @@
                  <layout class="QVBoxLayout" name="verticalLayout_10">
                   <item>
                    <widget class="QPushButton" name="clearBringToFrontButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>120</width>
+                      <height>0</height>
+                     </size>
+                    </property>
                     <property name="text">
                      <string>&amp;Clear</string>
                     </property>
@@ -598,6 +612,9 @@ padding: 8px;</string>
    </property>
   </action>
   <action name="actionToggleIgnoreTitle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Ignore Title</string>
    </property>
@@ -804,22 +821,6 @@ padding: 8px;</string>
     <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>499</x>
-     <y>324</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>toggleIgnoreButton</sender>
-   <signal>pressed()</signal>
-   <receiver>BossKeyDialog</receiver>
-   <slot>toggleIgnoreTitle()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>919</x>
-     <y>388</y>
     </hint>
     <hint type="destinationlabel">
      <x>499</x>

@@ -21,30 +21,30 @@
     <message>
         <location filename="../../src/bosskeydialog.ui" line="162"/>
         <source>Windows that will be hidden</source>
-        <translation>Zu versteckende Fenster</translation>
+        <translation type="unfinished">Zu verbergende Fenster</translation>
     </message>
     <message>
         <location filename="../../src/bosskeydialog.ui" line="224"/>
         <location filename="../../src/bosskeydialog.ui" line="597"/>
         <source>&amp;Remove</source>
-        <translation>Entfernen</translation>
+        <translation>&amp;Entfernen</translation>
     </message>
     <message>
         <location filename="../../src/bosskeydialog.ui" line="238"/>
         <source>&amp;Ignore Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Fenstertitel ignorieren</translation>
     </message>
     <message>
         <location filename="../../src/bosskeydialog.ui" line="245"/>
         <location filename="../../src/bosskeydialog.ui" line="329"/>
         <location filename="../../src/bosskeydialog.ui" line="588"/>
         <source>&amp;Clear</source>
-        <translation>&amp;Leeren</translation>
+        <translation>&amp;Alle entfernen</translation>
     </message>
     <message>
         <location filename="../../src/bosskeydialog.ui" line="276"/>
         <source>Bring to Front</source>
-        <translation>In den Vordergund bringen</translation>
+        <translation>In den Vordergrund bringen</translation>
     </message>
     <message>
         <location filename="../../src/bosskeydialog.ui" line="369"/>
@@ -124,7 +124,7 @@
     <message>
         <location filename="../../src/bosskeydialog.ui" line="602"/>
         <source>Ignore Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Fenstertitel ignorieren</translation>
     </message>
     <message>
         <location filename="../../src/bosskeydialog.cpp" line="52"/>

@@ -48,6 +48,7 @@ public:
     QList<Window> getWindowList() const;
     void saveToSettings(QString key);
     void loadFromSettings(QString key);
+    Window getWindow(const QModelIndex& index);
 
 protected:
     QList<Window> windowList_;

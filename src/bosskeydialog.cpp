@@ -284,6 +284,8 @@ void BossKeyDialog::showContextMenu(const QPoint & pos)
     auto index = ui_->patternTableView->indexAt(pos);
 
     if (index.isValid()) {
+        Window w = patternList_.getWindow(index);
+        ui_->actionToggleIgnoreTitle->setChecked(w.ignoreTitle);
         contextMenu.addAction(ui_->actionToggleIgnoreTitle);
         contextMenu.addAction(ui_->actionRemovePattern);
         contextMenu.addSeparator();
@@ -309,7 +311,6 @@ void BossKeyDialog::toggleIgnoreTitle()
 void BossKeyDialog::patternViewSelectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
 {
     ui_->removeButton->setEnabled(!selected.empty());
-    ui_->toggleIgnoreButton->setEnabled(!selected.empty());
 }
 
 void BossKeyDialog::languageChanged(int index)

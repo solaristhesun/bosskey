@@ -235,4 +235,9 @@ void WindowListViewModel::loadFromSettings(QString key)
     settings.endArray();
 }
 
+Window WindowListViewModel::getWindow(const QModelIndex& index)
+{
+    return windowList_.at(index.row());
+}
+
 // EOF <stefan@scheler.com>
