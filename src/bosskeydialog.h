@@ -96,8 +96,8 @@ private:
     PlatformInterface& platform_;
     UGlobalHotkeys& hotkeyManager_;
     QSystemTrayIcon *trayIcon;
-    QMenu *trayIconMenu;
-    QMenu windowsMenu;
+    QMenu trayIconMenu_;
+    QMenu windowsMenu_;
     QStringList patterns_;
     QTimer timer_;
     WindowListViewModel windowList_;

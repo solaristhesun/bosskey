@@ -33,7 +33,8 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     , ui_(new Ui::BossKeyDialog)
     , platform_(engine)
     , hotkeyManager_(hotkeyManager)
-    , windowsMenu(this)
+    , trayIconMenu_(this)
+    , windowsMenu_(this)
 
 {
     ui_->setupUi(this);
@@ -228,16 +229,16 @@ void BossKeyDialog::saveHotkeys()
 
 void BossKeyDialog::refreshTrayMenu()
 {
-    trayIconMenu->clear();
-    trayIconMenu->addAction(ui_->actionHideWindows);
-    trayIconMenu->addAction(ui_->actionShowWindows);
-    trayIconMenu->addSeparator();
-    trayIconMenu->addMenu(&windowsMenu);
-    trayIconMenu->addSeparator();
-    trayIconMenu->addAction(ui_->actionShowDialog);
-    trayIconMenu->addAction(ui_->actionShowAbout);
-    trayIconMenu->addSeparator();
-    trayIconMenu->addAction(ui_->actionExit);
+    trayIconMenu_.clear();
+    trayIconMenu_.addAction(ui_->actionHideWindows);
+    trayIconMenu_.addAction(ui_->actionShowWindows);
+    trayIconMenu_.addSeparator();
+    trayIconMenu_.addMenu(&windowsMenu_);
+    trayIconMenu_.addSeparator();
+    trayIconMenu_.addAction(ui_->actionShowDialog);
+    trayIconMenu_.addAction(ui_->actionShowAbout);
+    trayIconMenu_.addSeparator();
+    trayIconMenu_.addAction(ui_->actionExit);
 
     refreshWindowsMenu();
 }
@@ -246,14 +247,14 @@ void BossKeyDialog::refreshWindowsMenu()
 {
     auto windowList = platform_.getHiddenWindowList();
 
-    windowsMenu.setTitle(tr("Hidden windows"));
-    windowsMenu.clear();
+    windowsMenu_.setTitle(tr("Hidden windows"));
+    windowsMenu_.clear();
 
     for (auto window: windowList) {
-        windowsMenu.addAction(window.title, [=] () { showWindow(window); });
+        windowsMenu_.addAction(window.title, [=] () { showWindow(window); });
     }
 
-    windowsMenu.setEnabled(windowList.count() > 0);
+    windowsMenu_.setEnabled(windowList.count() > 0);
 }
 
 void BossKeyDialog::showWindow(HiddenWindow window)
@@ -264,11 +265,9 @@ void BossKeyDialog::showWindow(HiddenWindow window)
 
 void BossKeyDialog::createTrayIcon()
 {
-    trayIconMenu = new QMenu(this);
-
     trayIcon = new QSystemTrayIcon(this);
     trayIcon->setIcon(QIcon(":/appicon/leader.svg"));
-    trayIcon->setContextMenu(trayIconMenu);
+    trayIcon->setContextMenu(&trayIconMenu_);
     trayIcon->show();
 
     connect(trayIcon, &QSystemTrayIcon::activated, this, &BossKeyDialog::systemTracActivated);
