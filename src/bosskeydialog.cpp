@@ -44,7 +44,6 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(this);
     proxyModel->setSourceModel(&windowList_);
     ui_->windowsTableView->setModel(proxyModel);
-    windowList_.setWindowList(platform_.getWindowList());
     ui_->patternTableView->setModel(&patternList_);
 
     ui_->bringToFrontTableView->setModel(&bringToFrontList_);
@@ -77,6 +76,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
 
     setupLocalization();
     refreshTrayToolTip();
+    refreshVisibleWindowList();
 }
 
 BossKeyDialog::~BossKeyDialog()
@@ -121,7 +121,6 @@ void BossKeyDialog::refreshVisibleWindowList()
     ui_->windowsTableView->clearSelection();
     windowList_.setWindowList(platform_.getWindowList());
     ui_->windowsTableView->resizeColumnsToContents();
-
 }
 
 void BossKeyDialog::showWindows()
@@ -152,6 +151,7 @@ void BossKeyDialog::hideWindows()
 
 void BossKeyDialog::showEvent(QShowEvent *event)
 {
+    refreshVisibleWindowList();
     hotkeyManager_.unregisterAllHotkeys();
     ui_->tabWidget->setCurrentIndex(0);
     timer_.stop();
