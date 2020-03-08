@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TableView</class>
+ <widget class="QTableView" name="TableView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <action name="actionClearAll">
+   <property name="text">
+    <string>&amp;Clear</string>
+   </property>
+  </action>
+  <action name="actionRemoveItem">
+   <property name="text">
+    <string>&amp;Remove</string>
+   </property>
+  </action>
+  <action name="actionToggleIgnoreTitle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Ignore Title</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionClearAll</sender>
+   <signal>triggered()</signal>
+   <receiver>TableView</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRemoveItem</sender>
+   <signal>triggered()</signal>
+   <receiver>TableView</receiver>
+   <slot>removeCurrentItem()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionToggleIgnoreTitle</sender>
+   <signal>triggered()</signal>
+   <receiver>TableView</receiver>
+   <slot>toggleIgnoreTitle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>TableView</sender>
+   <signal>customContextMenuRequested(QPoint)</signal>
+   <receiver>TableView</receiver>
+   <slot>showContextMenu(QPoint)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>clear()</slot>
+  <slot>removeCurrentItem()</slot>
+  <slot>toggleIgnoreTitle()</slot>
+  <slot>showContextMenu(QPoint)</slot>
+ </slots>
+</ui>

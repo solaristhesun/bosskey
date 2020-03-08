@@ -153,9 +153,12 @@ void WindowsPlatform::bringToFront(Window window)
             QString title = engine->getWindowTitle(hWindow);
             QString imageName = engine->getProcessImageName(hWindow);
 
-            if (engine->window_.processImage == imageName && engine->window_.title == title) {
-                qDebug() << "bringing to front 3" << title << hWindow;
-                ::SetForegroundWindow(hWindow);
+            if (engine->window_.processImage == imageName) {
+                if (engine->window_.ignoreTitle || engine->window_.title == title) {
+                    qDebug() << "bringing to front" << title << hWindow;
+                    ::ShowWindow(hWindow, SW_MAXIMIZE);
+                    ::SetForegroundWindow(hWindow);
+                }
             }
         }
         return TRUE;
@@ -175,7 +178,7 @@ QList<HiddenWindow> WindowsPlatform::getHiddenWindowList() const
 void WindowsPlatform::showWindow(HiddenWindow window)
 {
     qDebug() << "showing" << getWindowTitle(window.hWindow);
-    ShowWindow(window.hWindow, SW_SHOW);
+    ::ShowWindow(window.hWindow, SW_SHOW);
     hiddenWindows_.removeOne(window);
 }
 

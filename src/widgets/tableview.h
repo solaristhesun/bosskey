@@ -21,6 +21,12 @@
 
 #include <QTableView>
 
+namespace Ui {
+class TableView;
+}
+
+class WindowListViewModel;
+
 class TableView : public QTableView
 {
     Q_OBJECT
@@ -28,19 +34,32 @@ class TableView : public QTableView
 
 public:
     TableView(QWidget *parent = nullptr);
+    ~TableView() override;
 
     void dropEvent(QDropEvent *event) override;
 
     void paintEvent(QPaintEvent *e) override;
 
+    void changeEvent(QEvent *event) override;
+
     void setEmptyText(QString text);
 
     QString emptyText() const;
 
-private:
-    void drawEmptyText();
+    void retranslateUserInterface();
+
+public slots:
+    void clear();
+    void removeCurrentItem();
+    void toggleIgnoreTitle();
+    void showContextMenu(const QPoint & point);
 
 private:
+    void drawEmptyText();
+    WindowListViewModel* model() const;
+
+private:
+    Ui::TableView *ui_;
     QString emptyText_;
 };
 

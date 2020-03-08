@@ -25,18 +25,8 @@
     </message>
     <message>
         <location filename="../../src/bosskeydialog.ui" line="279"/>
-        <location filename="../../src/bosskeydialog.ui" line="410"/>
+        <location filename="../../src/bosskeydialog.ui" line="413"/>
         <source>Drag and drop windows from above here.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/bosskeydialog.ui" line="711"/>
-        <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/bosskeydialog.ui" line="702"/>
-        <source>&amp;Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -61,7 +51,7 @@
     </message>
     <message>
         <location filename="../../src/bosskeydialog.ui" line="341"/>
-        <location filename="../../src/bosskeydialog.ui" line="440"/>
+        <location filename="../../src/bosskeydialog.ui" line="443"/>
         <source>Clear list</source>
         <translation type="unfinished"></translation>
     </message>
@@ -71,130 +61,143 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="483"/>
+        <location filename="../../src/bosskeydialog.ui" line="486"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="489"/>
+        <location filename="../../src/bosskeydialog.ui" line="492"/>
         <source>Hotkeys</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="495"/>
+        <location filename="../../src/bosskeydialog.ui" line="498"/>
         <source>Hide Hotkey:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="509"/>
+        <location filename="../../src/bosskeydialog.ui" line="512"/>
         <source>Show Hotkey:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="522"/>
+        <location filename="../../src/bosskeydialog.ui" line="525"/>
         <source>Systray</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="528"/>
+        <location filename="../../src/bosskeydialog.ui" line="531"/>
         <source>Hide Systray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="535"/>
+        <location filename="../../src/bosskeydialog.ui" line="538"/>
         <source>Hide windows with left click on systray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="545"/>
+        <location filename="../../src/bosskeydialog.ui" line="548"/>
         <source>Misc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="553"/>
+        <location filename="../../src/bosskeydialog.ui" line="556"/>
         <source>Auto-Hide on inactivity after</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="582"/>
+        <location filename="../../src/bosskeydialog.ui" line="585"/>
         <source>seconds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="607"/>
+        <location filename="../../src/bosskeydialog.ui" line="610"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="659"/>
+        <location filename="../../src/bosskeydialog.ui" line="662"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="675"/>
+        <location filename="../../src/bosskeydialog.ui" line="678"/>
         <source>&amp;Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="684"/>
+        <location filename="../../src/bosskeydialog.ui" line="687"/>
         <source>&amp;Preferences...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="693"/>
+        <location filename="../../src/bosskeydialog.ui" line="696"/>
         <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="719"/>
-        <source>Ignore Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/bosskeydialog.ui" line="724"/>
+        <location filename="../../src/bosskeydialog.ui" line="701"/>
         <source>Hide Windows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="729"/>
+        <location filename="../../src/bosskeydialog.ui" line="706"/>
         <source>Show windows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="36"/>
+        <location filename="../../src/bosskeydialog.cpp" line="250"/>
         <source>Hidden windows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="203"/>
+        <location filename="../../src/bosskeydialog.cpp" line="214"/>
         <source>If this software is useful to you, please consider making a donation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="305"/>
+        <location filename="../../src/bosskeydialog.cpp" line="313"/>
         <source>All rights reserved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="305"/>
+        <location filename="../../src/bosskeydialog.cpp" line="313"/>
         <source>Visit bosskey website</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="307"/>
+        <location filename="../../src/bosskeydialog.cpp" line="315"/>
         <source>About bosskey</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="457"/>
+        <location filename="../../src/bosskeydialog.cpp" line="422"/>
         <source>%1 hidden windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TableView</name>
+    <message>
+        <location filename="../../src/tableview.ui" line="15"/>
+        <source>&amp;Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/tableview.ui" line="20"/>
+        <source>&amp;Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/tableview.ui" line="28"/>
+        <source>Ignore Title</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Window</name>
     <message>
-        <location filename="../../src/window.cpp" line="40"/>
+        <location filename="../../src/model/window.cpp" line="40"/>
         <source>(any title)</source>
         <translation type="unfinished"></translation>
     </message>

@@ -40,7 +40,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     ui_->setupUi(this);
 
     connect(ui_->patternTableView->verticalHeader(), &QHeaderView::sectionCountChanged,
-        [=](int, int newCount) { ui_->clearButton->setEnabled(newCount > 0); });
+        [=](int, int newCount) { qDebug() << "BAM" << newCount ; ui_->clearButton->setEnabled(newCount > 0); });
     connect(ui_->bringToFrontTableView->verticalHeader(), &QHeaderView::sectionCountChanged,
         [=](int, int newCount) { ui_->clearBringToFrontButton->setEnabled(newCount > 0); });
 
@@ -196,6 +196,8 @@ void BossKeyDialog::hideEvent(QHideEvent *event)
 
 void BossKeyDialog::changeEvent(QEvent *event)
 {
+    QDialog::changeEvent(event);
+
     if (event != nullptr) {
         switch(event->type()) {
         case QEvent::LanguageChange:
@@ -321,18 +323,6 @@ void BossKeyDialog::quitApplication()
     QApplication::quit();
 }
 
-void BossKeyDialog::clearPatterns()
-{
-    ui_->patternTableView->clearSelection();
-    patternList_.clear();
-}
-
-void BossKeyDialog::clearBringToFrontList()
-{
-    ui_->bringToFrontTableView->clearSelection();
-    bringToFrontList_.clear();
-}
-
 void BossKeyDialog::onTimeout()
 {
     QSettings settings;
@@ -353,37 +343,6 @@ void BossKeyDialog::enableDisableAutoHideIntervalEdit(bool bEnabled)
 void BossKeyDialog::applyFocusLineHack(QWidget *widget)
 {
     widget->setStyleSheet(QString("QTableView::item::focus { outline: 0; background-color:%1; } QTableView { outline: 0; }").arg(this->palette().color(QPalette::Highlight).name()));
-}
-
-void BossKeyDialog::showContextMenu(const QPoint & pos)
-{
-    QMenu contextMenu;
-
-    auto index = ui_->patternTableView->indexAt(pos);
-
-    if (index.isValid()) {
-        Window w = patternList_.getWindow(index);
-        ui_->actionToggleIgnoreTitle->setChecked(w.ignoreTitle);
-        contextMenu.addAction(ui_->actionToggleIgnoreTitle);
-        contextMenu.addAction(ui_->actionRemovePattern);
-        contextMenu.addSeparator();
-    }
-
-    contextMenu.addAction(ui_->actionClearPatterns);
-
-    contextMenu.exec(ui_->patternTableView->viewport()->mapToGlobal(pos));
-}
-
-void BossKeyDialog::removePattern()
-{
-    auto index = ui_->patternTableView->currentIndex();
-    patternList_.removeItem(index);
-}
-
-void BossKeyDialog::toggleIgnoreTitle()
-{
-    auto index = ui_->patternTableView->currentIndex();
-    patternList_.toggleIgnoreTitle(index);
 }
 
 void BossKeyDialog::languageChanged(int index)

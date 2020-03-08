@@ -17,14 +17,23 @@
  */
 
 #include <QPainter>
+#include <QMenu>
 #include <QDebug>
 
 #include "tableview.h"
+#include "windowlistviewmodel.h"
+#include "ui_tableview.h"
 
 TableView::TableView(QWidget *parent)
     : QTableView(parent)
+    , ui_(new Ui::TableView)
 {
-    // empty
+    ui_->setupUi(this);
+}
+
+TableView::~TableView()
+{
+    delete ui_;
 }
 
 void TableView::dropEvent(QDropEvent *event)
@@ -32,7 +41,6 @@ void TableView::dropEvent(QDropEvent *event)
     QTableView::dropEvent(event);
     QTableView::resizeColumnToContents(0);
 }
-
 
 void TableView::setEmptyText(QString text)
 {
@@ -61,6 +69,63 @@ void TableView::drawEmptyText()
     font.setPixelSize(13);
     p.setFont(font);
     p.drawText(QTableView::viewport()->rect(), Qt::AlignCenter, emptyText_);
+}
+
+void TableView::showContextMenu(const QPoint & pos)
+{
+    QMenu contextMenu;
+
+    auto index = QTableView::indexAt(pos);
+
+    if (index.isValid()) {
+        Window w = model()->getWindow(index);
+        ui_->actionToggleIgnoreTitle->setChecked(w.ignoreTitle);
+        contextMenu.addAction(ui_->actionToggleIgnoreTitle);
+        contextMenu.addAction(ui_->actionRemoveItem);
+        contextMenu.addSeparator();
+    }
+
+    contextMenu.addAction(ui_->actionClearAll);
+
+    contextMenu.exec(QTableView::viewport()->mapToGlobal(pos));
+}
+
+WindowListViewModel* TableView::model() const
+{
+    return static_cast<WindowListViewModel*>(QTableView::model());
+}
+
+void TableView::clear()
+{
+    QTableView::clearSelection();
+    model()->clear();
+}
+
+void TableView::removeCurrentItem()
+{
+    auto index = QTableView::currentIndex();
+    model()->removeItem(index);
+}
+
+void TableView::toggleIgnoreTitle()
+{
+    auto index = QTableView::currentIndex();
+    model()->toggleIgnoreTitle(index);
+}
+
+void TableView::changeEvent(QEvent *event)
+{
+    QTableView::changeEvent(event);
+
+    if (event != nullptr) {
+        switch(event->type()) {
+        case QEvent::LanguageChange:
+            ui_->retranslateUi(this);
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 // EOF <stefan@scheler.com>

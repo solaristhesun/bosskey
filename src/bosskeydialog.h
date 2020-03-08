@@ -64,11 +64,6 @@ public slots:
     void onTimeout();
     void enableDisableAutoHideIntervalEdit(bool bEnabled);
     void refreshVisibleWindowList();
-    void clearPatterns();
-    void clearBringToFrontList();
-    void removePattern();
-    void toggleIgnoreTitle();
-    void showContextMenu(const QPoint & point);
     void languageChanged(int index);
     void showWindows();
     void hideWindows();

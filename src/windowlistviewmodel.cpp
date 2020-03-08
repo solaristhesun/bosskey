@@ -35,7 +35,7 @@ WindowListViewModel::WindowListViewModel(QObject *parent)
 void WindowListViewModel::addWindow(Window w)
 {
     if (!windowList_.contains(w)) {
-        beginInsertRows(QModelIndex(), windowList_.length(), windowList_.length()+1);
+        beginInsertRows(QModelIndex(), windowList_.length(), windowList_.length());
         windowList_.push_back(w);
         endInsertRows();
     }

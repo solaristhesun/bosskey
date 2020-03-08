@@ -45,7 +45,7 @@ HEADERS += \
     src/widgets/tableview.h \
     src/misc/softwareversion.h \
     src/misc/globals.h \
-    src/window.h \
+    src/model/window.h \
     src/windowlistviewmodel.h
 
 win32 {
@@ -60,7 +60,8 @@ HEADERS += \
 
 
 FORMS += \
-    src/bosskeydialog.ui
+    src/bosskeydialog.ui \
+    src/tableview.ui
 
 INCLUDEPATH += src/ libs/UGlobalHotkey/
 

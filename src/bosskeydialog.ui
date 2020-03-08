@@ -385,6 +385,9 @@
                  <height>80</height>
                 </size>
                </property>
+               <property name="contextMenuPolicy">
+                <enum>Qt::CustomContextMenu</enum>
+               </property>
                <property name="showDropIndicator" stdset="0">
                 <bool>false</bool>
                </property>
@@ -693,32 +696,6 @@ padding: 8px;</string>
     <string>&amp;About</string>
    </property>
   </action>
-  <action name="actionClearPatterns">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/cross-script</normaloff>:/cross-script</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Clear</string>
-   </property>
-  </action>
-  <action name="actionRemovePattern">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/application-minus</normaloff>:/application-minus</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Remove</string>
-   </property>
-  </action>
-  <action name="actionToggleIgnoreTitle">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Ignore Title</string>
-   </property>
-  </action>
   <action name="actionHideWindows">
    <property name="text">
     <string>Hide Windows</string>
@@ -740,6 +717,10 @@ padding: 8px;</string>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>widgets/tableview.h</header>
+   <slots>
+    <slot>clear()</slot>
+    <slot>removeCurrentItem()</slot>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources>
@@ -827,54 +808,6 @@ padding: 8px;</string>
    </hints>
   </connection>
   <connection>
-   <sender>actionClearPatterns</sender>
-   <signal>triggered()</signal>
-   <receiver>BossKeyDialog</receiver>
-   <slot>clearPatterns()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>499</x>
-     <y>324</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionRemovePattern</sender>
-   <signal>triggered()</signal>
-   <receiver>BossKeyDialog</receiver>
-   <slot>removePattern()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>499</x>
-     <y>324</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionToggleIgnoreTitle</sender>
-   <signal>triggered()</signal>
-   <receiver>BossKeyDialog</receiver>
-   <slot>toggleIgnoreTitle()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>499</x>
-     <y>324</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>languageComboBox</sender>
    <signal>activated(int)</signal>
    <receiver>BossKeyDialog</receiver>
@@ -891,50 +824,34 @@ padding: 8px;</string>
    </hints>
   </connection>
   <connection>
-   <sender>patternTableView</sender>
-   <signal>customContextMenuRequested(QPoint)</signal>
-   <receiver>BossKeyDialog</receiver>
-   <slot>showContextMenu(QPoint)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>448</x>
-     <y>344</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>499</x>
-     <y>324</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>removeButton</sender>
    <signal>pressed()</signal>
-   <receiver>BossKeyDialog</receiver>
-   <slot>removePattern()</slot>
+   <receiver>patternTableView</receiver>
+   <slot>removeCurrentItem()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>919</x>
      <y>354</y>
     </hint>
     <hint type="destinationlabel">
-     <x>499</x>
-     <y>324</y>
+     <x>476</x>
+     <y>378</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>clearButton</sender>
    <signal>pressed()</signal>
-   <receiver>BossKeyDialog</receiver>
-   <slot>clearPatterns()</slot>
+   <receiver>patternTableView</receiver>
+   <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>919</x>
      <y>282</y>
     </hint>
     <hint type="destinationlabel">
-     <x>499</x>
-     <y>324</y>
+     <x>476</x>
+     <y>378</y>
     </hint>
    </hints>
   </connection>
@@ -957,16 +874,16 @@ padding: 8px;</string>
   <connection>
    <sender>clearBringToFrontButton</sender>
    <signal>pressed()</signal>
-   <receiver>BossKeyDialog</receiver>
-   <slot>clearBringToFrontList()</slot>
+   <receiver>bringToFrontTableView</receiver>
+   <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>919</x>
      <y>515</y>
     </hint>
     <hint type="destinationlabel">
-     <x>499</x>
-     <y>324</y>
+     <x>476</x>
+     <y>547</y>
     </hint>
    </hints>
   </connection>
@@ -1043,7 +960,6 @@ padding: 8px;</string>
   <slot>enableDisableAutoHideIntervalEdit(bool)</slot>
   <slot>refreshVisibleWindowList()</slot>
   <slot>clearPatterns()</slot>
-  <slot>showContextMenu(QPoint)</slot>
   <slot>removePattern()</slot>
   <slot>toggleIgnoreTitle()</slot>
   <slot>clearBringToFrontList()</slot>
