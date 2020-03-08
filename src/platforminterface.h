@@ -21,7 +21,7 @@
 
 #include <QList>
 
-#include "window.h"
+#include "model/window.h"
 #include "model/hiddenwindow.h"
 
 class PlatformInterface

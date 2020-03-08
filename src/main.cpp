@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     app.setQuitOnLastWindowClosed(false);
 
     QCoreApplication::setOrganizationName("SCHELER");
-    QCoreApplication::setOrganizationDomain("scheler.com");
+    QCoreApplication::setOrganizationDomain("scheler.com.df");
     QCoreApplication::setApplicationName("bosskey");
 
     QApplication::setDesktopSettingsAware(false);

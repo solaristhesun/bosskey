@@ -21,7 +21,7 @@
 
 #include <QAbstractListModel>
 
-#include "window.h"
+#include "model/window.h"
 
 class WindowListViewModel : public QAbstractListModel
 {
