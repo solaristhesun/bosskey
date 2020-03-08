@@ -11,6 +11,10 @@
    </rect>
   </property>
   <action name="actionClearAll">
+   <property name="icon">
+    <iconset resource="../assets/bosskey.qrc">
+     <normaloff>:/misc/trash.png</normaloff>:/misc/trash.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Clear</string>
    </property>
@@ -29,7 +33,9 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../assets/bosskey.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionClearAll</sender>
