@@ -36,6 +36,12 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
 
 {
     ui_->setupUi(this);
+
+    connect(ui_->patternTableView->verticalHeader(), &QHeaderView::sectionCountChanged,
+        [=](int, int newCount) { ui_->clearButton->setEnabled(newCount > 0); });
+    connect(ui_->bringToFrontTableView->verticalHeader(), &QHeaderView::sectionCountChanged,
+        [=](int, int newCount) { ui_->clearBringToFrontButton->setEnabled(newCount > 0); });
+
     QDialog::setWindowTitle(Globals::ApplicationFullName);
 
     setupHotkeys();

@@ -58,7 +58,7 @@
      </property>
      <widget class="QWidget" name="windowsTab">
       <attribute name="icon">
-       <iconset resource="../assets/bosskey.qrc">
+       <iconset>
         <normaloff>:/application-blue</normaloff>:/application-blue</iconset>
       </attribute>
       <attribute name="title">
@@ -328,6 +328,9 @@
                </item>
                <item>
                 <widget class="QPushButton" name="clearButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="minimumSize">
                   <size>
                    <width>36</width>
@@ -424,6 +427,9 @@
               <layout class="QVBoxLayout" name="verticalLayout_10">
                <item>
                 <widget class="QPushButton" name="clearBringToFrontButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="minimumSize">
                   <size>
                    <width>36</width>
@@ -689,7 +695,7 @@ padding: 8px;</string>
   </action>
   <action name="actionClearPatterns">
    <property name="icon">
-    <iconset resource="../assets/bosskey.qrc">
+    <iconset>
      <normaloff>:/cross-script</normaloff>:/cross-script</iconset>
    </property>
    <property name="text">
@@ -698,7 +704,7 @@ padding: 8px;</string>
   </action>
   <action name="actionRemovePattern">
    <property name="icon">
-    <iconset resource="../assets/bosskey.qrc">
+    <iconset>
      <normaloff>:/application-minus</normaloff>:/application-minus</iconset>
    </property>
    <property name="text">
