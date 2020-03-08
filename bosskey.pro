@@ -23,7 +23,7 @@ SOURCES += \
     src/widgets/tableview.cpp \
     src/misc/globals.cpp \
     src/misc/softwareversion.cpp \
-    src/window.cpp \
+    src/model/window.cpp \
     src/windowlistviewmodel.cpp
 
 win32 {
