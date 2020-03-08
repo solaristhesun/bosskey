@@ -39,6 +39,7 @@ public:
     int hiddenWindowsCount() const;
     QList<HiddenWindow> getHiddenWindowList() const;
     void showWindow(HiddenWindow window);
+    QPoint getCursorPos() const;
 
 private:
     QString getWindowTitle(HWND hWindow) const;

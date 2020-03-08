@@ -20,6 +20,7 @@
 #define ENGINEINTERFACE_H
 
 #include <QList>
+#include <QPoint>
 
 #include "model/window.h"
 #include "model/hiddenwindow.h"
@@ -38,6 +39,7 @@ public:
     virtual void bringToFront(Window window) =0;
     virtual int hiddenWindowsCount() const =0;
     virtual QList<HiddenWindow> getHiddenWindowList() const =0;
+    virtual QPoint getCursorPos() const =0;
 };
 
 #endif // ENGINEINTERFACE_H

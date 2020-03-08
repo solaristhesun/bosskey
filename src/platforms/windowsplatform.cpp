@@ -179,4 +179,15 @@ void WindowsPlatform::showWindow(HiddenWindow window)
     hiddenWindows_.removeOne(window);
 }
 
+QPoint WindowsPlatform::getCursorPos() const
+{
+    POINT point;
+
+    if (::GetCursorPos(&point) != 0) {
+        return QPoint(point.x, point.y);
+    }
+
+    return QPoint();
+}
+
 // EOF <stefan@scheler.com>
