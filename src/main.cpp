@@ -37,6 +37,10 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("scheler.com");
     QCoreApplication::setApplicationName("bosskey");
 
+    QApplication::setDesktopSettingsAware(false);
+    QApplication::setEffectEnabled(Qt::UI_FadeMenu, false);
+    QApplication::setEffectEnabled(Qt::UI_AnimateMenu, false);
+
 #if defined(Q_OS_WIN)
     WindowsPlatform platform;
 #elif defined(Q_OS_LINUX)
