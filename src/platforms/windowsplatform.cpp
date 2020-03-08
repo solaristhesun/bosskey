@@ -28,11 +28,9 @@ WindowsPlatform::WindowsPlatform()
 
 void WindowsPlatform::showWindows()
 {
-    for (auto hWindow : hiddenWindows_) {
-        qDebug() << "showing" << getWindowTitle(hWindow);
-        ShowWindow(hWindow, SW_SHOW);
+    for (auto window : hiddenWindows_) {
+        showWindow(window);
     }
-    hiddenWindows_.clear();
 }
 
 void WindowsPlatform::hideWindows(QList<Window> patternList)
@@ -52,7 +50,11 @@ void WindowsPlatform::hideWindows(QList<Window> patternList)
                         qDebug() << "hiding" << title << hWindow;
                         ShowWindow(hWindow, SW_HIDE);
 
-                        engine->hiddenWindows_.append(hWindow);
+                        HiddenWindow hiddenWindow;
+                        hiddenWindow.hWindow = hWindow,
+                        hiddenWindow.title = title,
+
+                        engine->hiddenWindows_.append(hiddenWindow);
                     }
                 }
             }
@@ -163,6 +165,18 @@ void WindowsPlatform::bringToFront(Window window)
 int WindowsPlatform::hiddenWindowsCount() const
 {
     return hiddenWindows_.count();
+}
+
+QList<HiddenWindow> WindowsPlatform::getHiddenWindowList() const
+{
+    return hiddenWindows_;
+}
+
+void WindowsPlatform::showWindow(HiddenWindow window)
+{
+    qDebug() << "showing" << getWindowTitle(window.hWindow);
+    ShowWindow(window.hWindow, SW_SHOW);
+    hiddenWindows_.removeOne(window);
 }
 
 // EOF <stefan@scheler.com>

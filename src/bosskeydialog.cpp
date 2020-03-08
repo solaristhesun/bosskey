@@ -33,6 +33,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     , ui_(new Ui::BossKeyDialog)
     , platform_(engine)
     , hotkeyManager_(hotkeyManager)
+    , windowsMenu(this)
 
 {
     ui_->setupUi(this);
@@ -46,6 +47,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
 
     setupHotkeys();
     createTrayIcon();
+    refreshTrayMenu();
 
     QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(this);
     proxyModel->setSourceModel(&windowList_);
@@ -73,8 +75,17 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
         timer_.start(1000);
     }
 
-    connect(ui_->windowsTableView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &BossKeyDialog::windowsViewSelectionChanged);
-    connect(ui_->patternTableView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &BossKeyDialog::patternViewSelectionChanged);
+    connect(ui_->patternTableView->selectionModel(), &QItemSelectionModel::selectionChanged,
+        [=](const QItemSelection & selected, const QItemSelection &)
+            {
+                ui_->removeButton->setEnabled(!selected.empty());
+            });
+    connect(ui_->windowsTableView->selectionModel(), &QItemSelectionModel::selectionChanged,
+        [=](const QItemSelection & selected, const QItemSelection &)
+            {
+                ui_->addButton->setEnabled(!selected.empty());
+                ui_->bringToTopButton->setEnabled(!selected.empty());
+            });
 
     applyFocusLineHack(ui_->windowsTableView);
     applyFocusLineHack(ui_->patternTableView);
@@ -133,6 +144,7 @@ void BossKeyDialog::showWindows()
 {
     platform_.showWindows();
     refreshTrayToolTip();
+    refreshWindowsMenu();
     trayIcon->show();
 }
 
@@ -152,6 +164,7 @@ void BossKeyDialog::hideWindows()
         }
 
         refreshTrayToolTip();
+        refreshWindowsMenu();
     }
 }
 
@@ -185,14 +198,20 @@ void BossKeyDialog::changeEvent(QEvent *event)
     if (event != nullptr) {
         switch(event->type()) {
         case QEvent::LanguageChange:
-            qDebug() << "retranslate";
-            ui_->retranslateUi(this);
-            ui_->donationLabel->setText(QString("<html><head/><body><p><a href=\"https://scheler.com/bosskey/donate\"><span style=\" font-weight:600; text-decoration: underline; color:white;\">%1</span></a></p></body></html>").arg(tr("If this software is useful to you, please consider making a donation.")));
+            retranslateUserInterface();
             break;
         default:
             break;
         }
     }
+}
+
+void BossKeyDialog::retranslateUserInterface()
+{
+    qDebug() << "retranslate";
+    ui_->retranslateUi(this);
+    ui_->donationLabel->setText(QString("<html><head/><body><p><a href=\"https://scheler.com/bosskey/donate\"><span style=\" font-weight:600; text-decoration: underline; color:white;\">%1</span></a></p></body></html>").arg(tr("If this software is useful to you, please consider making a donation.")));
+    refreshWindowsMenu();
 }
 
 void BossKeyDialog::saveHotkeys()
@@ -207,16 +226,45 @@ void BossKeyDialog::saveHotkeys()
     settings.setValue("hide_on_click", ui_->hideOnClickCheckBox->isChecked());
 }
 
-void BossKeyDialog::createTrayIcon()
+void BossKeyDialog::refreshTrayMenu()
 {
-    trayIconMenu = new QMenu(this);
+    trayIconMenu->clear();
     trayIconMenu->addAction(ui_->actionHideWindows);
     trayIconMenu->addAction(ui_->actionShowWindows);
+    trayIconMenu->addSeparator();
+    trayIconMenu->addMenu(&windowsMenu);
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(ui_->actionShowDialog);
     trayIconMenu->addAction(ui_->actionShowAbout);
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(ui_->actionExit);
+
+    refreshWindowsMenu();
+}
+
+void BossKeyDialog::refreshWindowsMenu()
+{
+    auto windowList = platform_.getHiddenWindowList();
+
+    windowsMenu.setTitle(tr("Hidden windows"));
+    windowsMenu.clear();
+
+    for (auto window: windowList) {
+        windowsMenu.addAction(window.title, [=] () { showWindow(window); });
+    }
+
+    windowsMenu.setEnabled(windowList.count() > 0);
+}
+
+void BossKeyDialog::showWindow(HiddenWindow window)
+{
+    platform_.showWindow(window);
+    refreshWindowsMenu();
+}
+
+void BossKeyDialog::createTrayIcon()
+{
+    trayIconMenu = new QMenu(this);
 
     trayIcon = new QSystemTrayIcon(this);
     trayIcon->setIcon(QIcon(":/appicon/leader.svg"));
@@ -337,18 +385,6 @@ void BossKeyDialog::toggleIgnoreTitle()
     auto index = ui_->patternTableView->currentIndex();
     patternList_.toggleIgnoreTitle(index);
 }
-
-void BossKeyDialog::patternViewSelectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
-{
-    ui_->removeButton->setEnabled(!selected.empty());
-}
-
-void BossKeyDialog::windowsViewSelectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
-{
-    ui_->addButton->setEnabled(!selected.empty());
-    ui_->bringToTopButton->setEnabled(!selected.empty());
-}
-
 
 void BossKeyDialog::languageChanged(int index)
 {

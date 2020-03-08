@@ -38,6 +38,7 @@ SOURCES += \
 
 HEADERS += \
     src/bosskeydialog.h \
+    src/model/hiddenwindow.h \
     src/platforminterface.h \
     src/singlewindowlistviewmodel.h \
     src/widgets/singlekeysequenceedit.h \

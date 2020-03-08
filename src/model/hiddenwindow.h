@@ -16,28 +16,23 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ENGINEINTERFACE_H
-#define ENGINEINTERFACE_H
+#ifndef HIDDENWINDOW_H
+#define HIDDENWINDOW_H
 
-#include <QList>
+#include <Windows.h>
 
-#include "window.h"
-#include "model/hiddenwindow.h"
+#include <QString>
 
-class PlatformInterface
+class HiddenWindow
 {
 public:
-    virtual ~PlatformInterface() {}
+    HWND hWindow;
+    QString title;
 
-    virtual void hideWindows(QList<Window> patternList) =0;
-    virtual void showWindows() =0;
-    virtual void showWindow(HiddenWindow window) =0;
-    virtual QList<Window> getWindowList() =0;
-    virtual bool isHidden() const =0;
-    virtual quint32 getUserIdleTime() const =0;
-    virtual void bringToFront(Window window) =0;
-    virtual int hiddenWindowsCount() const =0;
-    virtual QList<HiddenWindow> getHiddenWindowList() const =0;
+    bool operator== (HiddenWindow rhs)
+    {
+        return rhs.hWindow == this->hWindow;
+    }
 };
 
-#endif // ENGINEINTERFACE_H
+#endif // HIDDENWINDOW_H

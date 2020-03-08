@@ -29,6 +29,7 @@
 
 #include "windowlistviewmodel.h"
 #include "singlewindowlistviewmodel.h"
+#include "model/hiddenwindow.h"
 
 namespace Ui {
 class BossKeyDialog;
@@ -68,8 +69,6 @@ public slots:
     void removePattern();
     void toggleIgnoreTitle();
     void showContextMenu(const QPoint & point);
-    void patternViewSelectionChanged(const QItemSelection & selected, const QItemSelection & deselected);
-    void windowsViewSelectionChanged(const QItemSelection & selected, const QItemSelection & deselected);
     void languageChanged(int index);
     void showWindows();
     void hideWindows();
@@ -86,6 +85,10 @@ private:
     void switchTranslator(QTranslator& translator, const QString& filename);
     void applyFocusLineHack(QWidget* widget);
     void refreshTrayToolTip();
+    void refreshTrayMenu();
+    void refreshWindowsMenu();
+    void showWindow(HiddenWindow window);
+    void retranslateUserInterface();
 
 private:
     QTranslator translator_;
@@ -94,6 +97,7 @@ private:
     UGlobalHotkeys& hotkeyManager_;
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
+    QMenu windowsMenu;
     QStringList patterns_;
     QTimer timer_;
     WindowListViewModel windowList_;

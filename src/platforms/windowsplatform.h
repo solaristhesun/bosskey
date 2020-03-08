@@ -24,9 +24,6 @@
 #include <Windows.h>
 
 #include "platforminterface.h"
-#include "window.h"
-
-class WindowListViewModel;
 
 class WindowsPlatform: public PlatformInterface
 {
@@ -40,13 +37,15 @@ public:
     bool isHidden() const;
     quint32 getUserIdleTime() const;
     int hiddenWindowsCount() const;
+    QList<HiddenWindow> getHiddenWindowList() const;
+    void showWindow(HiddenWindow window);
 
 private:
     QString getWindowTitle(HWND hWindow) const;
     QString getProcessImageName(HWND hWindow) const;
 
 private:
-    QList<HWND> hiddenWindows_;
+    QList<HiddenWindow> hiddenWindows_;
     QList<Window> windowList_;
     QList<Window> patternList_;
     Window window_;
