@@ -95,6 +95,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     setupLocalization();
     refreshTrayToolTip();
     refreshVisibleWindowList();
+    retranslateUserInterface();
 }
 
 BossKeyDialog::~BossKeyDialog()
