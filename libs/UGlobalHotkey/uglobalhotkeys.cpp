@@ -68,7 +68,7 @@ void UGlobalHotkeys::registerHotkey(const UKeySequence& keySeq, size_t id) {
         }
     }
 
-    if (!RegisterHotKey((HWND)winId(), id, winMod, key)) {
+    if (!RegisterHotKey((HWND)winId(), (int)id, (UINT)winMod, (UINT)key)) {
         qDebug() << "Error activating hotkey!";
     } else {
         Registered.insert(id);
@@ -105,7 +105,7 @@ void UGlobalHotkeys::unregisterHotkey(size_t id) {
     Q_ASSERT(Registered.find(id) != Registered.end() && "Unregistered hotkey");
     #endif
     #if defined(Q_OS_WIN)
-    UnregisterHotKey((HWND)winId(), id);
+    UnregisterHotKey((HWND)winId(), (int)id);
     #elif defined(Q_OS_LINUX)
     unregLinuxHotkey(id);
     #endif
@@ -135,7 +135,7 @@ void UGlobalHotkeys::unregisterAllHotkeys()
 UGlobalHotkeys::~UGlobalHotkeys() {
     #if defined(Q_OS_WIN)
     for (QSet<size_t>::iterator i = Registered.begin(); i != Registered.end(); i++) {
-        UnregisterHotKey((HWND)winId(), *i);
+        UnregisterHotKey((HWND)winId(), (int)*i);
     }
     #elif defined(Q_OS_LINUX)
     xcb_key_symbols_free(X11KeySymbs);

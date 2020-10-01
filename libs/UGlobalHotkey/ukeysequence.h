@@ -28,7 +28,7 @@ public:
         if ((int)n > Keys.size()) {
             throw UException("Out of bounds");
         }
-        return Keys[n];
+        return Keys[(int)n];
     }
     QVector<int> GetSimpleKeys() const;
     QVector<int> GetModifiers() const;
