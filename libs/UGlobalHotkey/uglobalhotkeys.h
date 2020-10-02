@@ -33,8 +33,8 @@ class UGLOBALHOTKEY_EXPORT UGlobalHotkeys : public QWidget
     Q_OBJECT
 public:
     explicit UGlobalHotkeys(QWidget *parent = 0);
-    void registerHotkey(const QString& keySeq, size_t id = 1);
-    void registerHotkey(const UKeySequence& keySeq, size_t id = 1);
+    bool registerHotkey(const QString& keySeq, size_t id = 1);
+    bool registerHotkey(const UKeySequence& keySeq, size_t id = 1);
     void unregisterHotkey(size_t id = 1);
     void unregisterAllHotkeys();
     ~UGlobalHotkeys();

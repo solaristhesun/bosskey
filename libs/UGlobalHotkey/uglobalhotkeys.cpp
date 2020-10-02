@@ -23,8 +23,9 @@ UGlobalHotkeys::UGlobalHotkeys(QWidget *parent)
     #endif
 }
 
-void UGlobalHotkeys::registerHotkey(const QString& keySeq, size_t id) {
-    registerHotkey(UKeySequence(keySeq), id);
+bool UGlobalHotkeys::registerHotkey(const QString& keySeq, size_t id)
+{
+    return registerHotkey(UKeySequence(keySeq), id);
 }
 
 #if defined(Q_OS_MAC)
@@ -41,7 +42,7 @@ OSStatus macHotkeyHandler(EventHandlerCallRef nextHandler, EventRef theEvent, vo
 }
 #endif
 
-void UGlobalHotkeys::registerHotkey(const UKeySequence& keySeq, size_t id) {
+bool UGlobalHotkeys::registerHotkey(const UKeySequence& keySeq, size_t id) {
     if (keySeq.Size() == 0) {
         throw UException("Empty hotkeys");
     }
@@ -70,6 +71,7 @@ void UGlobalHotkeys::registerHotkey(const UKeySequence& keySeq, size_t id) {
 
     if (!RegisterHotKey((HWND)winId(), (int)id, (UINT)winMod, (UINT)key)) {
         qDebug() << "Error activating hotkey!";
+        return false;
     } else {
         Registered.insert(id);
     }
@@ -98,6 +100,8 @@ void UGlobalHotkeys::registerHotkey(const UKeySequence& keySeq, size_t id) {
     HotkeyRefs[id] = gMyHotKeyRef;
 
     #endif
+
+    return true;
 }
 
 void UGlobalHotkeys::unregisterHotkey(size_t id) {
