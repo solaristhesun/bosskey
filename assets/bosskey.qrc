@@ -6,8 +6,6 @@
         <file alias="information-white">fugue/information-white.png</file>
         <file alias="arrow-circle-double-135">fugue/arrow-circle-double-135.png</file>
         <file alias="gear">fugue/gear.png</file>
-        <file>translations/bosskey_de.qm</file>
-        <file>translations/bosskey_en.qm</file>
         <file>flags/de.png</file>
         <file>flags/en.png</file>
         <file>famfamfam/application_get.png</file>
