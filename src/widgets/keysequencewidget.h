@@ -44,11 +44,13 @@ public:
     QKeySequence keySequence() const;
     void setKeySequence(const QKeySequence &keySequence);
 
+    bool event(QEvent *event) override;
+
 signals:
     void editingFinished();
 
 private:
-    Ui::KeySequenceWidget *ui;
+    Ui::KeySequenceWidget *ui_;
 };
 
 #endif // KEYSEQUENCEWIDGET_H

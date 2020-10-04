@@ -16,6 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QDebug>
 #include <QStyle>
 #include <QLineEdit>
 
@@ -24,18 +25,18 @@
 
 KeySequenceWidget::KeySequenceWidget(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::KeySequenceWidget)
+    ui_(new Ui::KeySequenceWidget)
 {
-    ui->setupUi(this);
-    ui->hintLabel->hide();
+    ui_->setupUi(this);
+    ui_->hintLabel->hide();
 
-    connect(ui->keySequenceEdit, &SingleKeySequenceEdit::editingFinished, this, &KeySequenceWidget::editingFinished);
+    connect(ui_->keySequenceEdit, &SingleKeySequenceEdit::editingFinished, this, &KeySequenceWidget::editingFinished);
 
 }
 
 KeySequenceWidget::~KeySequenceWidget()
 {
-    delete ui;
+    delete ui_;
 }
 
 void KeySequenceWidget::setStatus(const SequenceStatus status)
@@ -43,40 +44,53 @@ void KeySequenceWidget::setStatus(const SequenceStatus status)
     switch (status)
     {
     case Status_Invalid:
-        ui->keySequenceEdit->setProperty("invalid", true);
-        ui->keySequenceEdit->setProperty("valid", false);
-        ui->hintLabel->show();
+        ui_->keySequenceEdit->setProperty("invalid", true);
+        ui_->keySequenceEdit->setProperty("valid", false);
+        ui_->hintLabel->show();
         break;
     case Status_Valid:
-        ui->keySequenceEdit->setProperty("invalid", false);
-        ui->keySequenceEdit->setProperty("valid", true);
-        ui->hintLabel->hide();
+        ui_->keySequenceEdit->setProperty("invalid", false);
+        ui_->keySequenceEdit->setProperty("valid", true);
+        ui_->hintLabel->hide();
         break;
     case Status_Unset:
-        ui->keySequenceEdit->setProperty("invalid", false);
-        ui->keySequenceEdit->setProperty("valid", false);
-        ui->hintLabel->hide();
+        ui_->keySequenceEdit->setProperty("invalid", false);
+        ui_->keySequenceEdit->setProperty("valid", false);
+        ui_->hintLabel->hide();
         break;
     default:
         break;
     }
 
-    ui->keySequenceEdit->refresh();
+    ui_->keySequenceEdit->refresh();
 }
 
 void KeySequenceWidget::setInvalid(const bool bInvalid)
 {
-    ui->keySequenceEdit->lineEdit()->setProperty("invalid", bInvalid);
+    ui_->keySequenceEdit->lineEdit()->setProperty("invalid", bInvalid);
 }
 
 QKeySequence KeySequenceWidget::keySequence() const
 {
-    return ui->keySequenceEdit->keySequence();
+    return ui_->keySequenceEdit->keySequence();
 }
 
 void KeySequenceWidget::setKeySequence(const QKeySequence &keySequence)
 {
-    ui->keySequenceEdit->setKeySequence(keySequence);
+    ui_->keySequenceEdit->setKeySequence(keySequence);
+}
+
+bool KeySequenceWidget::event(QEvent *event)
+{
+    switch(event->type()) {
+    case QEvent::LanguageChange:
+        ui_->retranslateUi(this);
+        break;
+    default:
+        break;
+    }
+
+    return QObject::event(event);
 }
 
 // EOF <stefan@scheler.com>
