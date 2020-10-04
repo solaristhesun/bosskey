@@ -16,10 +16,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QDebug>
-
-#include "windowsplatform.h"
-#include "windowlistviewmodel.h"
+#include "platforms/windowsplatform.h"
+#include "model/windowlistviewmodel.h"
 
 WindowsPlatform::WindowsPlatform()
 {

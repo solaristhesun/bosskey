@@ -23,7 +23,7 @@
 
 #include <Windows.h>
 
-#include "platforminterface.h"
+#include "platforms/platforminterface.h"
 
 class WindowsPlatform: public PlatformInterface
 {

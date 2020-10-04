@@ -16,16 +16,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    src/bosskeydialog.cpp \
+    src/ui/bosskeydialog.cpp \
     src/widgets/keysequencewidget.cpp \
     src/main.cpp \
-    src/singlewindowlistviewmodel.cpp \
     src/widgets/singlekeysequenceedit.cpp \
     src/widgets/tableview.cpp \
     src/misc/globals.cpp \
     src/misc/softwareversion.cpp \
+    src/model/singlewindowlistviewmodel.cpp \
     src/model/window.cpp \
-    src/windowlistviewmodel.cpp
+    src/model/windowlistviewmodel.cpp
 
 win32 {
 SOURCES += \
@@ -38,17 +38,17 @@ SOURCES += \
 }
 
 HEADERS += \
-    src/bosskeydialog.h \
-    src/widgets/keysequencewidget.h \
-    src/model/hiddenwindow.h \
-    src/platforminterface.h \
-    src/singlewindowlistviewmodel.h \
+    src/ui/bosskeydialog.h \
+    src/platforms/platforminterface.h \
     src/widgets/singlekeysequenceedit.h \
     src/widgets/tableview.h \
+    src/widgets/keysequencewidget.h \
     src/misc/softwareversion.h \
     src/misc/globals.h \
     src/model/window.h \
-    src/windowlistviewmodel.h
+    src/model/hiddenwindow.h \
+    src/model/windowlistviewmodel.h \
+    src/model/singlewindowlistviewmodel.h
 
 win32 {
 HEADERS += \
@@ -60,11 +60,10 @@ HEADERS += \
     src/platforms/linuxplatform.h
 }
 
-
 FORMS += \
-    src/bosskeydialog.ui \
-    src/keysequencewidget.ui \
-    src/tableview.ui
+    src/ui/bosskeydialog.ui \
+    src/widgets/keysequencewidget.ui \
+    src/widgets/tableview.ui
 
 INCLUDEPATH += src/ libs/UGlobalHotkey/
 
@@ -93,6 +92,8 @@ RESOURCES += \
 
 win32:RC_FILE += bosskey.rc
 win32:CONFIG += embed_manifest_exe
+
+QMAKE_CXXFLAGS += /FI"qdebug.h"
 
 TRANSLATIONS += \
     assets/translations/bosskey_en.ts \

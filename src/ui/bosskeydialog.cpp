@@ -16,14 +16,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QDebug>
 #include <QSettings>
 #include <QMessageBox>
 #include <QSortFilterProxyModel>
 #include <QDirIterator>
 
-#include "bosskeydialog.h"
-#include "platforminterface.h"
+#include "ui/bosskeydialog.h"
+#include "platforms/platforminterface.h"
 #include "uglobalhotkeys.h"
 #include "misc/globals.h"
 #include "ui_bosskeydialog.h"

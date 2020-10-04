@@ -19,8 +19,8 @@
 #include <QApplication>
 
 #include "singleapplication.h"
-#include "bosskeydialog.h"
 #include "uglobalhotkeys.h"
+#include "ui/bosskeydialog.h"
 #if defined(Q_OS_WIN)
 #include "platforms/windowsplatform.h"
 #elif defined(Q_OS_LINUX)

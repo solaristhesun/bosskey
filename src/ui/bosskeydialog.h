@@ -27,8 +27,8 @@
 #include <QItemSelection>
 #include <QTranslator>
 
-#include "windowlistviewmodel.h"
-#include "singlewindowlistviewmodel.h"
+#include "model/windowlistviewmodel.h"
+#include "model/singlewindowlistviewmodel.h"
 #include "model/hiddenwindow.h"
 
 namespace Ui {

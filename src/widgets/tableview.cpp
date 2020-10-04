@@ -18,10 +18,9 @@
 
 #include <QPainter>
 #include <QMenu>
-#include <QDebug>
 
-#include "tableview.h"
-#include "windowlistviewmodel.h"
+#include "widgets/tableview.h"
+#include "model/windowlistviewmodel.h"
 #include "ui_tableview.h"
 
 TableView::TableView(QWidget *parent)

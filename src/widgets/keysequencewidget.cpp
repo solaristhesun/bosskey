@@ -16,7 +16,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QDebug>
 #include <QStyle>
 #include <QLineEdit>
 
@@ -31,7 +30,6 @@ KeySequenceWidget::KeySequenceWidget(QWidget *parent) :
     ui_->hintLabel->hide();
 
     connect(ui_->keySequenceEdit, &SingleKeySequenceEdit::editingFinished, this, &KeySequenceWidget::editingFinished);
-
 }
 
 KeySequenceWidget::~KeySequenceWidget()

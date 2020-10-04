@@ -1,7 +1,7 @@
 #ifndef LINUXPLATFORM_H
 #define LINUXPLATFORM_H
 
-#include "platforminterface.h"
+#include "platforms/platforminterface.h"
 
 class LinuxPlatform : public PlatformInterface
 {
