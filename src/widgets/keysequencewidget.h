@@ -16,35 +16,39 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SINGLEKEYSEQUENCEEDIT_H
-#define SINGLEKEYSEQUENCEEDIT_H
+#ifndef KEYSEQUENCEWIDGET_H
+#define KEYSEQUENCEWIDGET_H
 
-#include <QKeySequenceEdit>
+#include <QWidget>
 
-class QLineEdit;
+namespace Ui {
+class KeySequenceWidget;
+}
 
-class SingleKeySequenceEdit : public QKeySequenceEdit
+class KeySequenceWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SingleKeySequenceEdit(QWidget *parent = nullptr);
-    ~SingleKeySequenceEdit();
+    enum SequenceStatus {
+        Status_Unset,
+        Status_Valid,
+        Status_Invalid
+    };
 
-    void setInvalidSequence(const bool bInvalid);
+public:
+    explicit KeySequenceWidget(QWidget *parent = nullptr);
+    ~KeySequenceWidget();
 
-    bool setProperty(const char *name, const QVariant &value);
+    void setInvalid(const bool bInvalid);
+    void setStatus(const SequenceStatus status);
+    QKeySequence keySequence() const;
+    void setKeySequence(const QKeySequence &keySequence);
 
-    void refresh();
-
-    QLineEdit* lineEdit() const;
-
-    void lineEditEdited(const QString& text);
-
-protected:
-    void keyPressEvent(QKeyEvent *event) override;
+signals:
+    void editingFinished();
 
 private:
-    QLineEdit* lineEdit_;
+    Ui::KeySequenceWidget *ui;
 };
 
-#endif // SINGLEKEYSEQUENCEEDIT_H
+#endif // KEYSEQUENCEWIDGET_H

@@ -41,6 +41,15 @@ int main(int argc, char *argv[])
     QApplication::setEffectEnabled(Qt::UI_FadeMenu, false);
     QApplication::setEffectEnabled(Qt::UI_AnimateMenu, false);
 
+    QString defaultLocale = QLocale::system().name(); // e.g. "de_DE"
+    defaultLocale.truncate(defaultLocale.lastIndexOf('_')); // e.g. "de"
+
+    QTranslator qtTranslator;
+    if (qtTranslator.load(QString(":/translations/qtbase_%1.qm").arg(defaultLocale)))
+    {
+        qApp->installTranslator(&qtTranslator);
+    }
+
 #if defined(Q_OS_WIN)
     WindowsPlatform platform;
 #elif defined(Q_OS_LINUX)

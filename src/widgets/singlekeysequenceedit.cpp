@@ -17,14 +17,17 @@
  */
 
 #include <QLineEdit>
+#include <QStyle>
 
 #include "singlekeysequenceedit.h"
 
 SingleKeySequenceEdit::SingleKeySequenceEdit(QWidget *parent)
     : QKeySequenceEdit(parent)
 {
-    QLineEdit *widget = this->findChild<QLineEdit*>("qt_keysequenceedit_lineedit");
-    widget->setClearButtonEnabled(true);
+    lineEdit_ = this->findChild<QLineEdit*>("qt_keysequenceedit_lineedit");
+    lineEdit_->setClearButtonEnabled(true);
+
+    connect(lineEdit_, &QLineEdit::textEdited, this, &SingleKeySequenceEdit::lineEditEdited);
 }
 
 SingleKeySequenceEdit::~SingleKeySequenceEdit()
@@ -32,12 +35,48 @@ SingleKeySequenceEdit::~SingleKeySequenceEdit()
     // empty
 }
 
-
 void SingleKeySequenceEdit::keyPressEvent(QKeyEvent *pEvent)
 {
     QKeySequenceEdit::keyPressEvent(pEvent);
 
     setKeySequence(keySequence()[0]);
+    emit editingFinished();
+}
+
+void SingleKeySequenceEdit::setInvalidSequence(const bool bInvalid)
+{
+    if (bInvalid) {
+        lineEdit_->setStyleSheet("background-color: #ff8080");
+    } else {
+        lineEdit_->setStyleSheet("");
+    }
+}
+
+QLineEdit* SingleKeySequenceEdit::lineEdit() const
+{
+    return lineEdit_;
+}
+
+bool SingleKeySequenceEdit::setProperty(const char *name, const QVariant &value)
+{
+    lineEdit_->setProperty(name, value);
+
+    return QKeySequenceEdit::setProperty(name, value);
+}
+
+void SingleKeySequenceEdit::refresh()
+{
+    lineEdit_->style()->unpolish(lineEdit_);
+    lineEdit_->style()->polish(lineEdit_);
+}
+
+void SingleKeySequenceEdit::lineEditEdited(const QString &text)
+{
+    if (text.isEmpty())
+    {
+        setKeySequence(QKeySequence());
+        emit editingFinished();
+    }
 }
 
 // EOF <stefan@scheler.com>

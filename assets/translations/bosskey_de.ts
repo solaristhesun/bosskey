@@ -4,82 +4,74 @@
 <context>
     <name>BossKeyDialog</name>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="65"/>
+        <location filename="../../src/bosskeydialog.ui" line="67"/>
         <source>Windows</source>
         <translation>Fenster</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="80"/>
+        <location filename="../../src/bosskeydialog.ui" line="73"/>
         <source>Currently visible windows</source>
         <translation>Aktuell sichtbare Fenster</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="115"/>
+        <location filename="../../src/bosskeydialog.ui" line="108"/>
         <source>No visible windows</source>
         <translation>Keine sichtbaren Fenster</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="238"/>
+        <location filename="../../src/bosskeydialog.ui" line="231"/>
         <source>Windows that will be hidden</source>
         <translation>Zu verbergende Fenster</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="279"/>
-        <location filename="../../src/bosskeydialog.ui" line="413"/>
+        <location filename="../../src/bosskeydialog.ui" line="272"/>
+        <location filename="../../src/bosskeydialog.ui" line="415"/>
         <source>Drag and drop windows from above here.</source>
         <translation>Ziehen Sie Fenster von oben per Drag and Drop hier herein.</translation>
     </message>
     <message>
-        <source>&amp;Remove</source>
-        <translation type="vanished">&amp;Entfernen</translation>
-    </message>
-    <message>
-        <source>&amp;Clear</source>
-        <translation type="vanished">&amp;Alle entfernen</translation>
-    </message>
-    <message>
-        <location filename="../../src/bosskeydialog.ui" line="154"/>
+        <location filename="../../src/bosskeydialog.ui" line="147"/>
         <source>Refresh visible windows</source>
         <translation>Sichtbare Fenster aktualisieren</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="181"/>
+        <location filename="../../src/bosskeydialog.ui" line="174"/>
         <source>Hide this window</source>
         <translation>Fenster verbergen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="204"/>
+        <location filename="../../src/bosskeydialog.ui" line="197"/>
         <source>Bring this window to the front</source>
         <translation>Fenster in den Vordergrund bringen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="315"/>
+        <location filename="../../src/bosskeydialog.ui" line="308"/>
         <source>Do not hide this window</source>
         <translation>Fenster nicht verbergen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="341"/>
-        <location filename="../../src/bosskeydialog.ui" line="443"/>
+        <location filename="../../src/bosskeydialog.ui" line="334"/>
+        <location filename="../../src/bosskeydialog.ui" line="448"/>
         <source>Clear list</source>
         <translation>Liste leeren</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="375"/>
+        <location filename="../../src/bosskeydialog.ui" line="374"/>
         <source>Bring to Front</source>
         <translation>In den Vordergrund bringen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="486"/>
+        <location filename="../../src/bosskeydialog.ui" line="490"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="492"/>
+        <location filename="../../src/bosskeydialog.ui" line="496"/>
         <source>Hotkeys</source>
         <translation>Tastenkürzel</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.ui" line="498"/>
+        <location filename="../../src/bosskeydialog.ui" line="502"/>
         <source>Hide Hotkey:</source>
         <translation>Fenster verbergen:</translation>
     </message>
@@ -144,10 +136,6 @@
         <translation>&amp;Über</translation>
     </message>
     <message>
-        <source>Ignore Title</source>
-        <translation type="vanished">Fenstertitel ignorieren</translation>
-    </message>
-    <message>
         <location filename="../../src/bosskeydialog.ui" line="701"/>
         <source>Hide Windows</source>
         <translation>Fenster verbergen</translation>
@@ -158,50 +146,58 @@
         <translation>Fenster anzeigen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="250"/>
+        <location filename="../../src/bosskeydialog.cpp" line="300"/>
         <source>Hidden windows</source>
         <translation>Verborgene Fenster</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="214"/>
+        <location filename="../../src/bosskeydialog.cpp" line="264"/>
         <source>If this software is useful to you, please consider making a donation.</source>
         <translation>Bitte denken Sie über eine Spende nach, wenn Ihnen dieses Programm gefällt.</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="313"/>
+        <location filename="../../src/bosskeydialog.cpp" line="363"/>
         <source>All rights reserved.</source>
         <translation>Alle Rechte vorbehalten.</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="313"/>
+        <location filename="../../src/bosskeydialog.cpp" line="363"/>
         <source>Visit bosskey website</source>
         <translation>BossKey Webseite besuchen</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="315"/>
+        <location filename="../../src/bosskeydialog.cpp" line="365"/>
         <source>About bosskey</source>
         <translation>Über BossKey</translation>
     </message>
     <message>
-        <location filename="../../src/bosskeydialog.cpp" line="422"/>
+        <location filename="../../src/bosskeydialog.cpp" line="472"/>
         <source>%1 hidden windows</source>
         <translation>%1 verborgene Fenster</translation>
     </message>
 </context>
 <context>
+    <name>KeySequenceWidget</name>
+    <message>
+        <location filename="../../src/keysequencewidget.ui" line="62"/>
+        <source>This shortcut is already in use.</source>
+        <translation>Dieses Tastenkürzel ist bereits belegt.</translation>
+    </message>
+</context>
+<context>
     <name>TableView</name>
     <message>
-        <location filename="../../src/tableview.ui" line="15"/>
+        <location filename="../../src/tableview.ui" line="19"/>
         <source>&amp;Clear</source>
         <translation>&amp;Alle entfernen</translation>
     </message>
     <message>
-        <location filename="../../src/tableview.ui" line="20"/>
+        <location filename="../../src/tableview.ui" line="24"/>
         <source>&amp;Remove</source>
         <translation>&amp;Entfernen</translation>
     </message>
     <message>
-        <location filename="../../src/tableview.ui" line="28"/>
+        <location filename="../../src/tableview.ui" line="32"/>
         <source>Ignore Title</source>
         <translation>Fenstertitel ignorieren</translation>
     </message>

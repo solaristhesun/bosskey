@@ -40,7 +40,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     ui_->setupUi(this);
 
     connect(ui_->patternTableView->verticalHeader(), &QHeaderView::sectionCountChanged,
-        [=](int, int newCount) { qDebug() << "BAM" << newCount ; ui_->clearButton->setEnabled(newCount > 0); });
+        [=](int, int newCount) { ui_->clearButton->setEnabled(newCount > 0); });
     connect(ui_->bringToFrontTableView->verticalHeader(), &QHeaderView::sectionCountChanged,
         [=](int, int newCount) { ui_->clearBringToFrontButton->setEnabled(newCount > 0); });
 
@@ -112,7 +112,7 @@ void BossKeyDialog::setupHotkeys()
         hotkeyManager_.registerHotkey(settings.value("hotkey_show", "Ctrl+F11").toString(), KeyCode_ShowWindows);
     }
     catch (UException& e) {
-        qDebug() << e.what();
+        qDebug() << "exception: " << e.what();
     }
 
     QList<QKeySequence> sequenceHide;
@@ -133,6 +133,49 @@ void BossKeyDialog::setupHotkeys()
             hideWindows();
         }
     });
+}
+
+void BossKeyDialog::tryRegisterHotkeys()
+{
+    qDebug() << "tryRegisterHotkeys";
+    auto hideSquence = ui_->keySequenceEditHide->keySequence();
+
+    if (!hideSquence.isEmpty())
+    {
+        if (hotkeyManager_.registerHotkey(hideSquence.toString(QKeySequence::PortableText), KeyCode_HideWindows))
+        {
+            ui_->keySequenceEditHide->setStatus(KeySequenceWidget::Status_Valid);
+        }
+        else
+        {
+            ui_->keySequenceEditHide->setStatus(KeySequenceWidget::Status_Invalid);
+        }
+    }
+    else
+    {
+        ui_->keySequenceEditHide->setStatus(KeySequenceWidget::Status_Unset);
+    }
+
+    auto showSquence = ui_->keySequenceEditShow->keySequence();
+
+    if (!showSquence.isEmpty())
+    {
+        if (hotkeyManager_.registerHotkey(showSquence.toString(QKeySequence::PortableText), KeyCode_ShowWindows))
+        {
+
+            ui_->keySequenceEditShow->setStatus(KeySequenceWidget::Status_Valid);
+        }
+        else
+        {
+            ui_->keySequenceEditShow->setStatus(KeySequenceWidget::Status_Invalid);
+        }
+    }
+    else
+    {
+        ui_->keySequenceEditShow->setStatus(KeySequenceWidget::Status_Unset);
+    }
+
+    hotkeyManager_.unregisterAllHotkeys();
 }
 
 void BossKeyDialog::refreshVisibleWindowList()
@@ -174,6 +217,7 @@ void BossKeyDialog::showEvent(QShowEvent *event)
 {
     refreshVisibleWindowList();
     hotkeyManager_.unregisterAllHotkeys();
+    tryRegisterHotkeys();
     ui_->tabWidget->setCurrentIndex(0);
     timer_.stop();
 
@@ -222,8 +266,8 @@ void BossKeyDialog::saveHotkeys()
 {
     QSettings settings;
 
-    settings.setValue("hotkey_hide", ui_->keySequenceEdit->keySequence());
-    settings.setValue("hotkey_show", ui_->keySequenceEdit_2->keySequence());
+    settings.setValue("hotkey_hide", ui_->keySequenceEditHide->keySequence().toString());
+    settings.setValue("hotkey_show", ui_->keySequenceEditShow->keySequence().toString());
     settings.setValue("hide_icon", ui_->hideSystrayIconCheckBox->isChecked());
     settings.setValue("auto_hide", ui_->autoHideCheckBox->isChecked());
     settings.setValue("auto_hide_interval", ui_->autoHideIntervalEdit->text());
@@ -351,7 +395,7 @@ void BossKeyDialog::languageChanged(int index)
     QString locale = ui_->languageComboBox->itemData(index).toString();
 
     if (locale != language_) {
-        qDebug() << "language changed" << index;
+        qDebug() << "languageChanged" << locale;
         loadLanguage(locale);
         QSettings settings;
         settings.setValue("language", locale);
@@ -370,7 +414,7 @@ void BossKeyDialog::switchTranslator(QTranslator& translator, const QString& fil
     qApp->removeTranslator(&translator);
 
     // load the new translator
-    if(translator.load(":/translations/" + filename))
+    if(translator.load(":/i18n/" + filename))
         qApp->installTranslator(&translator);
 }
 
@@ -378,8 +422,8 @@ void BossKeyDialog::loadUserInterfaceSettings()
 {
     QSettings settings;
 
-    ui_->keySequenceEdit->setKeySequence(QKeySequence(settings.value("hotkey_hide", "Ctrl+F12").toString()));
-    ui_->keySequenceEdit_2->setKeySequence(QKeySequence(settings.value("hotkey_show", "Ctrl+F11").toString()));
+    ui_->keySequenceEditHide->setKeySequence(QKeySequence(settings.value("hotkey_hide", "Ctrl+F12").toString()));
+    ui_->keySequenceEditShow->setKeySequence(QKeySequence(settings.value("hotkey_show", "Ctrl+F11").toString()));
     ui_->hideSystrayIconCheckBox->setChecked(settings.value("hide_icon", false).toBool());
     ui_->autoHideCheckBox->setChecked(settings.value("auto_hide", false).toBool());
     ui_->autoHideIntervalEdit->setText(QString::number(settings.value("auto_hide_interval", 5).toInt()));
@@ -394,7 +438,7 @@ void BossKeyDialog::setupLocalization()
     QString defaultLocale = QLocale::system().name(); // e.g. "de_DE"
     defaultLocale.truncate(defaultLocale.lastIndexOf('_')); // e.g. "de"
 
-    QDirIterator it(":/translations", QDirIterator::Subdirectories);
+    QDirIterator it(":/i18n", QDirIterator::Subdirectories);
     while (it.hasNext()) {
         QString locale = it.next();
         locale.truncate(locale.lastIndexOf('.')); // "TranslationExample_de"

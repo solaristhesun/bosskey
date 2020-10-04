@@ -18,7 +18,9 @@
     <normaloff>:/appicon/leader.svg</normaloff>:/appicon/leader.svg</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">QPushButton { height: 20px;}</string>
+   <string notr="true">QPushButton { height: 20px;}
+QTabBar::tab { height: 35px; }
+</string>
   </property>
   <property name="sizeGripEnabled">
    <bool>false</bool>
@@ -45,7 +47,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="styleSheet">
-      <string notr="true">QTabBar::tab { height: 35px; }</string>
+      <string notr="true"/>
      </property>
      <property name="tabPosition">
       <enum>QTabWidget::North</enum>
@@ -54,12 +56,12 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="windowsTab">
       <attribute name="icon">
-       <iconset>
-        <normaloff>:/application-blue</normaloff>:/application-blue</iconset>
+       <iconset resource="../assets/bosskey.qrc">
+        <normaloff>:/fugue/application-blue.png</normaloff>:/fugue/application-blue.png</iconset>
       </attribute>
       <attribute name="title">
        <string>Windows</string>
@@ -502,11 +504,7 @@
            </widget>
           </item>
           <item>
-           <widget class="SingleKeySequenceEdit" name="keySequenceEdit">
-            <property name="keySequence">
-             <string notr="true">Ctrl+F10</string>
-            </property>
-           </widget>
+           <widget class="KeySequenceWidget" name="keySequenceEditHide" native="true"/>
           </item>
           <item>
            <widget class="QLabel" name="label_4">
@@ -516,7 +514,7 @@
            </widget>
           </item>
           <item>
-           <widget class="SingleKeySequenceEdit" name="keySequenceEdit_2"/>
+           <widget class="KeySequenceWidget" name="keySequenceEditShow" native="true"/>
           </item>
          </layout>
         </widget>
@@ -711,17 +709,21 @@ padding: 8px;</string>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>SingleKeySequenceEdit</class>
-   <extends>QKeySequenceEdit</extends>
-   <header>widgets/singlekeysequenceedit.h</header>
-  </customwidget>
-  <customwidget>
    <class>TableView</class>
    <extends>QTableView</extends>
    <header>widgets/tableview.h</header>
    <slots>
     <slot>clear()</slot>
     <slot>removeCurrentItem()</slot>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>KeySequenceWidget</class>
+   <extends>QWidget</extends>
+   <header>widgets/keysequencewidget.h</header>
+   <container>1</container>
+   <slots>
+    <signal>editingFinished()</signal>
    </slots>
   </customwidget>
  </customwidgets>
@@ -953,6 +955,38 @@ padding: 8px;</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>keySequenceEditShow</sender>
+   <signal>editingFinished()</signal>
+   <receiver>BossKeyDialog</receiver>
+   <slot>tryRegisterHotkeys()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>498</x>
+     <y>195</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>keySequenceEditHide</sender>
+   <signal>editingFinished()</signal>
+   <receiver>BossKeyDialog</receiver>
+   <slot>tryRegisterHotkeys()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>498</x>
+     <y>110</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addButtonClicked()</slot>
@@ -970,5 +1004,6 @@ padding: 8px;</string>
   <slot>showWindows()</slot>
   <slot>addWindow()</slot>
   <slot>bringWindowToFront()</slot>
+  <slot>tryRegisterHotkeys()</slot>
  </slots>
 </ui>

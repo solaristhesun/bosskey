@@ -25,6 +25,7 @@ UGlobalHotkeys::UGlobalHotkeys(QWidget *parent)
 
 bool UGlobalHotkeys::registerHotkey(const QString& keySeq, size_t id)
 {
+    qDebug() << "registerHotkey(" << keySeq << "," << id << ")";
     return registerHotkey(UKeySequence(keySeq), id);
 }
 
@@ -105,6 +106,7 @@ bool UGlobalHotkeys::registerHotkey(const UKeySequence& keySeq, size_t id) {
 }
 
 void UGlobalHotkeys::unregisterHotkey(size_t id) {
+    qDebug() << "unregisterHotkey(" << id << ")";
     #if defined(Q_OS_WIN) || defined(Q_OS_LINUX)
     Q_ASSERT(Registered.find(id) != Registered.end() && "Unregistered hotkey");
     #endif
@@ -125,6 +127,7 @@ void UGlobalHotkeys::unregisterHotkey(size_t id) {
 
 void UGlobalHotkeys::unregisterAllHotkeys()
 {
+ qDebug() << "unregisterAllHotkeys()";
 #ifdef Q_OS_WIN
     QSetIterator<size_t> i(Registered);
     while (i.hasNext()) {

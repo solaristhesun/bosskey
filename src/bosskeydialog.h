@@ -46,7 +46,7 @@ public:
     BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyManager);
     ~BossKeyDialog();
 
-    void closeEvent(QCloseEvent *e);
+    void closeEvent(QCloseEvent *e) override;
 
     enum HotKey {
         KeyCode_HideWindows = 0,
@@ -69,6 +69,7 @@ public slots:
     void hideWindows();
     void addWindow();
     void bringWindowToFront();
+    void tryRegisterHotkeys();
 
 private:
     void loadUserInterfaceSettings();

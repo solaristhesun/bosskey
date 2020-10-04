@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     src/bosskeydialog.cpp \
+    src/widgets/keysequencewidget.cpp \
     src/main.cpp \
     src/singlewindowlistviewmodel.cpp \
     src/widgets/singlekeysequenceedit.cpp \
@@ -38,6 +39,7 @@ SOURCES += \
 
 HEADERS += \
     src/bosskeydialog.h \
+    src/widgets/keysequencewidget.h \
     src/model/hiddenwindow.h \
     src/platforminterface.h \
     src/singlewindowlistviewmodel.h \
@@ -61,6 +63,7 @@ HEADERS += \
 
 FORMS += \
     src/bosskeydialog.ui \
+    src/keysequencewidget.ui \
     src/tableview.ui
 
 INCLUDEPATH += src/ libs/UGlobalHotkey/

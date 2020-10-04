@@ -12,5 +12,7 @@
         <file>famfamfam/application_put.png</file>
         <file>famfamfam/application_double.png</file>
         <file>misc/trash.png</file>
+        <file>fugue/application-blue.png</file>
+        <file>translations/qtbase_de.qm</file>
     </qresource>
 </RCC>
