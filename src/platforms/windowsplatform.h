@@ -50,6 +50,7 @@ private:
     QList<Window> windowList_;
     QList<Window> patternList_;
     Window window_;
+    HWND hForegroundWindow_;
 };
 
 #endif // WINDOWSPLATFORM_H

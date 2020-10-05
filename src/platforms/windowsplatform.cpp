@@ -34,6 +34,7 @@ void WindowsPlatform::showWindows()
 void WindowsPlatform::hideWindows(QList<Window> patternList)
 {
     patternList_ = patternList;
+    hForegroundWindow_ = ::GetForegroundWindow();
 
     ::EnumWindows([](HWND hWindow, LPARAM lParam) -> BOOL {
         if (IsWindowVisible(hWindow)) {
@@ -51,6 +52,7 @@ void WindowsPlatform::hideWindows(QList<Window> patternList)
                         HiddenWindow hiddenWindow;
                         hiddenWindow.hWindow = hWindow,
                         hiddenWindow.title = title,
+                        hiddenWindow.bForeground = (engine->hForegroundWindow_ == hWindow);
 
                         engine->hiddenWindows_.append(hiddenWindow);
                     }
@@ -177,6 +179,8 @@ void WindowsPlatform::showWindow(HiddenWindow window)
 {
     qDebug() << "showing" << getWindowTitle(window.hWindow);
     ::ShowWindow(window.hWindow, SW_SHOW);
+    if (window.bForeground)
+        ::SetForegroundWindow(window.hWindow);
     hiddenWindows_.removeOne(window);
 }
 

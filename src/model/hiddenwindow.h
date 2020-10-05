@@ -28,6 +28,7 @@ class HiddenWindow
 public:
     HWND hWindow;
     QString title;
+    bool bForeground;
 
     bool operator== (HiddenWindow rhs)
     {
