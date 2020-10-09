@@ -18,8 +18,11 @@
 
 #include "globals.h"
 
+#define QUOTE(string) _QUOTE(string)
+#define _QUOTE(string) #string
+
 const QString Globals::ApplicationName = "BossKey";
-const SoftwareVersion Globals::ApplicationVersion = SoftwareVersion("2020.10c");
+const SoftwareVersion Globals::ApplicationVersion = SoftwareVersion(QUOTE(BOSSKEY_VERSION));
 const QString Globals::ApplicationFullName = Globals::ApplicationName + " " + Globals::ApplicationVersion.toString();
 const QString Globals::ApplicationWebsite = "https://scheler.com/bosskey/";
 const quint32 Globals::ApplicationRevision = REVISION;
