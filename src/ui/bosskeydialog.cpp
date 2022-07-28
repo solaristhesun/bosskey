@@ -220,6 +220,8 @@ void BossKeyDialog::showEvent(QShowEvent *event)
     ui_->tabWidget->setCurrentIndex(0);
     timer_.stop();
 
+    QWidget::showNormal();
+    QWidget::resize(1000, 650);
     QDialog::showEvent(event);
 }
 
@@ -240,17 +242,21 @@ void BossKeyDialog::hideEvent(QHideEvent *event)
 
 void BossKeyDialog::changeEvent(QEvent *event)
 {
-    QDialog::changeEvent(event);
-
     if (event != nullptr) {
         switch(event->type()) {
         case QEvent::LanguageChange:
             retranslateUserInterface();
             break;
+        case QEvent::WindowStateChange:
+            if (QWidget::windowState() & Qt::WindowMinimized) {
+                QTimer::singleShot(0, this, SLOT(hide()));
+            }
         default:
             break;
         }
     }
+
+    QDialog::changeEvent(event);
 }
 
 void BossKeyDialog::retranslateUserInterface()
