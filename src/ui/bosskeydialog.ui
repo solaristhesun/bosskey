@@ -14,7 +14,7 @@
    <string notr="true">BossKey</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../assets/bosskey.qrc">
+   <iconset resource="../../assets/bosskey.qrc">
     <normaloff>:/appicon/leader.svg</normaloff>:/appicon/leader.svg</iconset>
   </property>
   <property name="styleSheet">
@@ -56,11 +56,11 @@ QTabBar::tab { height: 35px; }
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="windowsTab">
       <attribute name="icon">
-       <iconset resource="../assets/bosskey.qrc">
+       <iconset resource="../../assets/bosskey.qrc">
         <normaloff>:/fugue/application-blue.png</normaloff>:/fugue/application-blue.png</iconset>
       </attribute>
       <attribute name="title">
@@ -151,7 +151,7 @@ QTabBar::tab { height: 35px; }
 </string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../assets/bosskey.qrc">
+                 <iconset resource="../../assets/bosskey.qrc">
                   <normaloff>:/arrow-circle-double-135</normaloff>:/arrow-circle-double-135</iconset>
                 </property>
                 <property name="autoDefault">
@@ -174,7 +174,7 @@ QTabBar::tab { height: 35px; }
                  <string>Hide this window</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../assets/bosskey.qrc">
+                 <iconset resource="../../assets/bosskey.qrc">
                   <normaloff>:/famfamfam/application_put.png</normaloff>:/famfamfam/application_put.png</iconset>
                 </property>
                 <property name="autoDefault">
@@ -197,7 +197,7 @@ QTabBar::tab { height: 35px; }
                  <string>Bring this window to the front</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../assets/bosskey.qrc">
+                 <iconset resource="../../assets/bosskey.qrc">
                   <normaloff>:/famfamfam/application_double.png</normaloff>:/famfamfam/application_double.png</iconset>
                 </property>
                 <property name="autoDefault">
@@ -284,7 +284,7 @@ QTabBar::tab { height: 35px; }
                <bool>false</bool>
               </attribute>
               <attribute name="verticalHeaderDefaultSectionSize">
-               <number>28</number>
+               <number>30</number>
               </attribute>
              </widget>
             </item>
@@ -311,7 +311,7 @@ QTabBar::tab { height: 35px; }
                  <string notr="true">margin-top: -1px;</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../assets/bosskey.qrc">
+                 <iconset resource="../../assets/bosskey.qrc">
                   <normaloff>:/famfamfam/application_get.png</normaloff>:/famfamfam/application_get.png</iconset>
                 </property>
                 <property name="autoDefault">
@@ -334,7 +334,7 @@ QTabBar::tab { height: 35px; }
                  <string>Clear list</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../assets/bosskey.qrc">
+                 <iconset resource="../../assets/bosskey.qrc">
                   <normaloff>:/misc/trash.png</normaloff>:/misc/trash.png</iconset>
                 </property>
                 <property name="autoDefault">
@@ -451,7 +451,7 @@ QTabBar::tab { height: 35px; }
                  <string notr="true">margin-top: -1px;</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../assets/bosskey.qrc">
+                 <iconset resource="../../assets/bosskey.qrc">
                   <normaloff>:/misc/trash.png</normaloff>:/misc/trash.png</iconset>
                 </property>
                 <property name="autoDefault">
@@ -483,7 +483,7 @@ QTabBar::tab { height: 35px; }
      </widget>
      <widget class="QWidget" name="settingsTab">
       <attribute name="icon">
-       <iconset resource="../assets/bosskey.qrc">
+       <iconset resource="../../assets/bosskey.qrc">
         <normaloff>:/gear</normaloff>:/gear</iconset>
       </attribute>
       <attribute name="title">
@@ -671,7 +671,7 @@ padding: 8px;</string>
   </layout>
   <action name="actionExit">
    <property name="icon">
-    <iconset resource="../assets/bosskey.qrc">
+    <iconset resource="../../assets/bosskey.qrc">
      <normaloff>:/door-open-out</normaloff>:/door-open-out</iconset>
    </property>
    <property name="text">
@@ -680,7 +680,7 @@ padding: 8px;</string>
   </action>
   <action name="actionShowDialog">
    <property name="icon">
-    <iconset resource="../assets/bosskey.qrc">
+    <iconset resource="../../assets/bosskey.qrc">
      <normaloff>:/wrench-screwdriver</normaloff>:/wrench-screwdriver</iconset>
    </property>
    <property name="text">
@@ -689,7 +689,7 @@ padding: 8px;</string>
   </action>
   <action name="actionShowAbout">
    <property name="icon">
-    <iconset resource="../assets/bosskey.qrc">
+    <iconset resource="../../assets/bosskey.qrc">
      <normaloff>:/information-white</normaloff>:/information-white</iconset>
    </property>
    <property name="text">
@@ -728,7 +728,7 @@ padding: 8px;</string>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../assets/bosskey.qrc"/>
+  <include location="../../assets/bosskey.qrc"/>
  </resources>
  <connections>
   <connection>
