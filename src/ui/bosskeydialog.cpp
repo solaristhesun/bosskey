@@ -28,7 +28,7 @@
 #include "ui_bosskeydialog.h"
 
 BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyManager)
-    : QDialog(nullptr, Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
+    : QDialog(nullptr, Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint)
     , ui_(new Ui::BossKeyDialog)
     , platform_(engine)
     , hotkeyManager_(hotkeyManager)
