@@ -47,7 +47,8 @@ void WindowsPlatform::hideWindows(QList<Window> patternList)
                 if (window.processImage == imageName) {
                     if (window.ignoreTitle || window.title == title) {
                         qDebug() << "hiding" << title << hWindow;
-                        ShowWindow(hWindow, SW_HIDE);
+                        //::ShowWindow(hWindow, SW_HIDE);
+                        ::SetWindowPos(hWindow, NULL, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE|SWP_NOZORDER|SWP_HIDEWINDOW);
 
                         HiddenWindow hiddenWindow;
                         hiddenWindow.hWindow = hWindow,
@@ -178,7 +179,8 @@ QList<HiddenWindow> WindowsPlatform::getHiddenWindowList() const
 void WindowsPlatform::showWindow(HiddenWindow window)
 {
     qDebug() << "showing" << getWindowTitle(window.hWindow);
-    ::ShowWindow(window.hWindow, SW_SHOW);
+    //::ShowWindow(window.hWindow, SW_SHOW);
+    ::SetWindowPos(window.hWindow, NULL, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE|SWP_NOZORDER|SWP_SHOWWINDOW);
     if (window.bForeground)
         ::SetForegroundWindow(window.hWindow);
     hiddenWindows_.removeOne(window);
