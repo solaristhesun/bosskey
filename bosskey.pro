@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/misc/taskexecutor.cpp \
     src/model/windowpattern.cpp \
     src/ui/bosskeydialog.cpp \
     src/widgets/fileselector.cpp \
@@ -42,6 +43,7 @@ SOURCES += \
 }
 
 HEADERS += \
+    src/misc/taskexecutor.h \
     src/model/windowpattern.h \
     src/ui/bosskeydialog.h \
     src/platforms/platforminterface.h \

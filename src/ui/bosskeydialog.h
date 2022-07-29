@@ -26,10 +26,12 @@
 #include <QTimer>
 #include <QItemSelection>
 #include <QTranslator>
+#include <QSettings>
 
 #include "model/windowlistviewmodel.h"
 #include "model/singlewindowlistviewmodel.h"
 #include "model/hiddenwindow.h"
+#include "misc/taskexecutor.h"
 
 namespace Ui {
 class BossKeyDialog;
@@ -100,6 +102,8 @@ private:
     WindowListViewModel patternList_;
     SingleWindowListViewModel bringToFrontList_;
     QString language_;
+    TaskExecutor taskExecutor_;
+    QSettings settings_;
 };
 
 #endif // BOSSKEYDIALOG_H

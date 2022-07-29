@@ -38,7 +38,7 @@ FileSelector::~FileSelector()
 void FileSelector::openFileDialog()
 {
     QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::AnyFile);
+    dialog.setFileMode(QFileDialog::ExistingFile);
     dialog.setDirectory(QStandardPaths::standardLocations(QStandardPaths::DesktopLocation).first());
     dialog.setNameFilter(tr("Executables (*.exe *.bat *.cmd)"));
     dialog.setViewMode(QFileDialog::Detail);

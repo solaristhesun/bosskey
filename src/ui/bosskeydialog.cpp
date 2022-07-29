@@ -16,7 +16,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QSettings>
 #include <QMessageBox>
 #include <QSortFilterProxyModel>
 #include <QDirIterator>
@@ -67,11 +66,9 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
 
     loadSettings();
 
-    QSettings settings;
-
     connect(&timer_, SIGNAL(timeout()), this, SLOT(onTimeout()));
 
-    if (settings.value("auto_hide", false).toBool()) {
+    if (settings_.value("auto_hide", false).toBool()) {
         timer_.start(1000);
     }
 
@@ -104,21 +101,19 @@ BossKeyDialog::~BossKeyDialog()
 
 void BossKeyDialog::setupHotkeys()
 {
-    QSettings settings;
-
     try {
-        hotkeyManager_.registerHotkey(settings.value("hotkey_hide", "Ctrl+F12").toString(), KeyCode_HideWindows);
-        hotkeyManager_.registerHotkey(settings.value("hotkey_show", "Ctrl+F11").toString(), KeyCode_ShowWindows);
+        hotkeyManager_.registerHotkey(settings_.value("hotkey_hide", "Ctrl+F12").toString(), KeyCode_HideWindows);
+        hotkeyManager_.registerHotkey(settings_.value("hotkey_show", "Ctrl+F11").toString(), KeyCode_ShowWindows);
     }
     catch (UException& e) {
         qDebug() << "exception: " << e.what();
     }
 
     QList<QKeySequence> sequenceHide;
-    sequenceHide.push_back(QKeySequence(settings.value("hotkey_hide", "Ctrl+F12").toString()));
+    sequenceHide.push_back(QKeySequence(settings_.value("hotkey_hide", "Ctrl+F12").toString()));
 
     QList<QKeySequence> sequenceShow;
-    sequenceShow.push_back(QKeySequence(settings.value("hotkey_show", "Ctrl+F11").toString()));
+    sequenceShow.push_back(QKeySequence(settings_.value("hotkey_show", "Ctrl+F11").toString()));
 
     ui_->actionHideWindows->setShortcuts(sequenceHide);
     ui_->actionShowWindows->setShortcuts(sequenceShow);
@@ -190,6 +185,12 @@ void BossKeyDialog::showWindows()
     refreshTrayToolTip();
     refreshWindowsMenu();
     trayIcon->show();
+
+    auto filename = settings_.value("show_hook_filename", QString()).toString();
+
+    if (!filename.isEmpty()) {
+        taskExecutor_.execute(filename);
+    }
 }
 
 void BossKeyDialog::hideWindows()
@@ -209,6 +210,12 @@ void BossKeyDialog::hideWindows()
 
         refreshTrayToolTip();
         refreshWindowsMenu();
+
+        auto filename = settings_.value("hide_hook_filename", QString()).toString();
+
+        if (!filename.isEmpty()) {
+            taskExecutor_.execute(filename);
+        }
     }
 }
 
@@ -234,8 +241,7 @@ void BossKeyDialog::hideEvent(QHideEvent *event)
     patternList_.saveToSettings("hide");
     bringToFrontList_.saveToSettings("bringToFront");
 
-    QSettings settings;
-    if (settings.value("auto_hide", false).toBool()) {
+    if (settings_.value("auto_hide", false).toBool()) {
         timer_.start(1000);
     }
 }
@@ -269,17 +275,15 @@ void BossKeyDialog::retranslateUserInterface()
 
 void BossKeyDialog::saveSettings()
 {
-    QSettings settings;
-
-    settings.setValue("hotkey_hide", ui_->keySequenceEditHide->keySequence().toString());
-    settings.setValue("hotkey_show", ui_->keySequenceEditShow->keySequence().toString());
-    settings.setValue("hide_icon", ui_->hideSystrayIconCheckBox->isChecked());
-    settings.setValue("auto_hide", ui_->autoHideCheckBox->isChecked());
-    settings.setValue("auto_hide_interval", ui_->autoHideIntervalEdit->text());
-    settings.setValue("hide_on_click", ui_->hideOnClickCheckBox->isChecked());
-    settings.setValue("hide_systray_icons", ui_->hideInSystrayCheckBox->isChecked());
-    settings.setValue("hide_hook_filename", ui_->onHideFileSelector->filename());
-    settings.setValue("show_hook_filename", ui_->onShowFileSelector->filename());
+    settings_.setValue("hotkey_hide", ui_->keySequenceEditHide->keySequence().toString());
+    settings_.setValue("hotkey_show", ui_->keySequenceEditShow->keySequence().toString());
+    settings_.setValue("hide_icon", ui_->hideSystrayIconCheckBox->isChecked());
+    settings_.setValue("auto_hide", ui_->autoHideCheckBox->isChecked());
+    settings_.setValue("auto_hide_interval", ui_->autoHideIntervalEdit->text());
+    settings_.setValue("hide_on_click", ui_->hideOnClickCheckBox->isChecked());
+    settings_.setValue("hide_systray_icons", ui_->hideInSystrayCheckBox->isChecked());
+    settings_.setValue("hide_hook_filename", ui_->onHideFileSelector->filename());
+    settings_.setValue("show_hook_filename", ui_->onShowFileSelector->filename());
 }
 
 void BossKeyDialog::refreshTrayMenu()
@@ -338,9 +342,7 @@ void BossKeyDialog::systemTracActivated(QSystemTrayIcon::ActivationReason reason
 {
     if (reason == QSystemTrayIcon::QSystemTrayIcon::Trigger)
     {
-        QSettings settings;
-
-        if (settings.value("hide_on_click", true).toBool())
+        if (settings_.value("hide_on_click", true).toBool())
         {
             if (platform_.isHidden())
             {
@@ -378,10 +380,8 @@ void BossKeyDialog::quitApplication()
 
 void BossKeyDialog::onTimeout()
 {
-    QSettings settings;
-
-    if (settings.value("auto_hide", false).toBool() && !QDialog::isVisible()) {
-        uint autoHideTime = settings.value("auto_hide_interval", 5).toUInt();
+    if (settings_.value("auto_hide", false).toBool() && !QDialog::isVisible()) {
+        uint autoHideTime = settings_.value("auto_hide_interval", 5).toUInt();
         if (platform_.getUserIdleTime() >= autoHideTime) {
             hideWindows();
         }
@@ -405,8 +405,7 @@ void BossKeyDialog::languageChanged(int index)
     if (locale != language_) {
         qDebug() << "languageChanged" << locale;
         loadLanguage(locale);
-        QSettings settings;
-        settings.setValue("language", locale);
+        settings_.setValue("language", locale);
         language_ = locale;
     }
 }
@@ -428,24 +427,20 @@ void BossKeyDialog::switchTranslator(QTranslator& translator, const QString& fil
 
 void BossKeyDialog::loadSettings()
 {
-    QSettings settings;
-
-    ui_->keySequenceEditHide->setKeySequence(QKeySequence(settings.value("hotkey_hide", "Ctrl+F12").toString()));
-    ui_->keySequenceEditShow->setKeySequence(QKeySequence(settings.value("hotkey_show", "Ctrl+F11").toString()));
-    ui_->hideSystrayIconCheckBox->setChecked(settings.value("hide_icon", false).toBool());
-    ui_->autoHideCheckBox->setChecked(settings.value("auto_hide", false).toBool());
-    ui_->hideInSystrayCheckBox->setChecked(settings.value("hide_systray_icons", true).toBool());
-    ui_->autoHideIntervalEdit->setText(QString::number(settings.value("auto_hide_interval", 5).toInt()));
+    ui_->keySequenceEditHide->setKeySequence(QKeySequence(settings_.value("hotkey_hide", "Ctrl+F12").toString()));
+    ui_->keySequenceEditShow->setKeySequence(QKeySequence(settings_.value("hotkey_show", "Ctrl+F11").toString()));
+    ui_->hideSystrayIconCheckBox->setChecked(settings_.value("hide_icon", false).toBool());
+    ui_->autoHideCheckBox->setChecked(settings_.value("auto_hide", false).toBool());
+    ui_->hideInSystrayCheckBox->setChecked(settings_.value("hide_systray_icons", true).toBool());
+    ui_->autoHideIntervalEdit->setText(QString::number(settings_.value("auto_hide_interval", 5).toInt()));
     ui_->autoHideIntervalEdit->setEnabled(ui_->autoHideCheckBox->isChecked());
-    ui_->hideOnClickCheckBox->setChecked(settings.value("hide_on_click", true).toBool());
-    ui_->onHideFileSelector->setFilename(settings.value("hide_hook_filename", QString()).toString());
-    ui_->onShowFileSelector->setFilename(settings.value("show_hook_filename", QString()).toString());
+    ui_->hideOnClickCheckBox->setChecked(settings_.value("hide_on_click", true).toBool());
+    ui_->onHideFileSelector->setFilename(settings_.value("hide_hook_filename", QString()).toString());
+    ui_->onShowFileSelector->setFilename(settings_.value("show_hook_filename", QString()).toString());
 }
 
 void BossKeyDialog::setupLocalization()
 {
-    QSettings settings;
-
     QString defaultLocale = QLocale::system().name(); // e.g. "de_DE"
     defaultLocale.truncate(defaultLocale.lastIndexOf('_')); // e.g. "de"
 
@@ -460,7 +455,7 @@ void BossKeyDialog::setupLocalization()
         qDebug() << "adding" << lang << locale;
     }
 
-    int index = ui_->languageComboBox->findData(settings.value("language", defaultLocale));
+    int index = ui_->languageComboBox->findData(settings_.value("language", defaultLocale));
 
     if (index != -1) {
         ui_->languageComboBox->setCurrentIndex(index);
