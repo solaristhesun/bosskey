@@ -103,7 +103,9 @@ RESOURCES += \
 win32:RC_FILE += bosskey.rc
 win32:CONFIG += embed_manifest_exe
 
+win32 {
 QMAKE_CXXFLAGS += /FI"qdebug.h"
+}
 
 TRANSLATIONS += \
     assets/translations/bosskey_en.ts \
