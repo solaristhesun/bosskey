@@ -34,13 +34,13 @@ void WindowsPlatform::showWindows()
     trayIcons_.showIcons();
 }
 
-void WindowsPlatform::hideWindows(QList<Window> patternList)
+void WindowsPlatform::hideWindows(QList<WindowPattern> patternList)
 {
     patternList_ = patternList;
     hForegroundWindow_ = ::GetForegroundWindow();
 
     ::EnumWindows([](HWND hWindow, LPARAM lParam) -> BOOL {
-        if (IsWindowVisible(hWindow)) {
+        if (::IsWindowVisible(hWindow)) {
             WindowsPlatform* engine = reinterpret_cast<WindowsPlatform*>(lParam);
 
             QString title = engine->getWindowTitle(hWindow);
@@ -70,7 +70,7 @@ void WindowsPlatform::hideWindows(QList<Window> patternList)
     trayIcons_.hideIcons(patternList_);
 }
 
-QList<Window> WindowsPlatform::getWindowList()
+QList<WindowPattern> WindowsPlatform::getWindowList()
 {
     windowList_.clear();
 
@@ -78,18 +78,18 @@ QList<Window> WindowsPlatform::getWindowList()
         if (IsWindowVisible(hWindow)) {
             WindowsPlatform* engine = reinterpret_cast<WindowsPlatform*>(lParam);
 
-            Window w;
-            w.processImage = engine->getProcessImageName(hWindow);
-            w.title = engine->getWindowTitle(hWindow);
+            WindowPattern pattern;
+            pattern.processImage = engine->getProcessImageName(hWindow);
+            pattern.title = engine->getWindowTitle(hWindow);
 
-            if (w.processImage.contains("WindowsInternal.ComposableShell.Experiences.TextInput.InputApp.exe"))
+            if (pattern.processImage.contains("WindowsInternal.ComposableShell.Experiences.TextInput.InputApp.exe"))
                 return TRUE;
 
-            if (w.processImage.contains("bosskey.exe"))
+            if (pattern.processImage.contains("bosskey.exe"))
                 return TRUE;
 
-            if (!w.title.isEmpty()) {
-                engine->windowList_.append(w);
+            if (!pattern.title.isEmpty()) {
+                engine->windowList_.append(pattern);
             }
         }
         return TRUE;
@@ -137,12 +137,12 @@ QString WindowsPlatform::getProcessImageName(HWND hWindow) const
     return WindowsHelper::getImageNameFromPid(dwProcessId);
 }
 
-void WindowsPlatform::bringToFront(Window window)
+void WindowsPlatform::bringToFront(WindowPattern window)
 {
     window_ = window;
 
     ::EnumWindows([](HWND hWindow, LPARAM lParam) -> BOOL {
-        if (IsWindowVisible(hWindow)) {
+        if (::IsWindowVisible(hWindow)) {
             WindowsPlatform* engine = reinterpret_cast<WindowsPlatform*>(lParam);
 
             QString title = engine->getWindowTitle(hWindow);

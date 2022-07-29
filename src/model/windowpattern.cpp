@@ -20,21 +20,21 @@
 #include <QCoreApplication>
 #include <QDataStream>
 
-#include "window.h"
+#include "windowpattern.h"
 
-Window::Window()
+WindowPattern::WindowPattern()
     : ignoreTitle(false)
 {
     // empty
 }
 
-QString Window::fileName() const
+QString WindowPattern::fileName() const
 {
     QFileInfo info(processImage);
     return info.fileName();
 }
 
-QString Window::getText() const
+QString WindowPattern::getText() const
 {
     if (ignoreTitle)
         return QCoreApplication::translate("Window", "(any title)");
@@ -42,18 +42,18 @@ QString Window::getText() const
         return title;
 }
 
-bool Window::operator== (Window rhs)
+bool WindowPattern::operator== (WindowPattern rhs)
 {
     return rhs.processImage == this->processImage && (rhs.title == this->title || this->ignoreTitle);
 }
 
-QDataStream &operator<<(QDataStream &ds, const Window&w)
+QDataStream &operator<<(QDataStream &ds, const WindowPattern&w)
 {
     ds << w.title << w.processImage << w.ignoreTitle;
     return ds;
 }
 
-QDataStream &operator >> (QDataStream &ds, Window &w)
+QDataStream &operator >> (QDataStream &ds, WindowPattern &w)
 {
     ds >> w.title;
     ds >> w.processImage;

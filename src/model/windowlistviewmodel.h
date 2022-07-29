@@ -21,7 +21,7 @@
 
 #include <QAbstractListModel>
 
-#include "model/window.h"
+#include "model/windowpattern.h"
 
 class WindowListViewModel : public QAbstractListModel
 {
@@ -41,17 +41,17 @@ public:
     QStringList mimeTypes() const override;
 
     void clear();
-    virtual void addWindow(Window w);
+    virtual void addWindow(WindowPattern w);
     void removeItem(const QModelIndex& index);
     void toggleIgnoreTitle(const QModelIndex& index);
-    void setWindowList(QList<Window> windowList);
-    QList<Window> getWindowList() const;
+    void setWindowList(QList<WindowPattern> windowList);
+    QList<WindowPattern> getWindowList() const;
     void saveToSettings(QString key);
     void loadFromSettings(QString key);
-    Window getWindow(const QModelIndex& index);
+    WindowPattern getWindow(const QModelIndex& index);
 
 protected:
-    QList<Window> windowList_;
+    QList<WindowPattern> windowList_;
 };
 
 #endif // WINDOWLISTVIEWMODEL_H

@@ -5,7 +5,7 @@ LinuxPlatform::LinuxPlatform()
 
 }
 
-void LinuxPlatform::hideWindows(QList<Window> patternList)
+void LinuxPlatform::hideWindows(QList<WindowPattern> patternList)
 {
 
 }
@@ -15,7 +15,7 @@ void LinuxPlatform::showWindows()
 
 }
 
-QList<Window> LinuxPlatform::getWindowList()
+QList<WindowPattern> LinuxPlatform::getWindowList()
 {
 
 }
@@ -30,7 +30,7 @@ quint32 LinuxPlatform::getUserIdleTime() const
 
 }
 
-void LinuxPlatform::bringToFront(Window window)
+void LinuxPlatform::bringToFront(WindowPattern window)
 {
 
 }

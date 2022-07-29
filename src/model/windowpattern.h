@@ -16,15 +16,15 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WINDOW_H
-#define WINDOW_H
+#ifndef WINDOWPATTERN_H
+#define WINDOWPATTERN_H
 
 #include <QString>
 
-class Window
+class WindowPattern
 {
 public:
-    Window();
+    WindowPattern();
 
     QString title;
     QString processImage;
@@ -34,10 +34,10 @@ public:
 
     QString fileName() const;
 
-    bool operator== (Window rhs);
+    bool operator== (WindowPattern rhs);
 };
 
-QDataStream &operator<<(QDataStream &ds, const Window&w);
-QDataStream &operator>>(QDataStream &ds, Window &w);
+QDataStream &operator<<(QDataStream &ds, const WindowPattern&p);
+QDataStream &operator>>(QDataStream &ds, WindowPattern &p);
 
-#endif // WINDOW_H
+#endif // WINDOWPATTERN_H

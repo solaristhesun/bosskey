@@ -43,7 +43,6 @@ public:
 private:
     QString imageName_;
     NOTIFYICONDATA notifyIconData_;
-
 };
 
 #endif // SYSTEMTRAYICON_H

@@ -26,7 +26,7 @@ class SingleWindowListViewModel: public WindowListViewModel
 public:
     SingleWindowListViewModel(QObject *parent = nullptr);
 
-    void addWindow(Window w) override;
+    void addWindow(WindowPattern w) override;
 };
 
 #endif // SINGLEWINDOWLISTVIEWMODEL_H

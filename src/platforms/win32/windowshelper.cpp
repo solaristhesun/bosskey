@@ -16,8 +16,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "platforms/windowshelper.h"
-#include "platforms/process.h"
+#include "platforms/win32/windowshelper.h"
+#include "platforms/win32/process.h"
 
 QString WindowsHelper::getImageNameFromPid(DWORD dwProcessId)
 {

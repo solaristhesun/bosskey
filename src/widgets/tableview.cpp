@@ -63,7 +63,7 @@ void TableView::paintEvent(QPaintEvent *e)
 void TableView::drawEmptyText()
 {
     QPainter p(QTableView::viewport());
-    p.setPen(QColor("#666666"));
+    p.setPen(QColor(0x666666));
     QFont font = p.font();
     font.setPixelSize(13);
     p.setFont(font);
@@ -77,8 +77,8 @@ void TableView::showContextMenu(const QPoint & pos)
     auto index = QTableView::indexAt(pos);
 
     if (index.isValid()) {
-        Window w = model()->getWindow(index);
-        ui_->actionToggleIgnoreTitle->setChecked(w.ignoreTitle);
+        WindowPattern pattern = model()->getWindow(index);
+        ui_->actionToggleIgnoreTitle->setChecked(pattern.ignoreTitle);
         contextMenu.addAction(ui_->actionToggleIgnoreTitle);
         contextMenu.addAction(ui_->actionRemoveItem);
         contextMenu.addSeparator();

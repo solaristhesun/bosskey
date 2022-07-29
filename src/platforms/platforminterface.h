@@ -22,7 +22,7 @@
 #include <QList>
 #include <QPoint>
 
-#include "model/window.h"
+#include "model/windowpattern.h"
 #include "model/hiddenwindow.h"
 
 class PlatformInterface
@@ -30,13 +30,13 @@ class PlatformInterface
 public:
     virtual ~PlatformInterface() {}
 
-    virtual void hideWindows(QList<Window> patternList) =0;
+    virtual void hideWindows(QList<WindowPattern> patternList) =0;
     virtual void showWindows() =0;
     virtual void showWindow(HiddenWindow window) =0;
-    virtual QList<Window> getWindowList() =0;
+    virtual QList<WindowPattern> getWindowList() =0;
     virtual bool isHidden() const =0;
     virtual quint32 getUserIdleTime() const =0;
-    virtual void bringToFront(Window window) =0;
+    virtual void bringToFront(WindowPattern window) =0;
     virtual int hiddenWindowsCount() const =0;
     virtual QList<HiddenWindow> getHiddenWindowList() const =0;
     virtual QPoint getCursorPos() const =0;

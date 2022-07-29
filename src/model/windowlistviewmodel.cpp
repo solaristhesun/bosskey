@@ -32,7 +32,7 @@ WindowListViewModel::WindowListViewModel(QObject *parent)
     // empty
 }
 
-void WindowListViewModel::addWindow(Window w)
+void WindowListViewModel::addWindow(WindowPattern w)
 {
     if (!windowList_.contains(w)) {
         beginInsertRows(QModelIndex(), windowList_.length(), windowList_.length());
@@ -41,17 +41,17 @@ void WindowListViewModel::addWindow(Window w)
     }
 }
 
-void WindowListViewModel::setWindowList(QList<Window> windowList)
+void WindowListViewModel::setWindowList(QList<WindowPattern> windowList)
 {
     beginResetModel();
     windowList_ = windowList;
-    std::sort(windowList_.begin(), windowList_.end(), [](const Window&a, const Window&b) -> bool {
+    std::sort(windowList_.begin(), windowList_.end(), [](const WindowPattern&a, const WindowPattern&b) -> bool {
         return a.fileName() < b.fileName();
     });
     endResetModel();
 }
 
-QList<Window> WindowListViewModel::getWindowList() const
+QList<WindowPattern> WindowListViewModel::getWindowList() const
 {
     return windowList_;
 }
@@ -146,7 +146,7 @@ QMimeData *WindowListViewModel::mimeData(const QModelIndexList &indexes) const
 
     foreach (QModelIndex index, indexes) {
         if (index.isValid()) {
-            Window w = windowList_.at(index.row());
+            WindowPattern w = windowList_.at(index.row());
             w.ignoreTitle = false;
             stream << w;
         }
@@ -173,7 +173,7 @@ bool WindowListViewModel::dropMimeData(const QMimeData *data, Qt::DropAction act
     if (action == Qt::IgnoreAction)
         return true;
 
-    Window w;
+    WindowPattern w;
 
     QByteArray encodedData = data->data("application/vnd.text.list");
     QDataStream stream(&encodedData, QIODevice::ReadOnly);
@@ -196,7 +196,7 @@ void WindowListViewModel::toggleIgnoreTitle(const QModelIndex &index)
     if (!index.isValid())
         return;
 
-    Window& w = windowList_[index.row()];
+    WindowPattern& w = windowList_[index.row()];
     w.ignoreTitle = !w.ignoreTitle;
 
     emit dataChanged(index, index);
@@ -227,7 +227,7 @@ void WindowListViewModel::loadFromSettings(QString key)
     windowList_.clear();
     for (int i = 0; i < size; ++i) {
         settings.setArrayIndex(i);
-        Window w;
+        WindowPattern w;
         w.processImage = settings.value("ProcessImage").toString();
         w.title = settings.value("WindowTitle").toString();
         w.ignoreTitle = settings.value("IgnoreTitle").toBool();
@@ -238,7 +238,7 @@ void WindowListViewModel::loadFromSettings(QString key)
     settings.endArray();
 }
 
-Window WindowListViewModel::getWindow(const QModelIndex& index)
+WindowPattern WindowListViewModel::getWindow(const QModelIndex& index)
 {
     return windowList_.at(index.row());
 }

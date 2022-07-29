@@ -20,8 +20,6 @@
 #include <psapi.h>
 #include <CommCtrl.h>
 
-#include <QDebug>
-
 #include "platforms/win32/systemtray.h"
 #include "platforms/win32/systemtrayicon.h"
 #include "platforms/win32/process.h"
@@ -32,7 +30,7 @@ SystemTray::SystemTray()
     // empty
 }
 
-void SystemTray::hideIcons(QList<Window> patternList)
+void SystemTray::hideIcons(QList<WindowPattern> patternList)
 {
     HWND hWnd = getTrayToolbarHandle();
 
@@ -49,17 +47,17 @@ void SystemTray::hideIcons(QList<Window> patternList)
         ::SendMessage(hWnd, TB_GETBUTTON, i, (LPARAM)lpData);
 
         TBBUTTON buttonData;
-        ReadProcessMemory(process.handle(), lpData, (LPVOID)&buttonData, sizeof(TBBUTTON), NULL);
+        ::ReadProcessMemory(process.handle(), lpData, (LPVOID)&buttonData, sizeof(TBBUTTON), NULL);
 
         TRAYDATA trayData;
-        ReadProcessMemory(process.handle(), (LPCVOID)buttonData.dwData, (LPVOID)&trayData, sizeof(TRAYDATA), NULL);
+        ::ReadProcessMemory(process.handle(), (LPCVOID)buttonData.dwData, (LPVOID)&trayData, sizeof(TRAYDATA), NULL);
 
         DWORD dwProcessId = 0;
-        GetWindowThreadProcessId(trayData.hwnd, &dwProcessId);
+        ::GetWindowThreadProcessId(trayData.hwnd, &dwProcessId);
 
         QString imageName = WindowsHelper::getImageNameFromPid(dwProcessId);
 
-        for (auto pattern: patternList) {
+        for (auto pattern: qAsConst(patternList)) {
             if (pattern.processImage == imageName) {
                 SystemTrayIcon trayIcon(imageName, trayData);
                 trayIcon.hide();
@@ -75,7 +73,7 @@ void SystemTray::hideIcons(QList<Window> patternList)
 
 void SystemTray::showIcons()
 {
-    for (auto trayIcon: hiddenTrayIcons_) {
+    for (auto trayIcon: qAsConst(hiddenTrayIcons_)) {
         trayIcon.show();
     }
     hiddenTrayIcons_.clear();

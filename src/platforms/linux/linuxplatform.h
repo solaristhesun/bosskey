@@ -8,12 +8,12 @@ class LinuxPlatform : public PlatformInterface
 public:
     LinuxPlatform();
 
-    void hideWindows(QList<Window> patternList);
+    void hideWindows(QList<WindowPattern> patternList);
     void showWindows();
-    QList<Window> getWindowList();
+    QList<WindowPattern> getWindowList();
     bool isHidden() const;
     quint32 getUserIdleTime() const;
-    void bringToFront(Window window);
+    void bringToFront(WindowPattern window);
 };
 
 #endif // LINUXPLATFORM_H

@@ -31,10 +31,10 @@ class WindowsPlatform: public PlatformInterface
 public:
     WindowsPlatform();
 
-    void hideWindows(QList<Window> patternList);
+    void hideWindows(QList<WindowPattern> patternList);
     void showWindows();
-    void bringToFront(Window window);
-    QList<Window> getWindowList();
+    void bringToFront(WindowPattern window);
+    QList<WindowPattern> getWindowList();
     bool isHidden() const;
     quint32 getUserIdleTime() const;
     int hiddenWindowsCount() const;
@@ -46,16 +46,13 @@ private:
     QString getWindowTitle(HWND hWindow) const;
     QString getProcessImageName(HWND hWindow) const;
 
-    void hideTrayIcons(void);
-    void showTrayIcons(void);
-
 private:
     SystemTray trayIcons_;
     QList<HiddenWindow> hiddenWindows_;
-    QList<Window> windowList_;
-    QList<Window> patternList_;
+    QList<WindowPattern> windowList_;
+    QList<WindowPattern> patternList_;
 
-    Window window_;
+    WindowPattern window_;
     HWND hForegroundWindow_;
 };
 

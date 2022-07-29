@@ -17,13 +17,12 @@
  */
 
 #include <QRegularExpression>
-#include <QDebug>
 
-#include "softwareversion.h"
+#include "misc/softwareversion.h"
 
 SoftwareVersion::SoftwareVersion(QString versionString)
 {
-    QRegularExpression re("^([0-9]+)\\.([0-9]+)([a-z]?)$");
+    static QRegularExpression re("^([0-9]+)\\.([0-9]+)([a-z]?)$");
     QRegularExpressionMatch match = re.match(versionString);
 
     if (match.hasMatch())
@@ -43,7 +42,7 @@ bool SoftwareVersion::isValid() const
 
 QString SoftwareVersion::toString() const
 {
-    return QString("%1.%2%3").arg(versionMajor_, 4).arg(versionMinor_).arg(versionPatch_);
+    return QString("%1.%2%3").arg(versionMajor_, 4).arg(versionMinor_, 2, 10, QChar('0')).arg(versionPatch_);
 }
 
 quint16 SoftwareVersion::versionMajor() const

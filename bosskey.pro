@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/model/windowpattern.cpp \
     src/ui/bosskeydialog.cpp \
     src/widgets/keysequencewidget.cpp \
     src/main.cpp \
@@ -24,7 +25,6 @@ SOURCES += \
     src/misc/globals.cpp \
     src/misc/softwareversion.cpp \
     src/model/singlewindowlistviewmodel.cpp \
-    src/model/window.cpp \
     src/model/windowlistviewmodel.cpp
 
 win32 {
@@ -41,6 +41,7 @@ SOURCES += \
 }
 
 HEADERS += \
+    src/model/windowpattern.h \
     src/ui/bosskeydialog.h \
     src/platforms/platforminterface.h \
     src/widgets/singlekeysequenceedit.h \
@@ -48,7 +49,6 @@ HEADERS += \
     src/widgets/keysequencewidget.h \
     src/misc/softwareversion.h \
     src/misc/globals.h \
-    src/model/window.h \
     src/model/hiddenwindow.h \
     src/model/windowlistviewmodel.h \
     src/model/singlewindowlistviewmodel.h
@@ -85,7 +85,7 @@ isEmpty(REVISION){
     REVISION = 0
 }
 
-BOSSKEY_VERSION=2020.10c
+BOSSKEY_VERSION=2022.08a
 
 DEFINES += REVISION=$${REVISION}
 DEFINES += BOSSKEY_VERSION=$${BOSSKEY_VERSION}

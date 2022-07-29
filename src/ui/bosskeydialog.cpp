@@ -356,7 +356,7 @@ void BossKeyDialog::showAboutDialog()
 {
     const QString contents = QString(
         "<p><font color=#000080><font size=6><b>%1</b></font> <font size=4>(revision %2)</font></font></p>"
-        "<p align=left>Copyright &copy; 2020 Stefan Scheler. %3</p>"
+        "<p align=left>Copyright &copy; 2020-2022 Stefan Scheler. %3</p>"
         "<p><a href=\"%4\">%5</a></p>"
         "<p>The program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.</p>"
         "<p>Icons made by <a href=\"https://www.flaticon.com/authors/freepik\" title=\"Freepik\">Freepik</a> from <a href=\"https://www.flaticon.com/\" title=\"Flaticon\">www.flaticon.com</a></p>"

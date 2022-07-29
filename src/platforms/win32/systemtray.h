@@ -23,7 +23,7 @@
 
 #include <QList>
 
-#include "model/window.h"
+#include "model/windowpattern.h"
 #include "platforms/win32/systemtrayicon.h"
 
 class SystemTray
@@ -31,7 +31,7 @@ class SystemTray
 public:
     SystemTray();
 
-    void hideIcons(QList<Window> patternList);
+    void hideIcons(QList<WindowPattern> patternList);
     void showIcons();
 
 private:
