@@ -29,12 +29,15 @@ SOURCES += \
 
 win32 {
 SOURCES += \
-    src/platforms/windowsplatform.cpp
+    src/platforms/win32/windowsplatform.cpp \
+    src/platforms/win32/systemtray.cpp \
+    src/platforms/win32/systemtrayicon.cpp \
+    src/platforms/win32/windowshelper.cpp \
 }
 
 linux-g++* {
 SOURCES += \
-    src/platforms/linuxplatform.cpp
+    src/platforms/linux/linuxplatform.cpp
 }
 
 HEADERS += \
@@ -52,12 +55,16 @@ HEADERS += \
 
 win32 {
 HEADERS += \
-    src/platforms/windowsplatform.h
+    src/platforms/win32/windowsplatform.h \
+    src/platforms/win32/process.h \
+    src/platforms/win32/systemtray.h \
+    src/platforms/win32/systemtrayicon.h \
+    src/platforms/win32/windowshelper.h \
 }
 
 linux-g++* {
 HEADERS += \
-    src/platforms/linuxplatform.h
+    src/platforms/linux/linuxplatform.h
 }
 
 FORMS += \

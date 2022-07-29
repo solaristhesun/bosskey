@@ -24,6 +24,7 @@
 #include <Windows.h>
 
 #include "platforms/platforminterface.h"
+#include "platforms/win32/systemtray.h"
 
 class WindowsPlatform: public PlatformInterface
 {
@@ -45,10 +46,15 @@ private:
     QString getWindowTitle(HWND hWindow) const;
     QString getProcessImageName(HWND hWindow) const;
 
+    void hideTrayIcons(void);
+    void showTrayIcons(void);
+
 private:
+    SystemTray trayIcons_;
     QList<HiddenWindow> hiddenWindows_;
     QList<Window> windowList_;
     QList<Window> patternList_;
+
     Window window_;
     HWND hForegroundWindow_;
 };

@@ -16,8 +16,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "platforms/windowsplatform.h"
-#include "model/windowlistviewmodel.h"
+#include <QDebug>
+
+#include "platforms/win32/windowsplatform.h"
+#include "platforms/win32/windowshelper.h"
 
 WindowsPlatform::WindowsPlatform()
 {
@@ -29,6 +31,7 @@ void WindowsPlatform::showWindows()
     for (auto window : hiddenWindows_) {
         showWindow(window);
     }
+    trayIcons_.showIcons();
 }
 
 void WindowsPlatform::hideWindows(QList<Window> patternList)
@@ -46,7 +49,7 @@ void WindowsPlatform::hideWindows(QList<Window> patternList)
             for (auto window: engine->patternList_) {
                 if (window.processImage == imageName) {
                     if (window.ignoreTitle || window.title == title) {
-                        qDebug() << "hiding" << title << hWindow;
+                        qDebug() << "hiding" << title << hWindow << imageName;
                         //::ShowWindow(hWindow, SW_HIDE);
                         ::SetWindowPos(hWindow, NULL, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE|SWP_NOZORDER|SWP_HIDEWINDOW);
 
@@ -55,6 +58,7 @@ void WindowsPlatform::hideWindows(QList<Window> patternList)
                         hiddenWindow.title = title,
                         hiddenWindow.bForeground = (engine->hForegroundWindow_ == hWindow);
 
+
                         engine->hiddenWindows_.append(hiddenWindow);
                     }
                 }
@@ -62,6 +66,8 @@ void WindowsPlatform::hideWindows(QList<Window> patternList)
         }
         return TRUE;
     }, reinterpret_cast<LPARAM>(this));
+
+    trayIcons_.hideIcons(patternList_);
 }
 
 QList<Window> WindowsPlatform::getWindowList()
@@ -128,19 +134,7 @@ QString WindowsPlatform::getProcessImageName(HWND hWindow) const
     DWORD dwProcessId = 0;
     ::GetWindowThreadProcessId(hWindow, &dwProcessId);
 
-    HANDLE hProcess = ::OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, FALSE, dwProcessId);
-
-    if (hProcess != NULL) {
-        DWORD value = MAX_PATH;
-        wchar_t imageName[MAX_PATH] = {0};
-
-        ::QueryFullProcessImageName(hProcess, 0, imageName, &value);
-        ::CloseHandle(hProcess);
-
-        return QString::fromStdWString(std::wstring(&imageName[0]));
-    }
-
-    return QString();
+    return WindowsHelper::getImageNameFromPid(dwProcessId);
 }
 
 void WindowsPlatform::bringToFront(Window window)
@@ -179,10 +173,14 @@ QList<HiddenWindow> WindowsPlatform::getHiddenWindowList() const
 void WindowsPlatform::showWindow(HiddenWindow window)
 {
     qDebug() << "showing" << getWindowTitle(window.hWindow);
+
     //::ShowWindow(window.hWindow, SW_SHOW);
     ::SetWindowPos(window.hWindow, NULL, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE|SWP_NOZORDER|SWP_SHOWWINDOW);
-    if (window.bForeground)
+
+    if (window.bForeground) {
         ::SetForegroundWindow(window.hWindow);
+    }
+
     hiddenWindows_.removeOne(window);
 }
 
