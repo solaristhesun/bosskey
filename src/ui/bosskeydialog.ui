@@ -56,7 +56,7 @@ QTabBar::tab { height: 35px; }
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="windowsTab">
       <attribute name="icon">
@@ -550,6 +550,29 @@ QTabBar::tab { height: 35px; }
         </widget>
        </item>
        <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Command Hooks</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="FileSelector" name="onHideFileSelector" native="true">
+            <property name="label" stdset="0">
+             <string>On hide script:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="FileSelector" name="onShowFileSelector" native="true">
+            <property name="label" stdset="0">
+             <string>On show script:</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
         <widget class="QGroupBox" name="miscGroupBox">
          <property name="title">
           <string>Misc</string>
@@ -732,6 +755,12 @@ padding: 8px;</string>
    <slots>
     <signal>editingFinished()</signal>
    </slots>
+  </customwidget>
+  <customwidget>
+   <class>FileSelector</class>
+   <extends>QWidget</extends>
+   <header>widgets/fileselector.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

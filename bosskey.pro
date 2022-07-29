@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     src/model/windowpattern.cpp \
     src/ui/bosskeydialog.cpp \
+    src/widgets/fileselector.cpp \
     src/widgets/keysequencewidget.cpp \
     src/main.cpp \
     src/widgets/singlekeysequenceedit.cpp \
@@ -44,6 +45,7 @@ HEADERS += \
     src/model/windowpattern.h \
     src/ui/bosskeydialog.h \
     src/platforms/platforminterface.h \
+    src/widgets/fileselector.h \
     src/widgets/singlekeysequenceedit.h \
     src/widgets/tableview.h \
     src/widgets/keysequencewidget.h \
@@ -69,6 +71,7 @@ HEADERS += \
 
 FORMS += \
     src/ui/bosskeydialog.ui \
+    src/widgets/fileselector.ui \
     src/widgets/keysequencewidget.ui \
     src/widgets/tableview.ui
 

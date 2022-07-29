@@ -278,6 +278,8 @@ void BossKeyDialog::saveSettings()
     settings.setValue("auto_hide_interval", ui_->autoHideIntervalEdit->text());
     settings.setValue("hide_on_click", ui_->hideOnClickCheckBox->isChecked());
     settings.setValue("hide_systray_icons", ui_->hideInSystrayCheckBox->isChecked());
+    settings.setValue("hide_hook_filename", ui_->onHideFileSelector->filename());
+    settings.setValue("show_hook_filename", ui_->onShowFileSelector->filename());
 }
 
 void BossKeyDialog::refreshTrayMenu()
@@ -436,6 +438,8 @@ void BossKeyDialog::loadSettings()
     ui_->autoHideIntervalEdit->setText(QString::number(settings.value("auto_hide_interval", 5).toInt()));
     ui_->autoHideIntervalEdit->setEnabled(ui_->autoHideCheckBox->isChecked());
     ui_->hideOnClickCheckBox->setChecked(settings.value("hide_on_click", true).toBool());
+    ui_->onHideFileSelector->setFilename(settings.value("hide_hook_filename", QString()).toString());
+    ui_->onShowFileSelector->setFilename(settings.value("show_hook_filename", QString()).toString());
 }
 
 void BossKeyDialog::setupLocalization()
