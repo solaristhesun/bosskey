@@ -25,9 +25,9 @@
 
 struct TRAYDATA
 {
-    HWND hwnd;
-    UINT uID;
-    UINT uCallbackMessage;
+    HWND  hwnd;
+    UINT  uID;
+    UINT  uCallbackMessage;
     DWORD Reserved[2];
     HICON hIcon;
 };
@@ -41,7 +41,7 @@ public:
     void hide();
 
 private:
-    QString imageName_;
+    QString        imageName_;
     NOTIFYICONDATA notifyIconData_;
 };
 

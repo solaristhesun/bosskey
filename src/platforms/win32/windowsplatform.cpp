@@ -17,6 +17,7 @@
  */
 
 #include <QDebug>
+#include <QSettings>
 
 #include "platforms/win32/windowsplatform.h"
 #include "platforms/win32/windowshelper.h"
@@ -36,6 +37,8 @@ void WindowsPlatform::showWindows()
 
 void WindowsPlatform::hideWindows(QList<WindowPattern> patternList)
 {
+    QSettings settings;
+
     patternList_ = patternList;
     hForegroundWindow_ = ::GetForegroundWindow();
 
@@ -67,7 +70,9 @@ void WindowsPlatform::hideWindows(QList<WindowPattern> patternList)
         return TRUE;
     }, reinterpret_cast<LPARAM>(this));
 
-    trayIcons_.hideIcons(patternList_);
+    if (settings.value("hide_systray_icons", true).toBool()) {
+        trayIcons_.hideIcons(patternList_);
+    }
 }
 
 QList<WindowPattern> WindowsPlatform::getWindowList()
@@ -75,7 +80,7 @@ QList<WindowPattern> WindowsPlatform::getWindowList()
     windowList_.clear();
 
     ::EnumWindows([](HWND hWindow, LPARAM lParam) -> BOOL {
-        if (IsWindowVisible(hWindow)) {
+        if (::IsWindowVisible(hWindow)) {
             WindowsPlatform* engine = reinterpret_cast<WindowsPlatform*>(lParam);
 
             WindowPattern pattern;

@@ -526,6 +526,13 @@ QTabBar::tab { height: 35px; }
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_11">
           <item>
+           <widget class="QCheckBox" name="hideInSystrayCheckBox">
+            <property name="text">
+             <string>Hide windows in systray</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QCheckBox" name="hideSystrayIconCheckBox">
             <property name="text">
              <string>Hide Systray icon</string>

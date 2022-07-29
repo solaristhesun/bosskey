@@ -65,7 +65,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
 
     ui_->autoHideIntervalEdit->setValidator(new QIntValidator(0, 7200, this));
 
-    loadUserInterfaceSettings();
+    loadSettings();
 
     QSettings settings;
 
@@ -229,7 +229,7 @@ void BossKeyDialog::hideEvent(QHideEvent *event)
 {
     QDialog::hideEvent(event);
 
-    saveHotkeys();
+    saveSettings();
     setupHotkeys();
     patternList_.saveToSettings("hide");
     bringToFrontList_.saveToSettings("bringToFront");
@@ -267,7 +267,7 @@ void BossKeyDialog::retranslateUserInterface()
     refreshWindowsMenu();
 }
 
-void BossKeyDialog::saveHotkeys()
+void BossKeyDialog::saveSettings()
 {
     QSettings settings;
 
@@ -277,6 +277,7 @@ void BossKeyDialog::saveHotkeys()
     settings.setValue("auto_hide", ui_->autoHideCheckBox->isChecked());
     settings.setValue("auto_hide_interval", ui_->autoHideIntervalEdit->text());
     settings.setValue("hide_on_click", ui_->hideOnClickCheckBox->isChecked());
+    settings.setValue("hide_systray_icons", ui_->hideInSystrayCheckBox->isChecked());
 }
 
 void BossKeyDialog::refreshTrayMenu()
@@ -302,7 +303,7 @@ void BossKeyDialog::refreshWindowsMenu()
     windowsMenu_.setTitle(tr("Hidden windows"));
     windowsMenu_.clear();
 
-    for (auto window: windowList) {
+    for (auto window: qAsConst(windowList)) {
         windowsMenu_.addAction(window.title, [=] () { showWindow(window); });
     }
 
@@ -423,7 +424,7 @@ void BossKeyDialog::switchTranslator(QTranslator& translator, const QString& fil
         qApp->installTranslator(&translator);
 }
 
-void BossKeyDialog::loadUserInterfaceSettings()
+void BossKeyDialog::loadSettings()
 {
     QSettings settings;
 
@@ -431,6 +432,7 @@ void BossKeyDialog::loadUserInterfaceSettings()
     ui_->keySequenceEditShow->setKeySequence(QKeySequence(settings.value("hotkey_show", "Ctrl+F11").toString()));
     ui_->hideSystrayIconCheckBox->setChecked(settings.value("hide_icon", false).toBool());
     ui_->autoHideCheckBox->setChecked(settings.value("auto_hide", false).toBool());
+    ui_->hideInSystrayCheckBox->setChecked(settings.value("hide_systray_icons", true).toBool());
     ui_->autoHideIntervalEdit->setText(QString::number(settings.value("auto_hide_interval", 5).toInt()));
     ui_->autoHideIntervalEdit->setEnabled(ui_->autoHideCheckBox->isChecked());
     ui_->hideOnClickCheckBox->setChecked(settings.value("hide_on_click", true).toBool());
