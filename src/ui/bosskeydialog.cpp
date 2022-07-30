@@ -215,7 +215,7 @@ void BossKeyDialog::showEvent(QShowEvent* event)
     timer_.stop();
 
     QWidget::showNormal();
-    QWidget::resize(1000, 650);
+    QWidget::resize(1200, 800);
     QDialog::showEvent(event);
 }
 
@@ -271,6 +271,8 @@ void BossKeyDialog::saveSettings()
     settings_.setValue("hide_systray_icons", ui_->hideInSystrayCheckBox->isChecked());
     settings_.setValue("hide_hook_filename", ui_->onHideFileSelector->filename());
     settings_.setValue("show_hook_filename", ui_->onShowFileSelector->filename());
+
+    platform_.setAutostartEnabled(ui_->autostartCheckBox->isChecked());
 }
 
 void BossKeyDialog::refreshTrayMenu()
@@ -418,6 +420,7 @@ void BossKeyDialog::loadSettings()
     ui_->hideOnClickCheckBox->setChecked(settings_.value("hide_on_click", true).toBool());
     ui_->onHideFileSelector->setFilename(settings_.value("hide_hook_filename", QString()).toString());
     ui_->onShowFileSelector->setFilename(settings_.value("show_hook_filename", QString()).toString());
+    ui_->autostartCheckBox->setChecked(platform_.isAutostartEnabled());
 }
 
 void BossKeyDialog::setupLocalization()

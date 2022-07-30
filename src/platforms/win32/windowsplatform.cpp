@@ -75,6 +75,16 @@ void WindowsPlatform::hideWindows(QList<WindowPattern> patternList)
     }
 }
 
+void WindowsPlatform::setAutostartEnabled(bool bEnabled)
+{
+    autostart_.setEnabled(bEnabled);
+}
+
+bool WindowsPlatform::isAutostartEnabled() const
+{
+    return autostart_.isEnabled();
+}
+
 QList<WindowPattern> WindowsPlatform::getWindowList()
 {
     windowList_.clear();

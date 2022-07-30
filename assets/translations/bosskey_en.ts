@@ -71,127 +71,137 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="502"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="505"/>
         <source>Hide Hotkey:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="512"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="515"/>
         <source>Show Hotkey:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="525"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="528"/>
         <source>Systray</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="538"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="541"/>
         <source>Hide Systray icon</source>
         <translation>Hide BossKey systray icon</translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="561"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="564"/>
         <source>Execute on hide:</source>
         <translation>Execute command on hide:</translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="568"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="571"/>
         <source>Execute on show:</source>
         <translation>Execute command on show:</translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="531"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="534"/>
         <source>Hide windows in systray</source>
         <translation>Hide systray icons</translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="545"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="548"/>
         <source>Hide windows with left click on systray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="555"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="558"/>
         <source>Hotkey Commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="580"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="581"/>
+        <source>Autostart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/bosskeydialog.ui" line="587"/>
+        <source>Start BossKey on windows startup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/bosskeydialog.ui" line="599"/>
         <source>Misc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="588"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="607"/>
         <source>Auto-Hide on inactivity after</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="617"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="636"/>
         <source>seconds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="642"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="661"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="696"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="724"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="712"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="740"/>
         <source>&amp;Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="721"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="749"/>
         <source>&amp;Preferences...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="730"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="758"/>
         <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="735"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="763"/>
         <source>Hide Windows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.ui" line="740"/>
+        <location filename="../../src/ui/bosskeydialog.ui" line="768"/>
         <source>Show windows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.cpp" line="308"/>
+        <location filename="../../src/ui/bosskeydialog.cpp" line="296"/>
         <source>Hidden windows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.cpp" line="271"/>
+        <location filename="../../src/ui/bosskeydialog.cpp" line="259"/>
         <source>If this software is useful to you, please consider making a donation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.cpp" line="369"/>
+        <location filename="../../src/ui/bosskeydialog.cpp" line="351"/>
         <source>All rights reserved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.cpp" line="369"/>
+        <location filename="../../src/ui/bosskeydialog.cpp" line="351"/>
         <source>Visit bosskey website</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.cpp" line="371"/>
+        <location filename="../../src/ui/bosskeydialog.cpp" line="353"/>
         <source>About bosskey</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/bosskeydialog.cpp" line="474"/>
+        <location filename="../../src/ui/bosskeydialog.cpp" line="455"/>
         <source>%1 hidden windows</source>
         <translation type="unfinished"></translation>
     </message>
@@ -199,17 +209,17 @@
 <context>
     <name>FileSelector</name>
     <message>
-        <location filename="../../src/widgets/fileselector.cpp" line="40"/>
+        <location filename="../../src/widgets/fileselector.cpp" line="39"/>
         <source>Select file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/widgets/fileselector.cpp" line="44"/>
+        <location filename="../../src/widgets/fileselector.cpp" line="43"/>
         <source>Executables (*.exe *.bat *.cmd)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/widgets/fileselector.cpp" line="46"/>
+        <location filename="../../src/widgets/fileselector.cpp" line="45"/>
         <source>Select</source>
         <translation type="unfinished"></translation>
     </message>

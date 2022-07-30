@@ -40,6 +40,8 @@ public:
     virtual int hiddenWindowsCount() const =0;
     virtual QList<HiddenWindow> getHiddenWindowList() const =0;
     virtual QPoint getCursorPos() const =0;
+    virtual void setAutostartEnabled(bool bEnabled) =0;
+    virtual bool isAutostartEnabled() const =0;
 };
 
 #endif // ENGINEINTERFACE_H

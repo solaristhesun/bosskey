@@ -73,4 +73,14 @@ QPoint LinuxPlatform::getCursorPos() const
     return QPoint();
 }
 
+void LinuxPlatform::setAutostartEnabled(bool bEnabled)
+{
+    // empty
+}
+
+bool LinuxPlatform::isAutostartEnabled() const
+{
+    return false;
+}
+
 // EOF <stefan@scheler.com>

@@ -16,28 +16,23 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LINUXPLATFORM_H
-#define LINUXPLATFORM_H
+#ifndef AUTOSTART_H
+#define AUTOSTART_H
 
-#include "platforms/platforminterface.h"
+#include <QSettings>
 
-class LinuxPlatform : public PlatformInterface
+class Autostart
 {
 public:
-    LinuxPlatform();
+    Autostart();
 
-    void hideWindows(QList<WindowPattern> patternList);
-    void showWindows();
-    void showWindow(HiddenWindow window);
-    QList<WindowPattern> getWindowList();
-    bool isHidden() const;
-    quint32 getUserIdleTime() const;
-    void bringToFront(WindowPattern window);
-    int hiddenWindowsCount() const ;
-    QList<HiddenWindow> getHiddenWindowList() const;
-    QPoint getCursorPos() const;
-    void setAutostartEnabled(bool bEnabled);
-    bool isAutostartEnabled() const;
+    void setEnabled(bool bEnabled);
+    bool isEnabled() const;
+
+private:
+    QSettings registry_;
 };
 
-#endif // LINUXPLATFORM_H
+#endif // AUTOSTART_H
+
+// EOF <stefan@scheler.com>

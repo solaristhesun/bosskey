@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     src/misc/taskexecutor.cpp \
     src/model/windowpattern.cpp \
+    src/platforms/win32/autostart.cpp \
     src/ui/bosskeydialog.cpp \
     src/widgets/fileselector.cpp \
     src/widgets/keysequencewidget.cpp \
@@ -45,6 +46,7 @@ SOURCES += \
 HEADERS += \
     src/misc/taskexecutor.h \
     src/model/windowpattern.h \
+    src/platforms/win32/autostart.h \
     src/ui/bosskeydialog.h \
     src/platforms/platforminterface.h \
     src/widgets/fileselector.h \

@@ -25,6 +25,7 @@
 
 #include "platforms/platforminterface.h"
 #include "platforms/win32/systemtray.h"
+#include "platforms/win32/autostart.h"
 
 class WindowsPlatform: public PlatformInterface
 {
@@ -41,6 +42,8 @@ public:
     QList<HiddenWindow> getHiddenWindowList() const;
     void showWindow(HiddenWindow window);
     QPoint getCursorPos() const;
+    void setAutostartEnabled(bool bEnabled);
+    bool isAutostartEnabled() const;
 
 private:
     QString getWindowTitle(HWND hWindow) const;
@@ -48,6 +51,7 @@ private:
 
 private:
     SystemTray trayIcons_;
+    Autostart autostart_;
     QList<HiddenWindow> hiddenWindows_;
     QList<WindowPattern> windowList_;
     QList<WindowPattern> patternList_;
