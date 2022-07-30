@@ -35,7 +35,7 @@ void TaskExecutor::execute(const QString& filename)
     {
         QProcess *process = new QProcess();
 
-        if (fileInfo.suffix() == "bat") {
+        if (fileInfo.suffix() == "bat" || fileInfo.suffix() == "cmd") {
             process->setProgram("cmd.exe");
             process->setArguments({ "/C", filename });
         }
@@ -43,7 +43,7 @@ void TaskExecutor::execute(const QString& filename)
             process->setProgram(filename);
         }
 
-        QObject::connect(process, SIGNAL(finished(int)), this, SLOT(onProcessFinished()));
+        QObject::connect(process, SIGNAL(finished(int)), this, SLOT(onProcessFinished(int)));
         QObject::connect(process, SIGNAL(finished(int)), process, SLOT(deleteLater()));
 
         qDebug() << "starting" << filename;
@@ -56,7 +56,7 @@ void TaskExecutor::onProcessFinished(int exitCode)
 {
     const auto process = qobject_cast<QProcess*>(QObject::sender());
 
-    qDebug() << "process"<< process->program() << "exited with error code" << exitCode;
+    qDebug() << "process"<< process->program() << process->arguments() << "exited with error code" << exitCode;
 }
 
 // EOF <stefan@scheler.com>

@@ -33,7 +33,6 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     , hotkeyManager_(hotkeyManager)
     , trayIconMenu_(this)
     , windowsMenu_(this)
-
 {
     ui_->setupUi(this);
 
@@ -84,6 +83,16 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
                 ui_->bringToTopButton->setEnabled(!selected.empty());
             });
 
+    QObject::connect(&hotkeyManager_, &UGlobalHotkeys::activated, [=](size_t id)
+                     {
+                         if (id == KeyCode_ShowWindows) {
+                             showWindows();
+                         }
+                         else {
+                             hideWindows();
+                         }
+                     });
+
     applyFocusLineHack(ui_->windowsTableView);
     applyFocusLineHack(ui_->patternTableView);
     applyFocusLineHack(ui_->bringToFrontTableView);
@@ -117,16 +126,6 @@ void BossKeyDialog::setupHotkeys()
 
     ui_->actionHideWindows->setShortcuts(sequenceHide);
     ui_->actionShowWindows->setShortcuts(sequenceShow);
-
-    QObject::connect(&hotkeyManager_, &UGlobalHotkeys::activated, [=](size_t id)
-    {
-        if (id == KeyCode_ShowWindows) {
-            showWindows();
-        }
-        else {
-            hideWindows();
-        }
-    });
 }
 
 void BossKeyDialog::tryRegisterHotkeys()
