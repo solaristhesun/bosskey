@@ -25,8 +25,7 @@ SoftwareVersion::SoftwareVersion(QString versionString)
     static QRegularExpression re("^([0-9]+)\\.([0-9]+)([a-z]?)$");
     QRegularExpressionMatch match = re.match(versionString);
 
-    if (match.hasMatch())
-    {
+    if (match.hasMatch()) {
         versionMajor_ = match.captured(1).toUShort();
         versionMinor_ = match.captured(2).toUShort();
         versionPatch_ = match.captured(3).constData()[0].toLatin1();
@@ -35,9 +34,7 @@ SoftwareVersion::SoftwareVersion(QString versionString)
 
 bool SoftwareVersion::isValid() const
 {
-    return versionMajor_ >= 1000 && versionMajor_ <= 9999 &&
-           versionMinor_ <= 12 &&
-           versionPatch_ >= 'a' && versionPatch_ <= 'z';
+    return versionMajor_ >= 1000 && versionMajor_ <= 9999 && versionMinor_ <= 12 && versionPatch_ >= 'a' && versionPatch_ <= 'z';
 }
 
 QString SoftwareVersion::toString() const
@@ -62,9 +59,7 @@ char SoftwareVersion::versionPatch() const
 
 bool SoftwareVersion::operator==(const SoftwareVersion& other)
 {
-    return (versionMajor() == other.versionMajor() &&
-            versionMinor() == other.versionMinor() &&
-            versionPatch() == other.versionPatch());
+    return (versionMajor() == other.versionMajor() && versionMinor() == other.versionMinor() && versionPatch() == other.versionPatch());
 }
 
 bool SoftwareVersion::operator!=(const SoftwareVersion& other)
@@ -74,20 +69,13 @@ bool SoftwareVersion::operator!=(const SoftwareVersion& other)
 
 bool SoftwareVersion::operator>(const SoftwareVersion& other)
 {
-    if (versionMajor() > other.versionMajor())
-    {
+    if (versionMajor() > other.versionMajor()) {
         return true;
-    }
-    else if (versionMajor() == other.versionMajor())
-    {
-        if (versionMinor() > other.versionMinor())
-        {
+    } else if (versionMajor() == other.versionMajor()) {
+        if (versionMinor() > other.versionMinor()) {
             return true;
-        }
-        else if (versionMinor() == other.versionMinor())
-        {
-            if (versionPatch() > other.versionPatch())
-            {
+        } else if (versionMinor() == other.versionMinor()) {
+            if (versionPatch() > other.versionPatch()) {
                 return true;
             }
         }
@@ -98,7 +86,7 @@ bool SoftwareVersion::operator>(const SoftwareVersion& other)
 
 bool SoftwareVersion::operator<(const SoftwareVersion& other)
 {
-    return !(*this > other) && ! (*this == other);
+    return !(*this > other) && !(*this == other);
 }
 
 bool SoftwareVersion::operator<=(const SoftwareVersion& other)

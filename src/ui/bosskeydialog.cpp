@@ -16,14 +16,14 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QDirIterator>
 #include <QMessageBox>
 #include <QSortFilterProxyModel>
-#include <QDirIterator>
 
-#include "ui/bosskeydialog.h"
+#include "misc/globals.h"
 #include "platforms/platforminterface.h"
 #include "uglobalhotkeys.h"
-#include "misc/globals.h"
+#include "ui/bosskeydialog.h"
 #include "ui_bosskeydialog.h"
 
 BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyManager)
@@ -47,7 +47,7 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
     createTrayIcon();
     refreshTrayMenu();
 
-    QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(this);
+    QSortFilterProxyModel* proxyModel = new QSortFilterProxyModel(this);
     proxyModel->setSourceModel(&windowList_);
     ui_->windowsTableView->setModel(proxyModel);
     ui_->patternTableView->setModel(&patternList_);
@@ -65,34 +65,23 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
 
     loadSettings();
 
-    connect(&timer_, SIGNAL(timeout()), this, SLOT(onTimeout()));
+    QObject::connect(&timer_, SIGNAL(timeout()), this, SLOT(onTimeout()));
 
     if (settings_.value("auto_hide", false).toBool()) {
         timer_.start(1000);
     }
 
     connect(ui_->patternTableView->selectionModel(), &QItemSelectionModel::selectionChanged, this,
-        [=](const QItemSelection & selected, const QItemSelection &)
-            {
-                ui_->removeButton->setEnabled(!selected.empty());
-            });
+        [=](const QItemSelection& selected, const QItemSelection&) {
+            ui_->removeButton->setEnabled(!selected.empty());
+        });
     connect(ui_->windowsTableView->selectionModel(), &QItemSelectionModel::selectionChanged, this,
-        [=](const QItemSelection & selected, const QItemSelection &)
-            {
-                ui_->addButton->setEnabled(!selected.empty());
-                ui_->bringToTopButton->setEnabled(!selected.empty());
-            });
+        [=](const QItemSelection& selected, const QItemSelection&) {
+            ui_->addButton->setEnabled(!selected.empty());
+            ui_->bringToTopButton->setEnabled(!selected.empty());
+        });
 
-    QObject::connect(&hotkeyManager_, &UGlobalHotkeys::activated, this,
-         [=](size_t id)
-             {
-                 if (id == KeyCode_ShowWindows) {
-                     showWindows();
-                 }
-                 else {
-                     hideWindows();
-                 }
-             });
+    QObject::connect(&hotkeyManager_, &UGlobalHotkeys::activated, this, &BossKeyDialog::onHotkeyPressed);
 
     applyFocusLineHack(ui_->windowsTableView);
     applyFocusLineHack(ui_->patternTableView);
@@ -114,8 +103,7 @@ void BossKeyDialog::setupHotkeys()
     try {
         hotkeyManager_.registerHotkey(settings_.value("hotkey_hide", "Ctrl+F12").toString(), KeyCode_HideWindows);
         hotkeyManager_.registerHotkey(settings_.value("hotkey_show", "Ctrl+F11").toString(), KeyCode_ShowWindows);
-    }
-    catch (UException& e) {
+    } catch (UException& e) {
         qDebug() << "exception: " << e.what();
     }
 
@@ -134,42 +122,41 @@ void BossKeyDialog::tryRegisterHotkeys()
     qDebug() << "tryRegisterHotkeys";
     auto hideSquence = ui_->keySequenceEditHide->keySequence();
 
-    if (!hideSquence.isEmpty())
-    {
-        if (hotkeyManager_.registerHotkey(hideSquence.toString(QKeySequence::PortableText), KeyCode_HideWindows))
-        {
+    if (!hideSquence.isEmpty()) {
+        if (hotkeyManager_.registerHotkey(hideSquence.toString(QKeySequence::PortableText), KeyCode_HideWindows)) {
             ui_->keySequenceEditHide->setStatus(KeySequenceWidget::Status_Valid);
-        }
-        else
-        {
+        } else {
             ui_->keySequenceEditHide->setStatus(KeySequenceWidget::Status_Invalid);
         }
-    }
-    else
-    {
+    } else {
         ui_->keySequenceEditHide->setStatus(KeySequenceWidget::Status_Unset);
     }
 
     auto showSquence = ui_->keySequenceEditShow->keySequence();
 
-    if (!showSquence.isEmpty())
-    {
-        if (hotkeyManager_.registerHotkey(showSquence.toString(QKeySequence::PortableText), KeyCode_ShowWindows))
-        {
+    if (!showSquence.isEmpty()) {
+        if (hotkeyManager_.registerHotkey(showSquence.toString(QKeySequence::PortableText), KeyCode_ShowWindows)) {
 
             ui_->keySequenceEditShow->setStatus(KeySequenceWidget::Status_Valid);
-        }
-        else
-        {
+        } else {
             ui_->keySequenceEditShow->setStatus(KeySequenceWidget::Status_Invalid);
         }
-    }
-    else
-    {
+    } else {
         ui_->keySequenceEditShow->setStatus(KeySequenceWidget::Status_Unset);
     }
 
     hotkeyManager_.unregisterAllHotkeys();
+}
+
+void BossKeyDialog::onHotkeyPressed(size_t keyCode)
+{
+    qDebug() << "HOTKEY" << keyCode;
+
+    if (keyCode == KeyCode_ShowWindows) {
+        showWindows();
+    } else {
+        hideWindows();
+    }
 }
 
 void BossKeyDialog::refreshVisibleWindowList()
@@ -219,7 +206,7 @@ void BossKeyDialog::hideWindows()
     }
 }
 
-void BossKeyDialog::showEvent(QShowEvent *event)
+void BossKeyDialog::showEvent(QShowEvent* event)
 {
     refreshVisibleWindowList();
     hotkeyManager_.unregisterAllHotkeys();
@@ -232,7 +219,7 @@ void BossKeyDialog::showEvent(QShowEvent *event)
     QDialog::showEvent(event);
 }
 
-void BossKeyDialog::hideEvent(QHideEvent *event)
+void BossKeyDialog::hideEvent(QHideEvent* event)
 {
     QDialog::hideEvent(event);
 
@@ -246,10 +233,10 @@ void BossKeyDialog::hideEvent(QHideEvent *event)
     }
 }
 
-void BossKeyDialog::changeEvent(QEvent *event)
+void BossKeyDialog::changeEvent(QEvent* event)
 {
     if (event != nullptr) {
-        switch(event->type()) {
+        switch (event->type()) {
         case QEvent::LanguageChange:
             retranslateUserInterface();
             break;
@@ -309,8 +296,8 @@ void BossKeyDialog::refreshWindowsMenu()
     windowsMenu_.setTitle(tr("Hidden windows"));
     windowsMenu_.clear();
 
-    for (const auto& window: qAsConst(windowList)) {
-        windowsMenu_.addAction(window.title, this, [=] () { showWindow(window); });
+    for (const auto& window : qAsConst(windowList)) {
+        windowsMenu_.addAction(window.title, this, [=]() { showWindow(window); });
     }
 
     windowsMenu_.setEnabled(windowList.count() > 0);
@@ -332,7 +319,7 @@ void BossKeyDialog::createTrayIcon()
     connect(trayIcon, &QSystemTrayIcon::activated, this, &BossKeyDialog::systemTracActivated);
 }
 
-void BossKeyDialog::closeEvent(QCloseEvent *e)
+void BossKeyDialog::closeEvent(QCloseEvent* e)
 {
     QDialog::hide();
     e->ignore();
@@ -340,21 +327,15 @@ void BossKeyDialog::closeEvent(QCloseEvent *e)
 
 void BossKeyDialog::systemTracActivated(QSystemTrayIcon::ActivationReason reason)
 {
-    if (reason == QSystemTrayIcon::QSystemTrayIcon::Trigger)
-    {
-        if (settings_.value("hide_on_click", true).toBool())
-        {
-            if (platform_.isHidden())
-            {
+    if (reason == QSystemTrayIcon::QSystemTrayIcon::Trigger) {
+        if (settings_.value("hide_on_click", true).toBool()) {
+            if (platform_.isHidden()) {
                 showWindows();
-            }
-            else
-            {
+            } else {
                 hideWindows();
             }
         }
     }
-
 }
 
 void BossKeyDialog::showAboutDialog()
@@ -367,7 +348,7 @@ void BossKeyDialog::showAboutDialog()
         "<p>Icons made by <a href=\"https://www.flaticon.com/authors/freepik\" title=\"Freepik\">Freepik</a> from <a href=\"https://www.flaticon.com/\" title=\"Flaticon\">www.flaticon.com</a></p>"
         "<p>Some icons made by <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam</a>. Licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution 3.0 License</a>.</p>"
         "<p>Some icons made by <a href=\"https://p.yusukekamiyamane.com/\">Yusuke Kamiyamane</a>. Licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution 3.0 License</a>.</p>")
-                             .arg(Globals::ApplicationFullName, QString::number(Globals::ApplicationRevision), tr("All rights reserved."), Globals::ApplicationWebsite, tr("Visit bosskey website"));
+                                 .arg(Globals::ApplicationFullName, QString::number(Globals::ApplicationRevision), tr("All rights reserved."), Globals::ApplicationWebsite, tr("Visit bosskey website"));
 
     QMessageBox::about(this, tr("About bosskey"), contents);
 }
@@ -393,7 +374,7 @@ void BossKeyDialog::enableDisableAutoHideIntervalEdit(bool bEnabled)
     ui_->autoHideIntervalEdit->setEnabled(bEnabled);
 }
 
-void BossKeyDialog::applyFocusLineHack(QWidget *widget)
+void BossKeyDialog::applyFocusLineHack(QWidget* widget)
 {
     widget->setStyleSheet(QString("QTableView::item::focus { outline: 0; background-color:%1; } QTableView { outline: 0; }").arg(this->palette().color(QPalette::Highlight).name()));
 }
@@ -421,7 +402,7 @@ void BossKeyDialog::switchTranslator(QTranslator& translator, const QString& fil
     qApp->removeTranslator(&translator);
 
     // load the new translator
-    if(translator.load(":/i18n/" + filename))
+    if (translator.load(":/i18n/" + filename))
         qApp->installTranslator(&translator);
 }
 
@@ -459,8 +440,7 @@ void BossKeyDialog::setupLocalization()
 
     if (index != -1) {
         ui_->languageComboBox->setCurrentIndex(index);
-    }
-    else {
+    } else {
         index = ui_->languageComboBox->findData("en");
         if (index != -1) {
             ui_->languageComboBox->setCurrentIndex(index);

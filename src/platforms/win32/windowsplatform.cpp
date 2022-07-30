@@ -19,8 +19,8 @@
 #include <QDebug>
 #include <QSettings>
 
-#include "platforms/win32/windowsplatform.h"
 #include "platforms/win32/windowshelper.h"
+#include "platforms/win32/windowsplatform.h"
 
 WindowsPlatform::WindowsPlatform()
 {
@@ -49,18 +49,17 @@ void WindowsPlatform::hideWindows(QList<WindowPattern> patternList)
             QString title = engine->getWindowTitle(hWindow);
             QString imageName = engine->getProcessImageName(hWindow);
 
-            for (const auto& window: qAsConst(engine->patternList_)) {
+            for (const auto& window : qAsConst(engine->patternList_)) {
                 if (window.processImage == imageName) {
                     if (window.ignoreTitle || window.title == title) {
                         qDebug() << "hiding" << title << hWindow << imageName;
                         //::ShowWindow(hWindow, SW_HIDE);
-                        ::SetWindowPos(hWindow, NULL, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE|SWP_NOZORDER|SWP_HIDEWINDOW);
+                        ::SetWindowPos(hWindow, NULL, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_HIDEWINDOW);
 
                         HiddenWindow hiddenWindow;
                         hiddenWindow.hWindow = hWindow,
                         hiddenWindow.title = title,
                         hiddenWindow.bForeground = (engine->hForegroundWindow_ == hWindow);
-
 
                         engine->hiddenWindows_.append(hiddenWindow);
                     }
@@ -68,7 +67,8 @@ void WindowsPlatform::hideWindows(QList<WindowPattern> patternList)
             }
         }
         return TRUE;
-    }, reinterpret_cast<LPARAM>(this));
+    },
+        reinterpret_cast<LPARAM>(this));
 
     if (settings.value("hide_systray_icons", true).toBool()) {
         trayIcons_.hideIcons(patternList_);
@@ -98,7 +98,8 @@ QList<WindowPattern> WindowsPlatform::getWindowList()
             }
         }
         return TRUE;
-    }, reinterpret_cast<LPARAM>(this));
+    },
+        reinterpret_cast<LPARAM>(this));
 
     return windowList_;
 }
@@ -162,7 +163,8 @@ void WindowsPlatform::bringToFront(WindowPattern window)
             }
         }
         return TRUE;
-    }, reinterpret_cast<LPARAM>(this));
+    },
+        reinterpret_cast<LPARAM>(this));
 }
 
 int WindowsPlatform::hiddenWindowsCount() const
@@ -180,7 +182,7 @@ void WindowsPlatform::showWindow(HiddenWindow window)
     qDebug() << "showing" << getWindowTitle(window.hWindow);
 
     //::ShowWindow(window.hWindow, SW_SHOW);
-    ::SetWindowPos(window.hWindow, NULL, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE|SWP_NOZORDER|SWP_SHOWWINDOW);
+    ::SetWindowPos(window.hWindow, NULL, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_SHOWWINDOW);
 
     if (window.bForeground) {
         ::SetForegroundWindow(window.hWindow);

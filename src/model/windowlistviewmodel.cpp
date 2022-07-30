@@ -16,17 +16,17 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QList>
-#include <QFileInfo>
+#include <QDebug>
 #include <QFileIconProvider>
+#include <QFileInfo>
 #include <QIcon>
+#include <QList>
 #include <QMimeData>
 #include <QSettings>
-#include <QDebug>
 
 #include "windowlistviewmodel.h"
 
-WindowListViewModel::WindowListViewModel(QObject *parent)
+WindowListViewModel::WindowListViewModel(QObject* parent)
     : QAbstractListModel(parent)
 {
     // empty
@@ -45,7 +45,7 @@ void WindowListViewModel::setWindowList(QList<WindowPattern> windowList)
 {
     QAbstractItemModel::beginResetModel();
     windowList_ = windowList;
-    std::sort(windowList_.begin(), windowList_.end(), [](const WindowPattern&a, const WindowPattern&b) -> bool {
+    std::sort(windowList_.begin(), windowList_.end(), [](const WindowPattern& a, const WindowPattern& b) -> bool {
         return a.fileName() < b.fileName();
     });
     QAbstractItemModel::endResetModel();
@@ -63,13 +63,13 @@ void WindowListViewModel::clear()
     endResetModel();
 }
 
-int WindowListViewModel::rowCount(const QModelIndex &parent) const
+int WindowListViewModel::rowCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent)
     return windowList_.length();
 }
 
-int WindowListViewModel::columnCount(const QModelIndex &parent ) const
+int WindowListViewModel::columnCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent)
     return 2;
@@ -82,20 +82,20 @@ QVariant WindowListViewModel::headerData(int section, Qt::Orientation orientatio
 
     if (orientation == Qt::Horizontal) {
         switch (section) {
-            case 0:
-                return tr("Process Name");
+        case 0:
+            return tr("Process Name");
 
-            case 1:
-                return tr("Window Title");
+        case 1:
+            return tr("Window Title");
 
-            default:
-                return QVariant();
+        default:
+            return QVariant();
         }
     }
     return QVariant();
 }
 
-QVariant WindowListViewModel::data(const QModelIndex &index, int role) const
+QVariant WindowListViewModel::data(const QModelIndex& index, int role) const
 {
     if (!index.isValid())
         return QVariant();
@@ -106,8 +106,7 @@ QVariant WindowListViewModel::data(const QModelIndex &index, int role) const
     if (role == Qt::DisplayRole || role == Qt::EditRole) {
         if (index.column() == 1) {
             return windowList_.at(index.row()).getText();
-        }
-        else  {
+        } else {
             QFileInfo info(windowList_.at(index.row()).processImage);
             return info.fileName();
         }
@@ -124,7 +123,7 @@ QVariant WindowListViewModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-Qt::ItemFlags WindowListViewModel::flags(const QModelIndex &index) const
+Qt::ItemFlags WindowListViewModel::flags(const QModelIndex& index) const
 {
     if (!index.isValid())
         return Qt::ItemIsDropEnabled;
@@ -134,12 +133,12 @@ Qt::ItemFlags WindowListViewModel::flags(const QModelIndex &index) const
 
 Qt::DropActions WindowListViewModel::supportedDropActions() const
 {
-    return Qt::CopyAction | Qt::MoveAction ;
+    return Qt::CopyAction | Qt::MoveAction;
 }
 
-QMimeData *WindowListViewModel::mimeData(const QModelIndexList &indexes) const
+QMimeData* WindowListViewModel::mimeData(const QModelIndexList& indexes) const
 {
-    QMimeData *mimeData = new QMimeData();
+    QMimeData* mimeData = new QMimeData();
     QByteArray encodedData;
 
     QDataStream stream(&encodedData, QIODevice::WriteOnly);
@@ -163,11 +162,11 @@ QStringList WindowListViewModel::mimeTypes() const
     return types;
 }
 
-bool WindowListViewModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent)
+bool WindowListViewModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent)
 {
     qDebug() << "drop";
 
-    if(!canDropMimeData(data, action, row, column, parent))
+    if (!canDropMimeData(data, action, row, column, parent))
         return false;
 
     if (action == Qt::IgnoreAction)
@@ -191,7 +190,7 @@ void WindowListViewModel::removeItem(const QModelIndex& index)
     endRemoveRows();
 }
 
-void WindowListViewModel::toggleIgnoreTitle(const QModelIndex &index)
+void WindowListViewModel::toggleIgnoreTitle(const QModelIndex& index)
 {
     if (!index.isValid())
         return;
@@ -211,7 +210,7 @@ void WindowListViewModel::saveToSettings(QString key)
 
     for (int i = 0; i < windowList_.size(); ++i) {
         settings.setArrayIndex(i);
-        settings.setValue("ProcessImage",  windowList_.at(i).processImage);
+        settings.setValue("ProcessImage", windowList_.at(i).processImage);
         settings.setValue("WindowTitle", windowList_.at(i).title);
         settings.setValue("IgnoreTitle", windowList_.at(i).ignoreTitle);
     }

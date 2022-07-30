@@ -16,9 +16,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QFileInfo>
 #include <QCoreApplication>
 #include <QDataStream>
+#include <QFileInfo>
 
 #include "windowpattern.h"
 
@@ -42,18 +42,18 @@ QString WindowPattern::getText() const
         return title;
 }
 
-bool WindowPattern::operator== (WindowPattern rhs)
+bool WindowPattern::operator==(WindowPattern rhs)
 {
     return rhs.processImage == this->processImage && (rhs.title == this->title || this->ignoreTitle);
 }
 
-QDataStream &operator<<(QDataStream &ds, const WindowPattern&w)
+QDataStream& operator<<(QDataStream& ds, const WindowPattern& w)
 {
     ds << w.title << w.processImage << w.ignoreTitle;
     return ds;
 }
 
-QDataStream &operator >> (QDataStream &ds, WindowPattern &w)
+QDataStream& operator>>(QDataStream& ds, WindowPattern& w)
 {
     ds >> w.title;
     ds >> w.processImage;

@@ -72,6 +72,7 @@ public slots:
     void addWindow();
     void bringWindowToFront();
     void tryRegisterHotkeys();
+    void onHotkeyPressed(size_t keyCode);
 
 private:
     void loadSettings();

@@ -25,7 +25,7 @@ QString WindowsHelper::getImageNameFromPid(DWORD dwProcessId)
 
     if (process.isValid()) {
         DWORD dwSize = MAX_PATH;
-        wchar_t imageName[MAX_PATH] = {0};
+        wchar_t imageName[MAX_PATH] = { 0 };
 
         ::QueryFullProcessImageName(process.handle(), 0, imageName, &dwSize);
 

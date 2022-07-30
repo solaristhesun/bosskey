@@ -16,9 +16,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QProcess>
-#include <QFileInfo>
 #include <QDebug>
+#include <QFileInfo>
+#include <QProcess>
 
 #include "misc/taskexecutor.h"
 
@@ -31,15 +31,13 @@ void TaskExecutor::execute(const QString& filename)
 {
     QFileInfo fileInfo(filename);
 
-    if (fileInfo.exists())
-    {
-        QProcess *process = new QProcess();
+    if (fileInfo.exists()) {
+        QProcess* process = new QProcess();
 
         if (fileInfo.suffix() == "bat" || fileInfo.suffix() == "cmd") {
             process->setProgram("cmd.exe");
             process->setArguments({ "/C", filename });
-        }
-        else {
+        } else {
             process->setProgram(filename);
         }
 
@@ -56,7 +54,7 @@ void TaskExecutor::onProcessFinished(int exitCode)
 {
     const auto process = qobject_cast<QProcess*>(QObject::sender());
 
-    qDebug() << "process"<< process->program() << process->arguments() << "exited with error code" << exitCode;
+    qDebug() << "process" << process->program() << process->arguments() << "exited with error code" << exitCode;
 }
 
 // EOF <stefan@scheler.com>

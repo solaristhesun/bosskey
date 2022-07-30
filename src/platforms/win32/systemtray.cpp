@@ -16,13 +16,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <windows.h>
-#include <psapi.h>
 #include <CommCtrl.h>
+#include <psapi.h>
+#include <windows.h>
 
+#include "platforms/win32/process.h"
 #include "platforms/win32/systemtray.h"
 #include "platforms/win32/systemtrayicon.h"
-#include "platforms/win32/process.h"
 #include "platforms/win32/windowshelper.h"
 
 SystemTray::SystemTray()
@@ -41,8 +41,7 @@ void SystemTray::hideIcons(QList<WindowPattern> patternList)
 
     Process process(PROCESS_ALL_ACCESS, FALSE, dwTrayPid);
 
-    for(int i=0; i<buttonCount; i++)
-    {
+    for (int i = 0; i < buttonCount; i++) {
         LPVOID lpData = VirtualAllocEx(process.handle(), NULL, sizeof(TBBUTTON), MEM_COMMIT, PAGE_READWRITE);
         ::SendMessage(hWnd, TB_GETBUTTON, i, (LPARAM)lpData);
 
@@ -57,7 +56,7 @@ void SystemTray::hideIcons(QList<WindowPattern> patternList)
 
         QString imageName = WindowsHelper::getImageNameFromPid(dwProcessId);
 
-        for (const auto& pattern: qAsConst(patternList)) {
+        for (const auto& pattern : qAsConst(patternList)) {
             if (pattern.processImage == imageName) {
                 SystemTrayIcon trayIcon(imageName, trayData);
                 trayIcon.hide();
@@ -67,13 +66,13 @@ void SystemTray::hideIcons(QList<WindowPattern> patternList)
             }
         }
 
-        VirtualFreeEx(process.handle(),lpData,NULL,MEM_RELEASE);
+        VirtualFreeEx(process.handle(), lpData, NULL, MEM_RELEASE);
     }
 }
 
 void SystemTray::showIcons()
 {
-    for (auto trayIcon: qAsConst(hiddenTrayIcons_)) {
+    for (auto trayIcon : qAsConst(hiddenTrayIcons_)) {
         trayIcon.show();
     }
     hiddenTrayIcons_.clear();
@@ -83,16 +82,13 @@ HWND SystemTray::getTrayToolbarHandle() const
 {
     HWND hWindow = ::FindWindow(L"Shell_TrayWnd", NULL);
 
-    if (hWindow)
-    {
+    if (hWindow) {
         hWindow = ::FindWindowEx(hWindow, NULL, L"TrayNotifyWnd", NULL);
 
-        if (hWindow)
-        {
+        if (hWindow) {
             hWindow = ::FindWindowEx(hWindow, NULL, L"SysPager", NULL);
 
-            if (hWindow)
-            {
+            if (hWindow) {
                 hWindow = ::FindWindowEx(hWindow, NULL, L"ToolbarWindow32", NULL);
             }
         }

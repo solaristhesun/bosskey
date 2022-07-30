@@ -22,7 +22,7 @@
 
 SystemTrayIcon::SystemTrayIcon(QString imageName, TRAYDATA trayData)
     : imageName_(imageName)
-    , notifyIconData_{0}
+    , notifyIconData_ { 0 }
 {
     notifyIconData_.cbSize = sizeof(notifyIconData_);
     notifyIconData_.hWnd = trayData.hwnd;
@@ -40,7 +40,6 @@ void SystemTrayIcon::show()
     notifyIconData_.dwState = 0;
 
     ::Shell_NotifyIcon(NIM_MODIFY, &notifyIconData_);
-
 }
 void SystemTrayIcon::hide()
 {

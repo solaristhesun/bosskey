@@ -21,7 +21,7 @@
 
 #include "singlekeysequenceedit.h"
 
-SingleKeySequenceEdit::SingleKeySequenceEdit(QWidget *parent)
+SingleKeySequenceEdit::SingleKeySequenceEdit(QWidget* parent)
     : QKeySequenceEdit(parent)
 {
     lineEdit_ = this->findChild<QLineEdit*>("qt_keysequenceedit_lineedit");
@@ -35,7 +35,7 @@ SingleKeySequenceEdit::~SingleKeySequenceEdit()
     // empty
 }
 
-void SingleKeySequenceEdit::keyPressEvent(QKeyEvent *pEvent)
+void SingleKeySequenceEdit::keyPressEvent(QKeyEvent* pEvent)
 {
     QKeySequenceEdit::keyPressEvent(pEvent);
 
@@ -57,7 +57,7 @@ QLineEdit* SingleKeySequenceEdit::lineEdit() const
     return lineEdit_;
 }
 
-bool SingleKeySequenceEdit::setProperty(const char *name, const QVariant &value)
+bool SingleKeySequenceEdit::setProperty(const char* name, const QVariant& value)
 {
     lineEdit_->setProperty(name, value);
 
@@ -70,10 +70,9 @@ void SingleKeySequenceEdit::refresh()
     lineEdit_->style()->polish(lineEdit_);
 }
 
-void SingleKeySequenceEdit::lineEditEdited(const QString &text)
+void SingleKeySequenceEdit::lineEditEdited(const QString& text)
 {
-    if (text.isEmpty())
-    {
+    if (text.isEmpty()) {
         setKeySequence(QKeySequence());
         emit editingFinished();
     }

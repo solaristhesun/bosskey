@@ -16,14 +16,14 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QPainter>
 #include <QMenu>
+#include <QPainter>
 
-#include "widgets/tableview.h"
 #include "model/windowlistviewmodel.h"
 #include "ui_tableview.h"
+#include "widgets/tableview.h"
 
-TableView::TableView(QWidget *parent)
+TableView::TableView(QWidget* parent)
     : QTableView(parent)
     , ui_(new Ui::TableView)
 {
@@ -35,7 +35,7 @@ TableView::~TableView()
     delete ui_;
 }
 
-void TableView::dropEvent(QDropEvent *event)
+void TableView::dropEvent(QDropEvent* event)
 {
     QTableView::dropEvent(event);
     QTableView::resizeColumnToContents(0);
@@ -52,7 +52,7 @@ QString TableView::emptyText() const
     return emptyText_;
 }
 
-void TableView::paintEvent(QPaintEvent *e)
+void TableView::paintEvent(QPaintEvent* e)
 {
     QTableView::paintEvent(e);
 
@@ -71,7 +71,7 @@ void TableView::drawEmptyText()
     p.drawText(QTableView::viewport()->rect(), Qt::AlignCenter, emptyText_);
 }
 
-void TableView::showContextMenu(const QPoint & pos)
+void TableView::showContextMenu(const QPoint& pos)
 {
     QMenu contextMenu;
 
@@ -113,12 +113,12 @@ void TableView::toggleIgnoreTitle()
     model()->toggleIgnoreTitle(index);
 }
 
-void TableView::changeEvent(QEvent *event)
+void TableView::changeEvent(QEvent* event)
 {
     QTableView::changeEvent(event);
 
     if (event != nullptr) {
-        switch(event->type()) {
+        switch (event->type()) {
         case QEvent::LanguageChange:
             ui_->retranslateUi(this);
             break;

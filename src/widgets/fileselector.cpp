@@ -19,10 +19,10 @@
 #include <QFileDialog>
 #include <QStandardPaths>
 
-#include "widgets/fileselector.h"
 #include "ui_fileselector.h"
+#include "widgets/fileselector.h"
 
-FileSelector::FileSelector(QWidget *parent)
+FileSelector::FileSelector(QWidget* parent)
     : QWidget(parent)
     , ui_(new Ui::FileSelector)
 {
@@ -86,9 +86,9 @@ QString FileSelector::getDirectory() const
     return directory;
 }
 
-bool FileSelector::event(QEvent *event)
+bool FileSelector::event(QEvent* event)
 {
-    switch(event->type()) {
+    switch (event->type()) {
     case QEvent::LanguageChange:
         ui_->retranslateUi(this);
         break;

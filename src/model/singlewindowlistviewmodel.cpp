@@ -16,10 +16,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #include "singlewindowlistviewmodel.h"
 
-SingleWindowListViewModel::SingleWindowListViewModel(QObject *parent)
+SingleWindowListViewModel::SingleWindowListViewModel(QObject* parent)
     : WindowListViewModel(parent)
 {
     // empty

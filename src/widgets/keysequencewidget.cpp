@@ -16,15 +16,15 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QStyle>
 #include <QLineEdit>
+#include <QStyle>
 
 #include "src/widgets/keysequencewidget.h"
 #include "ui_keysequencewidget.h"
 
-KeySequenceWidget::KeySequenceWidget(QWidget *parent) :
-    QWidget(parent),
-    ui_(new Ui::KeySequenceWidget)
+KeySequenceWidget::KeySequenceWidget(QWidget* parent)
+    : QWidget(parent)
+    , ui_(new Ui::KeySequenceWidget)
 {
     ui_->setupUi(this);
     ui_->hintLabel->hide();
@@ -39,8 +39,7 @@ KeySequenceWidget::~KeySequenceWidget()
 
 void KeySequenceWidget::setStatus(const SequenceStatus status)
 {
-    switch (status)
-    {
+    switch (status) {
     case Status_Invalid:
         ui_->keySequenceEdit->setProperty("invalid", true);
         ui_->keySequenceEdit->setProperty("valid", false);
@@ -73,14 +72,14 @@ QKeySequence KeySequenceWidget::keySequence() const
     return ui_->keySequenceEdit->keySequence();
 }
 
-void KeySequenceWidget::setKeySequence(const QKeySequence &keySequence)
+void KeySequenceWidget::setKeySequence(const QKeySequence& keySequence)
 {
     ui_->keySequenceEdit->setKeySequence(keySequence);
 }
 
-bool KeySequenceWidget::event(QEvent *event)
+bool KeySequenceWidget::event(QEvent* event)
 {
-    switch(event->type()) {
+    switch (event->type()) {
     case QEvent::LanguageChange:
         ui_->retranslateUi(this);
         break;
