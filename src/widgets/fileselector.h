@@ -22,8 +22,13 @@ public:
     void setLabel(const QString& text);
     QString label() const;
 
+    bool event(QEvent *event) override;
+
 public slots:
     void openFileDialog();
+
+private:
+    QString getStartDirectory() const;
 
 private:
     Ui::FileSelector *ui_;

@@ -550,22 +550,22 @@ QTabBar::tab { height: 35px; }
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox">
+        <widget class="QGroupBox" name="hotkeyHooksGroup">
          <property name="title">
-          <string>Command Hooks</string>
+          <string>Hotkey Commands</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
            <widget class="FileSelector" name="onHideFileSelector" native="true">
             <property name="label" stdset="0">
-             <string>On hide script:</string>
+             <string>Execute on hide:</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="FileSelector" name="onShowFileSelector" native="true">
             <property name="label" stdset="0">
-             <string>On show script:</string>
+             <string>Execute on show:</string>
             </property>
            </widget>
           </item>
@@ -573,85 +573,89 @@ QTabBar::tab { height: 35px; }
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="miscGroupBox">
-         <property name="title">
-          <string>Misc</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_6">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="0,0">
+         <item>
+          <widget class="QGroupBox" name="miscGroupBox">
+           <property name="title">
+            <string>Misc</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QCheckBox" name="autoHideCheckBox">
-              <property name="text">
-               <string>Auto-Hide on inactivity after</string>
-              </property>
-             </widget>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <widget class="QCheckBox" name="autoHideCheckBox">
+                <property name="text">
+                 <string>Auto-Hide on inactivity after</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="autoHideIntervalEdit">
+                <property name="maximumSize">
+                 <size>
+                  <width>40</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string notr="true">5</string>
+                </property>
+                <property name="maxLength">
+                 <number>4</number>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+                <property name="clearButtonEnabled">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_5">
+                <property name="text">
+                 <string>seconds</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
             </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="languageGroupBox">
+           <property name="title">
+            <string>Language</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_12">
             <item>
-             <widget class="QLineEdit" name="autoHideIntervalEdit">
+             <widget class="QComboBox" name="languageComboBox">
               <property name="maximumSize">
                <size>
-                <width>40</width>
+                <width>120</width>
                 <height>16777215</height>
                </size>
               </property>
-              <property name="text">
-               <string notr="true">5</string>
-              </property>
-              <property name="maxLength">
-               <number>4</number>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-              </property>
-              <property name="clearButtonEnabled">
-               <bool>false</bool>
-              </property>
              </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_5">
-              <property name="text">
-               <string>seconds</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
             </item>
            </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="languageGroupBox">
-         <property name="title">
-          <string>Language</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_12">
-          <item>
-           <widget class="QComboBox" name="languageComboBox">
-            <property name="maximumSize">
-             <size>
-              <width>120</width>
-              <height>16777215</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <spacer name="verticalSpacer">

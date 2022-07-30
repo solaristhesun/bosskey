@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>496</width>
-    <height>44</height>
+    <height>55</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -57,7 +57,7 @@
      <item>
       <widget class="QPushButton" name="browseButton">
        <property name="text">
-        <string>Browse...</string>
+        <string>Select...</string>
        </property>
        <property name="autoDefault">
         <bool>false</bool>

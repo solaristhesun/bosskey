@@ -37,15 +37,17 @@ FileSelector::~FileSelector()
 
 void FileSelector::openFileDialog()
 {
-    QFileDialog dialog(this);
+    QFileDialog dialog(this, tr("Select file"));
+
     dialog.setFileMode(QFileDialog::ExistingFile);
-    dialog.setDirectory(QStandardPaths::standardLocations(QStandardPaths::DesktopLocation).first());
+    dialog.setDirectory(getStartDirectory());
     dialog.setNameFilter(tr("Executables (*.exe *.bat *.cmd)"));
     dialog.setViewMode(QFileDialog::Detail);
+    dialog.setLabelText(QFileDialog::Accept, tr("Select"));
 
     QString filename;
     if (dialog.exec() == QDialog::Accepted) {
-        filename = dialog.selectedUrls().value(0).toLocalFile();
+        filename = QDir::toNativeSeparators(dialog.selectedUrls().value(0).toLocalFile());
     }
 
     ui_->filenameEdit->setText(filename);
@@ -69,6 +71,34 @@ void FileSelector::setFilename(const QString& filename)
 QString FileSelector::filename() const
 {
     return ui_->filenameEdit->text();
+}
+
+QString FileSelector::getStartDirectory() const
+{
+    QString directory = QStandardPaths::standardLocations(QStandardPaths::DesktopLocation).first();
+
+    QFileInfo fileInfo(ui_->filenameEdit->text());
+
+    if (fileInfo.exists()) {
+        directory = fileInfo.dir().absolutePath();
+    }
+
+    qDebug() << directory;
+
+    return directory;
+}
+
+bool FileSelector::event(QEvent *event)
+{
+    switch(event->type()) {
+    case QEvent::LanguageChange:
+        ui_->retranslateUi(this);
+        break;
+    default:
+        break;
+    }
+
+    return QObject::event(event);
 }
 
 // EOF <stefan@scheler.com>
