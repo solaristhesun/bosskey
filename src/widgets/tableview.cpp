@@ -44,6 +44,7 @@ void TableView::dropEvent(QDropEvent *event)
 void TableView::setEmptyText(QString text)
 {
     emptyText_ = text;
+    emit emptyTextChanged();
 }
 
 QString TableView::emptyText() const

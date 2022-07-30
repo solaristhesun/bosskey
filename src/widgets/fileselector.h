@@ -28,7 +28,7 @@ public slots:
     void openFileDialog();
 
 private:
-    QString getStartDirectory() const;
+    QString getDirectory() const;
 
 private:
     Ui::FileSelector *ui_;

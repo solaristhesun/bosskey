@@ -36,9 +36,9 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
 {
     ui_->setupUi(this);
 
-    connect(ui_->patternTableView->verticalHeader(), &QHeaderView::sectionCountChanged,
+    QObject::connect(ui_->patternTableView->verticalHeader(), &QHeaderView::sectionCountChanged, this,
         [=](int, int newCount) { ui_->clearButton->setEnabled(newCount > 0); });
-    connect(ui_->bringToFrontTableView->verticalHeader(), &QHeaderView::sectionCountChanged,
+    QObject::connect(ui_->bringToFrontTableView->verticalHeader(), &QHeaderView::sectionCountChanged, this,
         [=](int, int newCount) { ui_->clearBringToFrontButton->setEnabled(newCount > 0); });
 
     QDialog::setWindowTitle(Globals::ApplicationFullName);
@@ -71,27 +71,28 @@ BossKeyDialog::BossKeyDialog(PlatformInterface& engine, UGlobalHotkeys& hotkeyMa
         timer_.start(1000);
     }
 
-    connect(ui_->patternTableView->selectionModel(), &QItemSelectionModel::selectionChanged,
+    connect(ui_->patternTableView->selectionModel(), &QItemSelectionModel::selectionChanged, this,
         [=](const QItemSelection & selected, const QItemSelection &)
             {
                 ui_->removeButton->setEnabled(!selected.empty());
             });
-    connect(ui_->windowsTableView->selectionModel(), &QItemSelectionModel::selectionChanged,
+    connect(ui_->windowsTableView->selectionModel(), &QItemSelectionModel::selectionChanged, this,
         [=](const QItemSelection & selected, const QItemSelection &)
             {
                 ui_->addButton->setEnabled(!selected.empty());
                 ui_->bringToTopButton->setEnabled(!selected.empty());
             });
 
-    QObject::connect(&hotkeyManager_, &UGlobalHotkeys::activated, [=](size_t id)
-                     {
-                         if (id == KeyCode_ShowWindows) {
-                             showWindows();
-                         }
-                         else {
-                             hideWindows();
-                         }
-                     });
+    QObject::connect(&hotkeyManager_, &UGlobalHotkeys::activated, this,
+         [=](size_t id)
+             {
+                 if (id == KeyCode_ShowWindows) {
+                     showWindows();
+                 }
+                 else {
+                     hideWindows();
+                 }
+             });
 
     applyFocusLineHack(ui_->windowsTableView);
     applyFocusLineHack(ui_->patternTableView);
@@ -308,8 +309,8 @@ void BossKeyDialog::refreshWindowsMenu()
     windowsMenu_.setTitle(tr("Hidden windows"));
     windowsMenu_.clear();
 
-    for (auto window: qAsConst(windowList)) {
-        windowsMenu_.addAction(window.title, [=] () { showWindow(window); });
+    for (const auto& window: qAsConst(windowList)) {
+        windowsMenu_.addAction(window.title, this, [=] () { showWindow(window); });
     }
 
     windowsMenu_.setEnabled(windowList.count() > 0);

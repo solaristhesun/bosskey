@@ -35,20 +35,20 @@ WindowListViewModel::WindowListViewModel(QObject *parent)
 void WindowListViewModel::addWindow(WindowPattern w)
 {
     if (!windowList_.contains(w)) {
-        beginInsertRows(QModelIndex(), windowList_.length(), windowList_.length());
+        QAbstractItemModel::beginInsertRows(QModelIndex(), windowList_.length(), windowList_.length());
         windowList_.push_back(w);
-        endInsertRows();
+        QAbstractItemModel::endInsertRows();
     }
 }
 
 void WindowListViewModel::setWindowList(QList<WindowPattern> windowList)
 {
-    beginResetModel();
+    QAbstractItemModel::beginResetModel();
     windowList_ = windowList;
     std::sort(windowList_.begin(), windowList_.end(), [](const WindowPattern&a, const WindowPattern&b) -> bool {
         return a.fileName() < b.fileName();
     });
-    endResetModel();
+    QAbstractItemModel::endResetModel();
 }
 
 QList<WindowPattern> WindowListViewModel::getWindowList() const

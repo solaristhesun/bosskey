@@ -29,7 +29,7 @@ WindowsPlatform::WindowsPlatform()
 
 void WindowsPlatform::showWindows()
 {
-    for (auto window : hiddenWindows_) {
+    for (const auto& window : qAsConst(hiddenWindows_)) {
         showWindow(window);
     }
     trayIcons_.showIcons();
@@ -49,7 +49,7 @@ void WindowsPlatform::hideWindows(QList<WindowPattern> patternList)
             QString title = engine->getWindowTitle(hWindow);
             QString imageName = engine->getProcessImageName(hWindow);
 
-            for (auto window: engine->patternList_) {
+            for (const auto& window: qAsConst(engine->patternList_)) {
                 if (window.processImage == imageName) {
                     if (window.ignoreTitle || window.title == title) {
                         qDebug() << "hiding" << title << hWindow << imageName;

@@ -30,7 +30,7 @@ class WindowListViewModel;
 class TableView : public QTableView
 {
     Q_OBJECT
-    Q_PROPERTY(QString emptyText READ emptyText WRITE setEmptyText)
+    Q_PROPERTY(QString emptyText READ emptyText WRITE setEmptyText NOTIFY emptyTextChanged)
 
 public:
     TableView(QWidget *parent = nullptr);
@@ -47,6 +47,9 @@ public:
     QString emptyText() const;
 
     void retranslateUserInterface();
+
+signals:
+    void emptyTextChanged();
 
 public slots:
     void clear();

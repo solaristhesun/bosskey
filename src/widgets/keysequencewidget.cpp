@@ -19,7 +19,7 @@
 #include <QStyle>
 #include <QLineEdit>
 
-#include "keysequencewidget.h"
+#include "src/widgets/keysequencewidget.h"
 #include "ui_keysequencewidget.h"
 
 KeySequenceWidget::KeySequenceWidget(QWidget *parent) :
@@ -88,7 +88,7 @@ bool KeySequenceWidget::event(QEvent *event)
         break;
     }
 
-    return QObject::event(event);
+    return QWidget::event(event);
 }
 
 // EOF <stefan@scheler.com>

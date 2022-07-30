@@ -16,16 +16,15 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QDebug>
 #include <QFileDialog>
 #include <QStandardPaths>
 
 #include "widgets/fileselector.h"
 #include "ui_fileselector.h"
 
-FileSelector::FileSelector(QWidget *parent) :
-    QWidget(parent),
-    ui_(new Ui::FileSelector)
+FileSelector::FileSelector(QWidget *parent)
+    : QWidget(parent)
+    , ui_(new Ui::FileSelector)
 {
     ui_->setupUi(this);
 }
@@ -40,12 +39,13 @@ void FileSelector::openFileDialog()
     QFileDialog dialog(this, tr("Select file"));
 
     dialog.setFileMode(QFileDialog::ExistingFile);
-    dialog.setDirectory(getStartDirectory());
+    dialog.setDirectory(getDirectory());
     dialog.setNameFilter(tr("Executables (*.exe *.bat *.cmd)"));
     dialog.setViewMode(QFileDialog::Detail);
     dialog.setLabelText(QFileDialog::Accept, tr("Select"));
 
     QString filename;
+
     if (dialog.exec() == QDialog::Accepted) {
         filename = QDir::toNativeSeparators(dialog.selectedUrls().value(0).toLocalFile());
     }
@@ -73,17 +73,15 @@ QString FileSelector::filename() const
     return ui_->filenameEdit->text();
 }
 
-QString FileSelector::getStartDirectory() const
+QString FileSelector::getDirectory() const
 {
-    QString directory = QStandardPaths::standardLocations(QStandardPaths::DesktopLocation).first();
+    auto directory = QStandardPaths::standardLocations(QStandardPaths::DesktopLocation).constFirst();
 
     QFileInfo fileInfo(ui_->filenameEdit->text());
 
     if (fileInfo.exists()) {
         directory = fileInfo.dir().absolutePath();
     }
-
-    qDebug() << directory;
 
     return directory;
 }
@@ -98,7 +96,7 @@ bool FileSelector::event(QEvent *event)
         break;
     }
 
-    return QObject::event(event);
+    return QWidget::event(event);
 }
 
 // EOF <stefan@scheler.com>

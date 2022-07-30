@@ -27,7 +27,7 @@ SingleKeySequenceEdit::SingleKeySequenceEdit(QWidget *parent)
     lineEdit_ = this->findChild<QLineEdit*>("qt_keysequenceedit_lineedit");
     lineEdit_->setClearButtonEnabled(true);
 
-    connect(lineEdit_, &QLineEdit::textEdited, this, &SingleKeySequenceEdit::lineEditEdited);
+    QObject::connect(lineEdit_, &QLineEdit::textEdited, this, &SingleKeySequenceEdit::lineEditEdited);
 }
 
 SingleKeySequenceEdit::~SingleKeySequenceEdit()

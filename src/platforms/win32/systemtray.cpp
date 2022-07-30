@@ -57,7 +57,7 @@ void SystemTray::hideIcons(QList<WindowPattern> patternList)
 
         QString imageName = WindowsHelper::getImageNameFromPid(dwProcessId);
 
-        for (auto pattern: qAsConst(patternList)) {
+        for (const auto& pattern: qAsConst(patternList)) {
             if (pattern.processImage == imageName) {
                 SystemTrayIcon trayIcon(imageName, trayData);
                 trayIcon.hide();

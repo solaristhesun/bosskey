@@ -29,7 +29,7 @@ SoftwareVersion::SoftwareVersion(QString versionString)
     {
         versionMajor_ = match.captured(1).toUShort();
         versionMinor_ = match.captured(2).toUShort();
-        versionPatch_ = match.captured(3)[0].toLatin1();
+        versionPatch_ = match.captured(3).constData()[0].toLatin1();
     }
 }
 

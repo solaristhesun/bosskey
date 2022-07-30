@@ -27,10 +27,10 @@ SingleWindowListViewModel::SingleWindowListViewModel(QObject *parent)
 
 void SingleWindowListViewModel::addWindow(WindowPattern pattern)
 {
-    beginResetModel();
+    QAbstractItemModel::beginResetModel();
     windowList_.clear();
     windowList_.push_back(pattern);
-    endResetModel();
+    QAbstractItemModel::endResetModel();
 }
 
 // EOF <stefan@scheler.com>
