@@ -8,12 +8,14 @@ Quickly hide a window of any application by using hotkeys.
 - hide windows by click on systray icon
 - auto-hide on mouse inactivity
 - bring unsuspcious window to the front
+- hide systray icons
+- run external scripts on show/hide
 - free and opensource software
 - englisch and german translations
 - multiplatform (should run on windows, linux or macOS, currently only windows officially supported)
 
 # Download
-Download prebuilt binaries: https://scheler.com/bosskey/
+Download prebuilt binaries: https://github.com/solaristhesun/bosskey/releases
 
 # Support
 If this software is useful to you, please consider making a donation.
