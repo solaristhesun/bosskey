@@ -16,9 +16,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <windows.h>
 #include <CommCtrl.h>
 #include <psapi.h>
-#include <windows.h>
 
 #include "platforms/win32/process.h"
 #include "platforms/win32/systemtray.h"
